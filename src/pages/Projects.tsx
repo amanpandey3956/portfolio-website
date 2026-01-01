@@ -19,12 +19,26 @@ const projects = [
     featured: true,
   },
   {
+    title: "Task Manager App",
+    description: "Designed and containerized a 3-tier full-stack task management app. Implemented a complete observability stack using Prometheus, Thanos, and OpenTelemetry to collect metrics and traces, enabling scalable monitoring and long-term metrics storage. Automated Docker image build and push workflows using GitHub Actions for CI/CD.",
+    tech: ["Dockerfile", "Prometheus", "Thanos", "OpenTelemetry", "CI/CD", "Observability"],
+    github: "https://github.com/amanpandey3956/Full-stack-app",
+    featured: true,
+  },
+  {
+    title: "3-Tier Application",
+    description: "Implemented observability for a 3-tier application using OpenTelemetry as the unified instrumentation layer. Collected application metrics, logs and traces using OTEL and visualized in grafana",
+    tech: ["OpenTelemetry", "Grafana"],
+    github: "https://github.com/amanpandey3956/3-tier-app",
+    featured: true,
+  },
+  {
     title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
     link: "#",
     github: "https://github.com/amanpandey3956/portfolio-website",
-    featured: false,
+    featured: true,
   },
   {
     title: "TuneHouse",
