@@ -83,7 +83,7 @@ export function HeroSection() {
                 </Link>
               </Button>
               <Button variant="outline" size="lg" asChild>
-                <a href="/Aman_Pandey_Resume.pdf" download>
+                <a href="/Aman-Pandey.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
@@ -105,7 +105,9 @@ export function HeroSection() {
               {/* Image Container */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glow">
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <span className="text-6xl md:text-7xl font-bold gradient-text">AP</span>
+                  <img
+                  src="/myimg.jpg"
+                  />
                 </div>
               </div>
 
@@ -115,14 +117,14 @@ export function HeroSection() {
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-4 -right-4 px-4 py-2 glass rounded-lg text-sm font-medium"
               >
-                <span className="text-primary">React</span> Expert
+                <span className="text-primary">React & Next.js</span> Expert
               </motion.div>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
                 className="absolute -bottom-4 -left-4 px-4 py-2 glass rounded-lg text-sm font-medium"
               >
-                <span className="text-primary">Full Stack</span> Dev
+                <span className="text-primary">Frontend</span> Developer
               </motion.div>
             </div>
           </motion.div>

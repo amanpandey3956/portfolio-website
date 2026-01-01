@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, ArrowUp } from "lucide-react";
+import { Github, Linkedin, Instagram, Twitter, Mail, ArrowUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com/amanpandey", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com/in/amanpandey", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/amanpandey", label: "Twitter" },
-  { icon: Mail, href: "mailto:amanpandey@email.com", label: "Email" },
+  { icon: Github, href: "https://github.com/amanpandey3956", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
+  { icon: Instagram, href: "https://www.instagram.com/aman_pandey_39563/", label: "Instagram" },
+  { icon: Twitter, href: "https://x.com/amanpandey39563", label: "Twitter" },
+  { icon: Mail, href: "mailto:amanpandey39563@gmail.com", label: "Email" },
 ];
 
 const navLinks = [

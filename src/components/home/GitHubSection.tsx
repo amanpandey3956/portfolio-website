@@ -8,7 +8,7 @@ export function GitHubSection() {
   };
 
   return (
-    <section className="py-20 bg-card/30">
+    <section className="pt-20 pb-10 bg-card/30">
       <div className="container mx-auto px-6">
         <SectionHeading
           title="GitHub Activity"
@@ -20,11 +20,11 @@ export function GitHubSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center overflow-x-auto pb-4"
+          className="flex justify-center overflow-x-auto"
         >
           <div className="glass rounded-xl p-6">
             <GitHubCalendar
-              username="amanpandey"
+              username="amanpandey3956"
               theme={theme}
               colorScheme="dark"
               fontSize={12}
@@ -33,16 +33,6 @@ export function GitHubSection() {
             />
           </div>
         </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="text-center text-muted-foreground mt-6 text-sm"
-        >
-          Update your GitHub username in the component to see your actual contributions
-        </motion.p>
       </div>
     </section>
   );

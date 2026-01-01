@@ -61,7 +61,7 @@ export function Navbar() {
               </Link>
             ))}
             <Button asChild size="sm" className="glow-sm">
-              <a href="/Aman_Pandey_Resume.pdf" download>
+              <a href="/Aman-Pandey.pdf" download>
                 Resume
               </a>
             </Button>
@@ -115,7 +115,7 @@ export function Navbar() {
                   transition={{ delay: navLinks.length * 0.1 }}
                 >
                   <Button asChild className="w-full glow-sm">
-                    <a href="/Aman_Pandey_Resume.pdf" download>
+                    <a href="/Aman-Pandey.pdf" download>
                       Download Resume
                     </a>
                   </Button>

@@ -15,20 +15,55 @@ export function ContactSection() {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const form = e.currentTarget;
+    const formData = new FormData(form);
 
-    toast({
-      title: "Message sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
-    });
+    const accessKey =
+      import.meta.env.VITE_WEB3FORMS_KEY
 
-    setIsLoading(false);
-    (e.target as HTMLFormElement).reset();
+    if (!accessKey) {
+      toast({
+        title: "Configuration error",
+        description: "Web3Forms API key is missing.",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    formData.append("access_key", accessKey);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: formData,
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        toast({
+          title: "Message sent!",
+          description: "Thanks for reaching out. I'll get back to you soon!",
+        });
+        form.reset();
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <section className="py-20 bg-card/30">
+    <section className="pt-20 pb-28 bg-card/30">
       <div className="container mx-auto px-6">
         <SectionHeading
           title="Get In Touch"
