@@ -7,7 +7,7 @@ const experiences = [
   {
     title: "Associate Full Stack Engineer",
     company: "CloudRaft",
-    location: "India",
+    location: "Remote",
     period: "April 2025 - Present",
     description: [
       "Developing full-stack applications using React, TypeScript, and Next.js",
@@ -20,7 +20,7 @@ const experiences = [
   {
     title: "ReactJS Developer Intern",
     company: "Travel Eco",
-    location: "India",
+    location: "Remote",
     period: "Feb 2025 - March 2025",
     description: [
       "Developed responsive web applications using React and modern JavaScript",
@@ -32,7 +32,7 @@ const experiences = [
   {
     title: "Java Developer Intern",
     company: "Capgemini (FUEL)",
-    location: "India",
+    location: "Maharashtra, India",
     period: "Feb 2024 - May 2024",
     description: [
       "Developed Java-based applications and backend services",
@@ -47,7 +47,7 @@ const education = [
   {
     title: "Bachelor of Technology (B.Tech)",
     institution: "Deogiri Institute of Engineering and Management Studies",
-    location: "Aurangabad, India",
+    location: "Aurangabad, Maharashtra IN",
     period: "2020 - 2024",
     details: "CGPA: 7.71",
     type: "education",
