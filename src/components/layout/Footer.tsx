@@ -27,7 +27,6 @@ export function Footer() {
     <footer className="border-t border-border bg-card/30">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Brand */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <span className="text-2xl font-bold gradient-text">Aman Pandey</span>
@@ -38,7 +37,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* Quick Links */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground">Quick Links</h3>
             <nav className="flex flex-col gap-2">
@@ -54,7 +52,6 @@ export function Footer() {
             </nav>
           </div>
 
-          {/* Social Links */}
           <div className="space-y-4">
             <h3 className="text-sm font-semibold text-foreground">Connect</h3>
             <div className="flex gap-3">
@@ -76,7 +73,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Aman Pandey. Built with ❤️ using React & Tailwind CSS

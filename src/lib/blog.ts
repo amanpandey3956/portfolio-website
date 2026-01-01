@@ -1,6 +1,5 @@
 import type { BlogPost, BlogPostMeta } from '@/types/blog';
 
-// Simple frontmatter parser (browser-compatible, no Buffer needed)
 function parseFrontmatter(content: string): { data: Record<string, any>; content: string } {
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
   const match = content.match(frontmatterRegex);
@@ -13,7 +12,6 @@ function parseFrontmatter(content: string): { data: Record<string, any>; content
   const markdownContent = match[2];
   const data: Record<string, any> = {};
   
-  // Parse YAML-like frontmatter
   const lines = frontmatterStr.split('\n');
   for (const line of lines) {
     const colonIndex = line.indexOf(':');
@@ -22,13 +20,11 @@ function parseFrontmatter(content: string): { data: Record<string, any>; content
     const key = line.slice(0, colonIndex).trim();
     let value = line.slice(colonIndex + 1).trim();
     
-    // Handle quoted strings
     if ((value.startsWith('"') && value.endsWith('"')) || 
         (value.startsWith("'") && value.endsWith("'"))) {
       value = value.slice(1, -1);
     }
     
-    // Handle arrays (simple case: ["item1", "item2"])
     if (value.startsWith('[') && value.endsWith(']')) {
       try {
         data[key] = JSON.parse(value);
@@ -43,7 +39,6 @@ function parseFrontmatter(content: string): { data: Record<string, any>; content
   return { data, content: markdownContent };
 }
 
-// Import all markdown files from the blog content directory
 const blogFiles = import.meta.glob('/src/content/blog/*.md', { 
   query: '?raw',
   import: 'default',
@@ -69,7 +64,6 @@ export function getAllPosts(): BlogPostMeta[] {
     });
   }
 
-  // Sort by date (newest first)
   return posts.sort((a, b) => {
     const dateA = new Date(a.date);
     const dateB = new Date(b.date);

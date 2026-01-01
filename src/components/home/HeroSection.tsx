@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 export function HeroSection() {
   return (
     <section className="min-h-[90vh] flex items-center relative overflow-hidden">
-      {/* Background Effects */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px] animate-float" style={{ animationDelay: "-3s" }} />
@@ -14,7 +13,6 @@ export function HeroSection() {
 
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -89,7 +87,6 @@ export function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Photo/Avatar */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -97,25 +94,22 @@ export function HeroSection() {
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-full blur-3xl scale-110" />
               
-              {/* Image Container */}
               <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary/30 glow">
                 <div className="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                   <img
-                  src="/myimg.jpg"
+                  src="/projects/myimg.jpg"
                   />
                 </div>
               </div>
 
-              {/* Floating Elements */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute -top-4 -right-4 px-4 py-2 glass rounded-lg text-sm font-medium"
               >
-                <span className="text-primary">React & Next.js</span> Expert
+                <span className="text-primary">React</span> Expert
               </motion.div>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
