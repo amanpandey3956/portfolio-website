@@ -65,9 +65,7 @@ export function HeroSection() {
               transition={{ delay: 0.5 }}
               className="text-lg text-muted-foreground max-w-xl leading-relaxed"
             >
-              I craft exceptional digital experiences with modern technologies. 
-              Passionate about building scalable, user-centric applications that 
-              solve real-world problems using React, TypeScript, Next.js, and Tailwind CSS.
+              Frontend Developer | Exploring Kubernetes, Observability and Cloud Native Technologies
             </motion.p>
 
             <motion.div

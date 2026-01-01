@@ -7,13 +7,16 @@ const technologies = [
   { name: "Next.js", icon: "▲", category: "Framework" },
   { name: "Tailwind CSS", icon: "🎨", category: "Styling" },
   { name: "Node.js", icon: "🟢", category: "Backend" },
-  { name: "Supabase", icon: "⚡", category: "Database" },
-  { name: "PostgreSQL", icon: "🐘", category: "Database" },
+  { name: "Kubernetes", icon: "☸️", category: "DevOps" },
+  { name: "Prometheus", icon: "🔥", category: "Observability" },
+  { name: "Grafana Loki", icon: "📊", category: "Observability" },
+  { name: "Thanos", icon: "🛡️", category: "Observability" },
+  { name: "OpenTelemetry", icon: "🔭", category: "Observability" },
+  { name: "GitHub Actions", icon: "🔧", category: "CI/CD" },
+  { name: "Linux", icon: "🐧", category: "OS" },
   { name: "Redux", icon: "🔄", category: "State" },
   { name: "Git", icon: "📦", category: "Tools" },
   { name: "REST APIs", icon: "🔗", category: "Backend" },
-  { name: "Stripe", icon: "💳", category: "Payments" },
-  { name: "Figma", icon: "🎯", category: "Design" },
 ];
 
 const containerVariants = {
