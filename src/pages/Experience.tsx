@@ -114,8 +114,9 @@ const Experience = () => {
                     </div>
                     <ul className={`space-y-2 text-sm text-muted-foreground ${index % 2 === 0 ? "md:text-right" : ""}`}>
                       {exp.description.map((item, i) => (
-                        <li key={i} className="leading-relaxed">
-                          {item}
+                        <li key={i} className={`leading-relaxed flex items-start gap-2 ${index % 2 === 0 ? "md:flex-row-reverse" : ""}`}>
+                          <span className="text-primary mt-1.5 text-xs">●</span>
+                          <span>{item}</span>
                         </li>
                       ))}
                     </ul>
