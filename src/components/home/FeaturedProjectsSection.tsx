@@ -6,18 +6,16 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const featuredProjects = [
   {
-    title: "Clika MVP",
-    description: "A cutting-edge SaaS platform with Stripe integration, OAuth authentication, and Redux state management for seamless team collaboration.",
-    tech: ["React", "TypeScript", "Redux", "Stripe", "OAuth"],
-    link: "#",
-    github: "#",
+    title: "Clika",
+    description: "A cutting-edge MVP SaaS platform with Stripe integration, OAuth authentication, and Redux state management for seamless team collaboration.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "OAuth"],
   },
   {
     title: "CloudRaft Service Desk",
-    description: "Full-stack service desk application with real-time updates, Supabase backend, and comprehensive ticket management system.",
-    tech: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS"],
-    link: "#",
-    github: "#",
+    description: "Full-stack service desk application with real-time updates and chat support along with advanced filtering table built using mantine UI, Supabase backend, and comprehensive ticket management system.",
+    tech: ["React", "Supabase", "TypeScript", "Tailwind CSS"],
+    link: "https://oss-support.cloudraft.io/",
+    github: "https://github.com/amanpandey3956/service-app-clone",
   },
 ];
 

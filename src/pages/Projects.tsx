@@ -5,29 +5,60 @@ import { SectionHeading } from "@/components/ui/section-heading";
 
 const projects = [
   {
-    title: "Clika MVP",
-    description: "A cutting-edge SaaS platform with Stripe integration for payments, OAuth authentication supporting Google and GitHub, and Redux state management for seamless team collaboration and real-time data synchronization.",
-    tech: ["React", "TypeScript", "Redux", "Stripe", "OAuth", "Tailwind CSS"],
-    link: "#",
-    github: "#",
+    title: "Clika",
+    description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, OAuth authentication supporting Google and GitHub, and Redux state management for seamless team collaboration and real-time data synchronization.",
+    tech: ["React.js", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "Google OAuth", "Authentication"],
     featured: true,
   },
   {
     title: "CloudRaft Service Desk",
     description: "Full-stack service desk application with real-time ticket updates using Supabase realtime subscriptions, comprehensive ticket management, role-based access control, and an intuitive dashboard for support teams.",
-    tech: ["Next.js", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    link: "#",
-    github: "#",
+    tech: ["React.js", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    link: "https://oss-support.cloudraft.io/",
+    github: "https://github.com/amanpandey3956/service-app-clone",
     featured: true,
   },
   {
-    title: "Portfolio Website",
+    title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
     link: "#",
-    github: "#",
+    github: "https://github.com/amanpandey3956/portfolio-website",
     featured: false,
   },
+  {
+    title: "TuneHouse",
+    description: "TuneHouse is an innovative edtech music academy project built using Next.js, TypeScript, Tailwind CSS, and the Aeternity UI library, providing an engaging platform for students to learn music through interactive courses.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Aceternity UI"],
+    github: "https://github.com/amanpandey3956/TuneHouse",
+    link: "https://tune-house.vercel.app/",
+    featured: false,
+  },
+  { 
+    title: "Appwrite Blog",
+    description: "Developed a dynamic blogging platform using ReactJS, Appwrite, and Tailwind CSS. The site features user authentication, allowing users to create, edit, and delete their own blog posts, as well as upload images.",
+    tech: ["React", "Redux", "Appwrite", "Tailwind CSS"],
+    github: "https://github.com/amanpandey3956/Appwrite-Blog",
+    link: "https://appwrite-blog-vert.vercel.app/",
+    featured: false,
+  },
+  {
+    title: "Admin Sales Dashboard",
+    description: "Developed a responsive sales dashboard using React.js, Material-UI, and Nivo Charts for dynamic data visualization. Integrated mock APIs from JSONPlaceholder for real-time transaction tracking and user activity insights",
+    tech: ["React.js", "Material-UI", "Axios", "Jsonplaceholder"],
+    github: "https://github.com/amanpandey3956/React-Sales-Dashboard",
+    link: "https://dashboard-one-beryl-65.vercel.app/",
+    featured: false,
+
+  },
+  {
+    title: "Nike Landing Page",
+    description: "Created an engaging Nike landing page using ReactJS and Tailwind CSS. The site features a visually appealing design that showcases products with responsive layouts and smooth animations. Leveraged Tailwind CSS for rapid styling, ensuring a seamless user experience across devices.",
+    tech: ["React", "JavaScript", "Tailwind CSS"],
+    github: "https://github.com/amanpandey3956/Nike-Website",
+    link: "https://nike-website-sage-eight.vercel.app/",
+    featured: false,
+  } 
 ];
 
 const containerVariants = {
@@ -50,7 +81,7 @@ const Projects = () => {
         <div className="container mx-auto px-6">
           <SectionHeading
             title="Projects"
-            subtitle="A collection of projects I've worked on, from SaaS platforms to open-source contributions"
+            subtitle="A collection of projects I've worked on, from SaaS platforms to projects in observability fields and some of my personal projects "
           />
 
           <motion.div
