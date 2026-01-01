@@ -6,7 +6,6 @@ const technologies = [
   { name: "TypeScript", icon: "📘", category: "Language" },
   { name: "Next.js", icon: "▲", category: "Framework" },
   { name: "Tailwind CSS", icon: "🎨", category: "Styling" },
-  { name: "Node.js", icon: "🟢", category: "Backend" },
   { name: "Kubernetes", icon: "☸️", category: "DevOps" },
   { name: "Prometheus", icon: "🔥", category: "Observability" },
   { name: "Grafana Loki", icon: "📊", category: "Observability" },
@@ -15,8 +14,6 @@ const technologies = [
   { name: "GitHub Actions", icon: "🔧", category: "CI/CD" },
   { name: "Linux", icon: "🐧", category: "OS" },
   { name: "Redux", icon: "🔄", category: "State" },
-  { name: "Git", icon: "📦", category: "Tools" },
-  { name: "REST APIs", icon: "🔗", category: "Backend" },
 ];
 
 const containerVariants = {
@@ -36,7 +33,7 @@ const itemVariants = {
 
 export function TechStackSection() {
   return (
-    <section className="py-20">
+    <section className="pt-20 pb-14">
       <div className="container mx-auto px-6">
         <SectionHeading
           title="Tech Stack"
