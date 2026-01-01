@@ -14,7 +14,7 @@ const Blog = () => {
         <div className="container mx-auto px-6">
           <SectionHeading
             title="Blog"
-            subtitle="Thoughts, tutorials, and insights on web development"
+            subtitle="Thoughts, tutorials, and insights on web development, Kubernetes, Cloud Native, and Observability."
           />
 
           {posts.length === 0 ? (
@@ -37,7 +37,6 @@ const Blog = () => {
                   whileHover={{ y: -5 }}
                   className="group glass rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
                 >
-                  {/* Banner Image */}
                   {post.banner && (
                     <div className="aspect-video overflow-hidden">
                       <img
@@ -49,7 +48,6 @@ const Blog = () => {
                   )}
                   
                   <div className="p-6 flex flex-col flex-1">
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
                       {post.tags.map((tag) => (
                         <span
@@ -61,17 +59,14 @@ const Blog = () => {
                       ))}
                     </div>
 
-                    {/* Title */}
                     <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
                       {post.title}
                     </h2>
 
-                    {/* Summary */}
                     <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4 line-clamp-3">
                       {post.summary}
                     </p>
 
-                    {/* Footer */}
                     <div className="flex items-center justify-between text-sm text-muted-foreground mt-auto pt-4 border-t border-border">
                       <div className="flex items-center gap-2">
                         <Calendar size={14} />

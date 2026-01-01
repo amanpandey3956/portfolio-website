@@ -64,7 +64,6 @@ const Experience = () => {
             subtitle="My professional journey and educational background"
           />
 
-          {/* Work Experience */}
           <div className="mb-16">
             <motion.h3
               initial={{ opacity: 0, x: -20 }}
@@ -76,7 +75,6 @@ const Experience = () => {
             </motion.h3>
 
             <div className="relative">
-              {/* Timeline Line */}
               <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-border md:left-1/2 md:-translate-x-0.5" />
 
               {experiences.map((exp, index) => (
@@ -90,7 +88,6 @@ const Experience = () => {
                     index % 2 === 0 ? "md:pr-12 md:text-right" : "md:ml-auto md:pl-12"
                   }`}
                 >
-                  {/* Timeline Dot */}
                   <div
                     className={`absolute top-2 w-3 h-3 rounded-full bg-primary glow-sm left-[10px] md:left-auto ${
                       index % 2 === 0 ? "md:right-[-6px]" : "md:left-[-6px]"
@@ -126,7 +123,6 @@ const Experience = () => {
             </div>
           </div>
 
-          {/* Education */}
           <div>
             <motion.h3
               initial={{ opacity: 0, x: -20 }}

@@ -5,21 +5,21 @@ banner: "/projects/reduxjs.png"
 author: "Aman Pandey"
 authorImage: "/projects/myimg.jpg"
 date: "April 13, 2025"
-summary: "Redux Toolkit is the official, modern way to manage state in React apps. In this blog, you'll learn the core concepts of Redux Toolkit like slices, actions, and store setup in a simplified way. Then we'll build a complete Todo app using Redux Toolkit step-by-step. Perfect for React devs looking to write cleaner, scalable code."
+summary: "Redux Toolkit is the official, modern way to manage state in React apps. In this blog, you'll learn the core concepts of Redux Toolkit like slices, actions, and store setup in a simplified way. Then we’ll build a complete Todo app using Redux Toolkit step-by-step. Perfect for React devs looking to write cleaner, scalable code."
 tags: ["React", "Redux Toolkit", "State Management", "Frontend"]
 ---
 
 <img src="/projects/reduxjs.png" alt="Redux Toolkit" style="margin-bottom: 28px;" />
 
-If you've worked with React before, there's a good chance you've heard of Redux. It's a powerful tool for managing state in large applications but let's be honest, the setup can feel like a lot. That's where Redux Toolkit comes in. It's the official, recommended way to write Redux logic, and it makes everything cleaner, faster, and much easier to work with.
+If you’ve worked with React before, there’s a good chance you’ve heard of Redux. It’s a powerful tool for managing state in large applications but let’s be honest, the setup can feel like a lot. That’s where Redux Toolkit comes in. It’s the official, recommended way to write Redux logic, and it makes everything cleaner, faster, and much easier to work with.
 
-In this blog, we'll first break down all the essential concepts behind Redux Toolkit in a beginner-friendly way. And once we're ok and comfortable with the theory, we'll build a simple but practical Todo App using Redux Toolkit step by step so stay tuned here.
+In this blog, we’ll first break down all the essential concepts behind Redux Toolkit in a beginner-friendly way. And once we’re ok and comfortable with the theory, we’ll build a simple but practical Todo App using Redux Toolkit step by step so stay tuned here.
 
 ## What is Redux Toolkit?
 
 Redux Toolkit (RTK) is the official, opinionated toolset for efficient Redux development.
 
-Prior to RTK, developers had to manually wire up Redux stores using a lot of boilerplate code. This included setting up reducers, actions, selectors, actions, and middleware just to get a basic store running. RTK handles these painful tasks by providing a set of utility functions that simplify the standard way you'd use Redux.
+Prior to RTK, developers had to manually wire up Redux stores using a lot of boilerplate code. This included setting up reducers, actions, selectors, actions, and middleware just to get a basic store running. RTK handles these painful tasks by providing a set of utility functions that simplify the standard way you’d use Redux.
 
 The Redux team knew that developers had problems with the complexity of Redux. So, they set out to create a soln that would streamline Redux workflow and make state management simpler for developers and React Toolkit was the result.
 
@@ -29,27 +29,27 @@ The Redux team knew that developers had problems with the complexity of Redux. S
 
 The image above shows how Redux works behind the scenes when you interact with a UI (like clicking a button).
 
-### Let's break it down step by step:
+### Let’s break it down step by step:
 
 - #### Button Click (UI Layer):
         It all starts when a user clicks a button in your app. This button lives inside the UI layer.
 
 - #### Handler Function:
-        The click triggers a handler function. This function decides what kind of action to send (like "add a todo").
+        The click triggers a handler function. This function decides what kind of action to send (like “add a todo”).
 
 - #### Dispatching an Action:
-        The handler dispatches an action to the Redux Store."
+        The handler dispatches an action to the Redux Store.”
 
 - #### Redux Store:
         The store receives the action and passes it to a Reducer.
 
 - #### Reducer:
-        A reducer is a function that looks at the action and updates the store's state. returns the new updated state.
+        A reducer is a function that looks at the action and updates the store’s state. returns the new updated state.
 
 - #### Update UI:
-        Once the store's state is updated, the UI layer re-renders with the new data — for example, showing the new todo item.
+        Once the store’s state is updated, the UI layer re-renders with the new data — for example, showing the new todo item.
 
-And that's it! It's a simple loop: User interaction → Action → Store → Reducer → Updated Store → UI updates
+And that’s it! It’s a simple loop: User interaction → Action → Store → Reducer → Updated Store → UI updates
 
 ## Let's Build a Simple Todo App
 
@@ -77,7 +77,7 @@ export const store = configureStore({
 
 A slice combines state, reducers, and actions for a specific feature. With our store ready, the next step is to define the logic behind adding and removing todos. Redux Toolkit makes this part super smooth through a concept called slices.
 
-In our case, we're creating a todo slice — here's what that looks like:
+In our case, we’re creating a todo slice — here’s what that looks like:
 
 ```javascript
 // src/features/todo/todoSlice.js
@@ -110,11 +110,11 @@ export default todoSlice.reducer;
 
 ```
 
-##### ✅ What's Happening Here?
+##### What’s Happening Here?
 
-- **initialState:** We're starting with a simple array of todos. Right now, there's just one default todo to keep things from looking empty.
+- **initialState:** We’re starting with a simple array of todos. Right now, there’s just one default todo to keep things from looking empty.
 
-- **createSlice:** This is Redux Toolkit's magic wand. It creates:
+- **createSlice:** This is Redux Toolkit’s magic wand. It creates:
 
         The state
         The reducers (functions that change the state)
@@ -140,7 +140,7 @@ export const store = configureStore({
 ```
 #### 5. Creating the Add Todo Component
 
-Alright, now that our slice is ready, let's start building the UI beginning with the part where the user adds a new todo.
+Alright, now that our slice is ready, let’s start building the UI beginning with the part where the user adds a new todo.
 
 ```javascript
 // src/components/AddTodo.jsx
@@ -160,13 +160,18 @@ function AddTodo() {
   }
 
   return (
-    <form onSubmit={addTodoHandler}>
+    <form onSubmit={addTodoHandler} className="space-x-3 mt-12">
       <input
         type="text"
+        className="bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+        placeholder="Enter a Todo..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
       />
-      <button type="submit">
+      <button
+        type="submit"
+        className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+      >
         Add Todo
       </button>
     </form>
@@ -175,7 +180,7 @@ function AddTodo() {
 
 export default AddTodo
 ```
-##### ✅What's Going On Here?
+##### What’s Going On Here?
 
 - We use useState to track whatever the user types into the input box. useDispatch is a hook from react-redux. It lets us send actions to our Redux store.
 
@@ -187,7 +192,7 @@ export default AddTodo
 
 Now that users can add todos, we need to show them on the screen — and of course, give them a way to remove them too.
 
-Here's how we're handling that in the Todos component:
+Here’s how we’re handling that in the Todos component:
 
 ```javascript
 // src/components/Todos.jsx
@@ -202,11 +207,14 @@ function Todos() {
 
   return (
     <>
-      <h1>Todos</h1>
-      <ul>
+      <div>Todos</div>
+      <ul className="list-none">
         {todos.map((todo) => (
-          <li key={todo.id}>
-            <p>{todo.text}</p>
+          <li
+            key={todo.id}
+            className="mt-4 flex justify-between items-center bg-zinc-800 px-4 py-2 rounded"
+          >
+            <div className="text-white">{todo.text}</div>
             <button
               onClick={() => dispatch(removeTodo(todo.id))}
               className="text-white bg-red-500 border-0 py-1 px-4 focus:outline-none hover:bg-red-600 rounded text-md"
@@ -222,7 +230,7 @@ function Todos() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                  d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21..."
                 />
               </svg>
             </button>
@@ -235,12 +243,12 @@ function Todos() {
 
 export default Todos
 ```
-##### ✅What's Going On Here?
+##### What’s Going On Here?
 
 - We use useSelector to grab the current list of todos from our Redux store. For each todo, we render a styled list item with:
 
         The todo text
-        A delete button that dispatches the removeTodo action with that todo's ID
+        A delete button that dispatches the removeTodo action with that todo’s ID
 
 #### 7. Final Step -  Provide the Store to React
 
@@ -262,6 +270,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 ```
 **Provider:** A higher-order component that makes the Redux store available to all components in the app.
 
-And that's a wrap! Hope this guide helped you understand Redux Toolkit a little better — and if you followed along, you now have a fully functional Todo app to show for it.
-
-## Congrats on completing the blog! 😊
+And that’s a wrap! Hope this guide helped you understand Redux Toolkit a little better — and if you followed along, you now have a fully functional Todo app to show for it.

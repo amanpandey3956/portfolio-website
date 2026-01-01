@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, User } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Layout } from "@/components/layout/Layout";
@@ -33,7 +34,6 @@ const BlogPost = () => {
     <Layout>
       <article className="py-20 min-h-screen">
         <div className="container mx-auto px-6 max-w-4xl">
-          {/* Back Button */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -48,13 +48,11 @@ const BlogPost = () => {
             </Link>
           </motion.div>
 
-          {/* Header */}
           <motion.header
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-12"
           >
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 mb-6">
               {post.tags.map((tag) => (
                 <span
@@ -66,12 +64,10 @@ const BlogPost = () => {
               ))}
             </div>
 
-            {/* Title */}
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
               {post.title}
             </h1>
 
-            {/* Meta */}
             <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
               <div className="flex items-center gap-3">
                 {post.authorImage ? (
@@ -94,7 +90,6 @@ const BlogPost = () => {
             </div>
           </motion.header>
 
-          {/* Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,6 +98,7 @@ const BlogPost = () => {
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw]}
               components={{
                 code({ node, className, children, ...props }) {
                   const match = /language-(\w+)/.exec(className || "");
@@ -124,7 +120,7 @@ const BlogPost = () => {
                       style={oneDark}
                       language={match ? match[1] : "text"}
                       PreTag="div"
-                      className="rounded-lg !bg-[#1a1b26] !my-6"
+                      className="rounded-lg bg-[#1a1b26] !my-6"
                       customStyle={{
                         padding: "1.5rem",
                         fontSize: "0.9rem",
@@ -161,7 +157,7 @@ const BlogPost = () => {
                   </p>
                 ),
                 ul: ({ children }) => (
-                  <ul className="list-disc list-inside space-y-2 text-muted-foreground mb-4 ml-4">
+                  <ul className="list-disc list-outside space-y-2 text-muted-foreground mb-4 pl-6">
                     {children}
                   </ul>
                 ),
@@ -171,7 +167,7 @@ const BlogPost = () => {
                   </ol>
                 ),
                 li: ({ children }) => (
-                  <li className="text-muted-foreground">
+                  <li className="leading-relaxed">
                     {children}
                   </li>
                 ),
