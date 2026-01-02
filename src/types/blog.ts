@@ -8,6 +8,7 @@ export interface BlogPost {
   summary: string;
   tags: string[];
   content: string;
+  externalUrl?: string;
 }
 
 export interface BlogPostMeta {
@@ -19,4 +20,5 @@ export interface BlogPostMeta {
   date: string;
   summary: string;
   tags: string[];
+  externalUrl?: string;
 }
