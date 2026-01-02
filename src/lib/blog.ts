@@ -61,6 +61,7 @@ export function getAllPosts(): BlogPostMeta[] {
       date: data.date || '',
       summary: data.summary || '',
       tags: data.tags || [],
+      externalUrl: data.externalUrl || undefined,
     });
   }
 

@@ -72,12 +72,21 @@ const Blog = () => {
                         <Calendar size={14} />
                         <span>{post.date}</span>
                       </div>
-                      <Link
-                        to={`/blog/${post.slug}`}
-                        className="flex items-center gap-1 text-primary hover:underline"
-                      >
-                        Read <ArrowRight size={14} />
-                      </Link>
+                      {post.externalUrl ? (
+                        <a
+                          href={post.externalUrl}
+                          className="flex items-center gap-1 text-primary hover:underline"
+                        >
+                          Read <ArrowRight size={14} />
+                        </a>
+                      ) : (
+                        <Link
+                          to={`/blog/${post.slug}`}
+                          className="flex items-center gap-1 text-primary hover:underline"
+                        >
+                          Read <ArrowRight size={14} />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 </motion.article>

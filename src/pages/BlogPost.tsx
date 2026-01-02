@@ -4,10 +4,11 @@ import { Calendar, ArrowLeft, User } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeSlug from "rehype-slug";
 import { Layout } from "@/components/layout/Layout";
 import { getPostBySlug } from "@/lib/blog";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { CodeBlock } from "@/components/blog/CodeBlock";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -33,7 +34,8 @@ const BlogPost = () => {
   return (
     <Layout>
       <article className="py-20 min-h-screen">
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 flex">
+          <div className="max-w-4xl flex-1">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -98,7 +100,7 @@ const BlogPost = () => {
           >
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
-              rehypePlugins={[rehypeRaw]}
+              rehypePlugins={[rehypeRaw, rehypeSlug]}
               components={{
                 code({ node, className, children, ...props }) {
                   const match = /language-(\w+)/.exec(className || "");
@@ -116,19 +118,9 @@ const BlogPost = () => {
                   }
 
                   return (
-                    <SyntaxHighlighter
-                      style={oneDark}
-                      language={match ? match[1] : "text"}
-                      PreTag="div"
-                      className="rounded-lg bg-[#1a1b26] !my-6"
-                      customStyle={{
-                        padding: "1.5rem",
-                        fontSize: "0.9rem",
-                        borderRadius: "0.75rem",
-                      }}
-                    >
+                    <CodeBlock language={match ? match[1] : "text"}>
                       {String(children).replace(/\n$/, "")}
-                    </SyntaxHighlighter>
+                    </CodeBlock>
                   );
                 },
                 h2: ({ children }) => (
@@ -206,6 +198,8 @@ const BlogPost = () => {
               {post.content}
             </ReactMarkdown>
           </motion.div>
+          </div>
+          <TableOfContents content={post.content} />
         </div>
       </article>
     </Layout>
