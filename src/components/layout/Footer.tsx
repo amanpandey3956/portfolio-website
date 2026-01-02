@@ -32,8 +32,7 @@ export function Footer() {
               <span className="text-2xl font-bold gradient-text">Aman Pandey</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
-              Associate Full Stack Engineer passionate about building beautiful, 
-              performant web applications that make a difference.
+              Associate Full Stack Engineer @CloudRaft
             </p>
           </div>
 
