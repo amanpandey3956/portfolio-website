@@ -117,10 +117,11 @@ export default todoSlice.reducer;
 - **initialState:** We’re starting with a simple array of todos. Right now, there’s just one default todo to keep things from looking empty.
 
 - **createSlice:** This is Redux Toolkit’s magic wand. It creates:
-
-        The state
-        The reducers (functions that change the state)
-        The action creators (functions that fire off changes)
+```bash
+The state
+The reducers (functions that change the state)
+The action creators (functions that fire off changes)
+```
 
 - **addTodo**
 When we want to add a new todo, we use the nanoid() function to give it a unique ID. This keeps our list manageable when we start adding/removing items dynamically. The new todo is pushed into the state array.
@@ -248,9 +249,10 @@ export default Todos
 ##### What’s Going On Here?
 
 - We use useSelector to grab the current list of todos from our Redux store. For each todo, we render a styled list item with:
-
-        The todo text
-        A delete button that dispatches the removeTodo action with that todo’s ID
+```bash
+The todo text
+A delete button that dispatches the removeTodo action with that todo’s ID
+```
 
 #### 7. Final Step -  Provide the Store to React
 
