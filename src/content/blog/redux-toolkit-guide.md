@@ -32,22 +32,22 @@ The image above shows how Redux works behind the scenes when you interact with a
 ### Let’s break it down step by step:
 
 - #### Button Click (UI Layer):
-        It all starts when a user clicks a button in your app. This button lives inside the UI layer.
+  It all starts when a user clicks a button in your app. This button lives inside the UI layer.
 
 - #### Handler Function:
-        The click triggers a handler function. This function decides what kind of action to send (like “add a todo”).
+  The click triggers a handler function. This function decides what kind of action to send (like “add a todo”).
 
 - #### Dispatching an Action:
-        The handler dispatches an action to the Redux Store.”
+  The handler dispatches an action to the Redux Store.”
 
 - #### Redux Store:
-        The store receives the action and passes it to a Reducer.
+  The store receives the action and passes it to a Reducer.
 
 - #### Reducer:
-        A reducer is a function that looks at the action and updates the store’s state. returns the new updated state.
+  A reducer is a function that looks at the action and updates the store’s state. returns the new updated state.
 
 - #### Update UI:
-        Once the store’s state is updated, the UI layer re-renders with the new data — for example, showing the new todo item.
+  Once the store’s state is updated, the UI layer re-renders with the new data — for example, showing the new todo item.
 
 And that’s it! It’s a simple loop: User interaction → Action → Store → Reducer → Updated Store → UI updates
 
@@ -56,7 +56,9 @@ And that’s it! It’s a simple loop: User interaction → Action → Store →
 A simple Todo App built with React and Redux Toolkit to demonstrate clean and scalable state management. Users can add and remove todos using Redux-powered actions and reducers.
 
 #### 1. Install Redux Toolkit
-    npm install reduxjs/toolkit react-redux
+```bash
+npm install reduxjs/toolkit react-redux
+```
 
 #### 2. Create a Redux Store
 
