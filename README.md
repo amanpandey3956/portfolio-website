@@ -4,7 +4,7 @@ Welcome to my personal portfolio website! This project showcases my skills, expe
 
 ## Live Demo
 
-Check out the live demo of my portfolio [here](https://portfolio-type-nextjs.vercel.app).
+Check out the live demo of my portfolio [here](https://amanpandey-portfolio.vercel.app/).
 
 ## About the Project
 

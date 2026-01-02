@@ -35,8 +35,8 @@ const projects = [
   {
     title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    link: "#",
+    tech: ["React", "TypeScript", "Tailwind CSS", "shadcn-ui"],
+    link: "https://amanpandey-portfolio.vercel.app/",
     github: "https://github.com/amanpandey3956/portfolio-website",
     featured: true,
   },
