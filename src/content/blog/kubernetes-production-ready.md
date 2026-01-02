@@ -1,7 +1,7 @@
 ---
 title: "How to Make Kubernetes Deployment Production Ready"
 slug: "kubernetes-production-ready"
-banner: "/projects/container.png"
+banner: "/projects/kubernetes.png"
 author: "Aman Pandey"
 authorImage: "/projects/myimg.jpg"
 date: "September 16, 2025"

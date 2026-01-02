@@ -156,7 +156,7 @@ Let’s start by pulling the official Redis image from Docker Hub: Visit [Docker
 
 <img src="/projects/redis.png" alt="docker" style="margin-bottom: 28px;" />
 
-1. **Run Below Command to start pulling this public redis image from docker hub:**
+1] **Run Below Command to start pulling this public redis image from docker hub:**
 ```bash
 docker pull redis
 ```
@@ -176,7 +176,7 @@ Digest: sha256:1b835e5a8d5db58e8b718850bf43a68ef5a576fc68301fd08a789b20b4eecb61
 Status: Downloaded newer image for redis:latest
 docker.io/library/redis:latest
 ```
-2. **List all Local images**
+2] **List all Local images**
 ```bash
 docker images
 ```
@@ -186,7 +186,7 @@ After pulling redis image, above command will list all the images present in you
 REPOSITORY   TAG       IMAGE ID       CREATED       SIZE
 redis        latest    c09c2832ba40   2 weeks ago   128MB
 ```
-3. **Now once the image gets pulled, lets run the container from Redis Image by below command:**
+3] **Now once the image gets pulled, lets run the container from Redis Image by below command:**
 ```bash
 docker run redis
 ```
@@ -236,13 +236,13 @@ docker run -d redis
 ``` 
 The **-d** flag instructs the **Docker CLI** to detach from the container, leaving the process running in the background. You’ll be dropped back to your terminal prompt.
 
-4. **List all running containers:** Run **docker ps** 
+4] **List all running containers:** Run **docker ps** 
 ```bash
 [amanpandey@aman-fedora ~]$ docker ps
 CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS      NAMES
 f42b6cda4b59   redis     "docker-entrypoint.s…"   9 seconds ago   Up 9 seconds   6379/tcp   flamboyant_nobel
 ```
-5. **To see all your containers, including stopped and exited ones, add the -a flag:**
+5] **To see all your containers, including stopped and exited ones, add the -a flag:**
 ```bash
 [amanpandey@aman-fedora ~]$ docker ps -a
 CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                     PORTS      NAMES
@@ -256,13 +256,13 @@ docker start <container-id>  # starts it
 ```
 So when you run it multiple times, Docker keeps making new containers, even if you're using the same image. to avoid creating a new container each time use docker start instead of docker run.
 
-6. **The command provides each container’s ID and current status**
+6] **The command provides each container’s ID and current status**
 - To get more detailed information about an individual container, pass its ID or name to docker inspect:
 ```bash
 docker inspect 77a836ac24cf 
 ```
 
-7. **Starting, Stopping, and Deleting Containers**
+7] **Starting, Stopping, and Deleting Containers**
 
 - Detached containers can be stopped by passing their ID or name to the **docker stop** command:
 ```bash
@@ -287,7 +287,7 @@ docker rm 42b6cda4b59  #container must stop before removing
 docker rm 42b6cda4b59 --force
 ```
 
-8. **Removing Images**
+8] **Removing Images**
 - To delete an image, pass its ID or tag to docker rmi:
 ```bash
 docker rmi redis

@@ -202,7 +202,6 @@ const BlogPost = () => {
               </motion.div>
             </div>
 
-            {/* Table of Contents - sticky sidebar */}
             <div className="hidden xl:block w-64 shrink-0">
               <div className="sticky top-24 z-10 bg-background">
                 <TableOfContents content={post.content} />
