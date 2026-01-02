@@ -77,14 +77,13 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3 }}
-      className="hidden xl:block sticky top-24 ml-8 w-64"
     >
       <div className="glass rounded-lg p-4">
         <div className="flex items-center gap-2 mb-4 text-foreground font-semibold">
           <List size={18} />
           <span>Table of Contents</span>
         </div>
-        <ul className="space-y-2 text-sm">
+        <ul className="space-y-2 text-sm max-h-[70vh] overflow-y-auto">
           {tocItems.map((item) => (
             <li
               key={item.id}
@@ -92,9 +91,9 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
             >
               <button
                 onClick={() => scrollToHeading(item.id)}
-                className={`text-left w-full py-1 transition-colors hover:text-primary ${
+                className={`text-left w-full py-1.5 transition-all duration-200 hover:text-primary ${
                   activeId === item.id
-                    ? "text-primary font-medium"
+                    ? "text-primary font-medium border-l-2 border-primary pl-2 -ml-2"
                     : "text-muted-foreground"
                 }`}
               >
