@@ -8,7 +8,7 @@ const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/aman_pandey_39563/", label: "Instagram" },
   { icon: Twitter, href: "https://x.com/amanpandey39563", label: "Twitter" },
-  { icon: Mail, href: "mailto:amanpandey39563@gmail.com", label: "Email" },
+  { icon: Mail, href: "mailto:amanpnd01@gmail.com", label: "Email" },
 ];
 
 const navLinks = [
