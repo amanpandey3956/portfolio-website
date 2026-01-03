@@ -20,17 +20,29 @@ export function GitHubSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5 }}
-          className="flex justify-center overflow-x-auto"
+          className="flex justify-center"
         >
-          <div className="glass rounded-xl p-6">
-            <GitHubCalendar
-              username="amanpandey3956"
-              theme={theme}
-              colorScheme="dark"
-              fontSize={12}
-              blockSize={12}
-              blockMargin={4}
-            />
+          <div className="glass rounded-xl p-4 sm:p-6 max-w-full overflow-x-auto">
+            <div className="hidden sm:block">
+              <GitHubCalendar
+                username="amanpandey3956"
+                theme={theme}
+                colorScheme="dark"
+                fontSize={12}
+                blockSize={12}
+                blockMargin={4}
+              />
+            </div>
+            <div className="sm:hidden">
+              <GitHubCalendar
+                username="amanpandey3956"
+                theme={theme}
+                colorScheme="dark"
+                fontSize={10}
+                blockSize={10}
+                blockMargin={3}
+              />
+            </div>
           </div>
         </motion.div>
       </div>

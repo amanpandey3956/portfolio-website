@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
-    <section className="min-h-[90vh] flex items-center relative overflow-hidden">
+    <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-8 md:pt-0">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-float" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/15 rounded-full blur-[120px] animate-float" style={{ animationDelay: "-3s" }} />
@@ -70,18 +70,19 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
+              className="flex gap-3 sm:gap-4 pt-4"
             >
-              <Button asChild size="lg" className="glow group">
+              <Button asChild size="lg" className="glow group flex-1 sm:flex-none">
                 <Link to="/projects">
                   View Projects
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="lg" asChild className="flex-1 sm:flex-none">
                 <a href="/Aman-Pandey.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
-                  Download Resume
+                  <span className="hidden sm:inline">Download Resume</span>
+                  <span className="sm:hidden">Resume</span>
                 </a>
               </Button>
             </motion.div>
@@ -91,7 +92,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end mb-16 sm:mb-0"
           >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-full blur-3xl scale-110" />
