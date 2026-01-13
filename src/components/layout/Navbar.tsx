@@ -22,16 +22,20 @@ export function Navbar() {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="fixed top-0 left-0 right-0 z-50 glass-strong"
     >
-      <nav className="container mx-auto px-6 py-4">
+      <nav className="container mx-auto px-6 sm:py-2 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="group">
-            <motion.span 
-              className="text-2xl font-bold gradient-text"
+            <motion.div 
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400 }}
+              className="sm:w-16 sm:h-16 w-12 h-12 rounded-full overflow-hidden border-2 border-border"
             >
-              AP
-            </motion.span>
+              <img
+                src="/projects/myimg.jpg"
+                alt="Aman Pandey"
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
           </Link>
 
           <div className="hidden md:flex items-center gap-8">
