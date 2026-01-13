@@ -9,6 +9,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getPostBySlug } from "@/lib/blog";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { CodeBlock } from "@/components/blog/CodeBlock";
+import { SEO } from "@/components/SEO";
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -31,12 +32,31 @@ const BlogPost = () => {
     );
   }
 
+  const getISODate = (dateStr: string) => {
+    try {
+      const date = new Date(dateStr);
+      return date.toISOString();
+    } catch {
+      return undefined;
+    }
+  };
+
   return (
     <Layout>
+      <SEO 
+        title={post.title}
+        description={post.summary}
+        keywords={post.tags.join(", ")}
+        image={post.banner || "/projects/myimg.jpg"}
+        url={`https://amanpandey-portfolio.vercel.app/blog/${post.slug}`}
+        type="article"
+        author={post.author}
+        publishedTime={getISODate(post.date)}
+        tags={post.tags}
+      />
       <article className="py-20 min-h-screen">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-center gap-8">
-            {/* Main content */}
             <div className="w-full max-w-3xl">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}

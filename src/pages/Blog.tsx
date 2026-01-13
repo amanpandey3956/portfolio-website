@@ -4,12 +4,19 @@ import { Link } from "react-router-dom";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getAllPosts } from "@/lib/blog";
+import { SEO } from "@/components/SEO";
 
 const Blog = () => {
   const posts = getAllPosts();
 
   return (
     <Layout>
+      <SEO 
+        title="Blog"
+        description="Thoughts, tutorials and my learnings from Kubernetes, AI, Observability, DevOps and Web Development."
+        keywords="Docker Tutorial, Kubernetes Blog, Redux Toolkit Blog, React Blog, Cloud Native, DevOps Blog, Web Development"
+        url="https://amanpandey-portfolio.vercel.app/blog"
+      />
       <section className="py-20 min-h-screen">
         <div className="container mx-auto px-6">
           <SectionHeading

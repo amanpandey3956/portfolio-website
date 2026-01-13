@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { SEO } from "@/components/SEO";
 
 const projects = [
   {
@@ -91,6 +92,12 @@ const itemVariants = {
 const Projects = () => {
   return (
     <Layout>
+      <SEO 
+        title="Projects"
+        description="Explore my portfolio of projects including SaaS platforms, observability tools, and full-stack applications built with React, TypeScript, Docker, Kubernetes, Prometheus, Thanos, and Opentelemetry."
+        keywords="React and TypeScript Projects, SaaS, Observability, Full Stack Projects, Docker, Kubernetes, Portfolio"
+        url="https://amanpandey-portfolio.vercel.app/projects"
+      />
       <section className="py-20 min-h-screen">
         <div className="container mx-auto px-6">
           <SectionHeading

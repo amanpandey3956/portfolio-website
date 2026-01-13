@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Calendar, MapPin } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { SEO } from "@/components/SEO";
 
 const experiences = [
   {
@@ -57,6 +58,12 @@ const education = [
 const Experience = () => {
   return (
     <Layout>
+      <SEO 
+        title="Experience"
+        description="Professional experience as a Full Stack Engineer at CloudRaft, working with React, TypeScript, and cloud technologies. View my work history and education."
+        keywords="Full Stack Engineer, CloudRaft, React Developer, TypeScript, Work Experience, Software Engineer, Frontend Developer"
+        url="https://amanpandey-portfolio.vercel.app/experience"
+      />
       <section className="py-20 min-h-screen">
         <div className="container mx-auto px-6">
           <SectionHeading
