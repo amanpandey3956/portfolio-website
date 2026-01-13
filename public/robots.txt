@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://amanpandey.dev/sitemap.xml
+Sitemap: https://amanpandey-portfolio.vercel.app/sitemap.xml
