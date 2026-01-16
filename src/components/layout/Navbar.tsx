@@ -116,6 +116,15 @@ export function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navLinks.length * 0.1 }}
+                  className="flex items-center justify-between py-2"
+                >
+                  <span className="text-lg font-medium text-muted-foreground">Theme</span>
+                  <ThemeToggle />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: (navLinks.length + 1) * 0.1 }}
                 >
                   <Button asChild className="w-full glow-sm">
                     <a href="/Aman-Pandey.pdf" download>
