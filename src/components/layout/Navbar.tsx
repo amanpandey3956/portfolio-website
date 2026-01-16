@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -63,6 +64,7 @@ export function Navbar() {
                 )}
               </Link>
             ))}
+            <ThemeToggle />
             <Button asChild size="sm" className="glow-sm">
               <a href="/Aman-Pandey.pdf" download>
                 Resume

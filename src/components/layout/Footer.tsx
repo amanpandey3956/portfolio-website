@@ -80,7 +80,7 @@ export function Footer() {
             variant="ghost"
             size="icon"
             onClick={scrollToTop}
-            className="hover:text-primary"
+            className="hover:bg-primary/20 hover:text-primary"
             aria-label="Back to top"
           >
             <ArrowUp size={20} />
