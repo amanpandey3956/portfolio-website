@@ -145,21 +145,42 @@ const BlogPost = () => {
                         </CodeBlock>
                       );
                     },
-                    h2: ({ children }) => (
-                      <h2 className="text-2xl font-bold text-foreground mt-12 mb-4 border-b border-border pb-2">
-                        {children}
-                      </h2>
-                    ),
-                    h3: ({ children }) => (
-                      <h3 className="text-xl font-semibold text-foreground mt-8 mb-3">
-                        {children}
-                      </h3>
-                    ),
-                    h4: ({ children }) => (
-                      <h4 className="text-lg font-semibold text-foreground mt-6 mb-2">
-                        {children}
-                      </h4>
-                    ),
+                    h2: ({ children, node }) => {
+                      const text = String(children);
+                      const id = text
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, "")
+                        .replace(/\s+/g, "-");
+                      return (
+                        <h2 id={id} className="text-2xl font-bold text-foreground mt-12 mb-4 border-b border-border pb-2">
+                          {children}
+                        </h2>
+                      );
+                    },
+                    h3: ({ children, node }) => {
+                      const text = String(children);
+                      const id = text
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, "")
+                        .replace(/\s+/g, "-");
+                      return (
+                        <h3 id={id} className="text-xl font-semibold text-foreground mt-8 mb-3">
+                          {children}
+                        </h3>
+                      );
+                    },
+                    h4: ({ children, node }) => {
+                      const text = String(children);
+                      const id = text
+                        .toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, "")
+                        .replace(/\s+/g, "-");
+                      return (
+                        <h4 id={id} className="text-lg font-semibold text-foreground mt-6 mb-2">
+                          {children}
+                        </h4>
+                      );
+                    },
                     h5: ({ children }) => (
                       <h5 className="text-base font-semibold text-primary mt-4 mb-2">
                         {children}
