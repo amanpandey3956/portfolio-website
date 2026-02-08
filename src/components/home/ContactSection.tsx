@@ -87,7 +87,7 @@ export function ContactSection() {
                   name="name"
                   placeholder="Your name"
                   required
-                  className="bg-card border-border focus:border-primary"
+                  className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary"
                 />
               </div>
               <div className="space-y-2">
@@ -100,7 +100,7 @@ export function ContactSection() {
                   type="email"
                   placeholder="your@email.com"
                   required
-                  className="bg-card border-border focus:border-primary"
+                  className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export function ContactSection() {
                 name="subject"
                 placeholder="What's this about?"
                 required
-                className="bg-card border-border focus:border-primary"
+                className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary"
               />
             </div>
 
@@ -128,7 +128,7 @@ export function ContactSection() {
                 placeholder="Tell me about your project..."
                 rows={5}
                 required
-                className="bg-card border-border focus:border-primary resize-none"
+                className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary resize-none"
               />
             </div>
 
