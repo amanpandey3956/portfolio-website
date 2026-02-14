@@ -104,7 +104,7 @@ export function ContactSection() {
                 <SelectTrigger className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary">
                   <SelectValue placeholder="Select a purpose" />
                 </SelectTrigger>
-                <SelectContent className="bg-popover z-50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary">
+                <SelectContent className="bg-card z-50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary">
                   {purposeOptions.map((opt) => (
                     <SelectItem key={opt.value} value={opt.value}>
                       {opt.label}
