@@ -101,7 +101,7 @@ export function ContactSection() {
                 Purpose of Contact
               </label>
               <Select value={purpose} onValueChange={setPurpose} required>
-                <SelectTrigger className="bg-card border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary">
+                <SelectTrigger className="bg-card border-border focus:ring-0 focus:ring-offset-0 focus:border-primary">
                   <SelectValue placeholder="Select a purpose" />
                 </SelectTrigger>
                 <SelectContent className="bg-card z-50 border-border focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary">
