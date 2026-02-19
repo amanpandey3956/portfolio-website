@@ -10,98 +10,184 @@ const floatingBadges = [
 ];
 
 export function HeroSection() {
-  const gridDots = Array.from({ length: 100 }, (_, i) => i);
-
   return (
     <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-16 sm:pt-0 md:pt-0">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-background" />
-        
-        <div 
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `
-              linear-gradient(hsl(var(--border)) 1px, transparent 1px),
-              linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
-          }}
-        />
 
-        <div 
-          className="absolute inset-0"
-          style={{
-            background: `
-              radial-gradient(circle at 20% 30%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
-              radial-gradient(circle at 80% 70%, hsl(180 100% 50% / 0.08) 0%, transparent 50%)
-            `
+        <motion.div
+          className="absolute inset-0 opacity-60"
+          animate={{
+            background: [
+              "radial-gradient(ellipse 80% 50% at 20% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%), radial-gradient(ellipse 70% 60% at 60% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+              "radial-gradient(ellipse 80% 50% at 30% 30%, rgba(16, 185, 129, 0.18) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 70% 30%, rgba(6, 182, 212, 0.15) 0%, transparent 50%), radial-gradient(ellipse 70% 60% at 50% 70%, rgba(139, 92, 246, 0.12) 0%, transparent 50%)",
+              "radial-gradient(ellipse 80% 50% at 20% 40%, rgba(16, 185, 129, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 50%), radial-gradient(ellipse 70% 60% at 60% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%)",
+            ]
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
           }}
         />
 
         <div className="absolute inset-0 overflow-hidden">
-          {gridDots.map((dot) => {
-            const row = Math.floor(dot / 10);
-            const col = dot % 10;
-            const left = (col / 9) * 90 + 5;
-            const top = (row / 9) * 90 + 5;
-            const delay = (row + col) * 0.1;
-            
-            return (
-              <motion.div
-                key={dot}
-                className="absolute w-1 h-1 rounded-full"
-                style={{
-                  left: `${left}%`,
-                  top: `${top}%`,
-                  background: `radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)`,
-                  boxShadow: `0 0 6px hsl(var(--primary) / 0.4)`
-                }}
-                animate={{
-                  opacity: [0.2, 0.8, 0.2],
-                  scale: [1, 1.5, 1]
-                }}
-                transition={{
-                  duration: 3,
-                  delay: delay % 3,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-            );
-          })}
+          <motion.div
+            className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] rounded-full blur-[80px]"
+            style={{
+              background: "linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(6, 182, 212, 0.15) 50%, rgba(20, 184, 166, 0.1) 100%)"
+            }}
+            animate={{
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          <motion.div
+            className="absolute top-[20%] right-[-5%] w-[50%] h-[50%] rounded-full blur-[100px]"
+            style={{
+              background: "linear-gradient(225deg, rgba(6, 182, 212, 0.18) 0%, rgba(59, 130, 246, 0.12) 50%, rgba(139, 92, 246, 0.08) 100%)"
+            }}
+            animate={{
+              x: [0, -40, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.15, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+
+          <motion.div
+            className="absolute bottom-[-10%] left-[20%] w-[55%] h-[45%] rounded-full blur-[90px]"
+            style={{
+              background: "linear-gradient(45deg, rgba(139, 92, 246, 0.15) 0%, rgba(124, 58, 237, 0.1) 50%, rgba(16, 185, 129, 0.08) 100%)"
+            }}
+            animate={{
+              x: [0, 30, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 4
+            }}
+          />
+
+          <motion.div
+            className="absolute top-[40%] left-[40%] w-[40%] h-[40%] rounded-full blur-[70px]"
+            style={{
+              background: "linear-gradient(180deg, rgba(20, 184, 166, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%)"
+            }}
+            animate={{
+              x: [0, -30, 30, 0],
+              y: [0, 40, -20, 0],
+              scale: [1, 1.05, 0.95, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
         </div>
 
+        <svg
+          className="absolute inset-0 w-full h-full opacity-20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="aurora-gradient-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="rgb(16, 185, 129)" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="rgb(6, 182, 212)" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="rgb(139, 92, 246)" stopOpacity="0.1" />
+            </linearGradient>
+            <linearGradient id="aurora-gradient-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stopColor="rgb(6, 182, 212)" stopOpacity="0.25" />
+              <stop offset="50%" stopColor="rgb(59, 130, 246)" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="rgb(16, 185, 129)" stopOpacity="0.1" />
+            </linearGradient>
+          </defs>
+          
+          <motion.path
+            d="M0,200 Q200,100 400,200 T800,200 T1200,200 T1600,200 T2000,200"
+            fill="none"
+            stroke="url(#aurora-gradient-1)"
+            strokeWidth="100"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: 1, 
+              opacity: [0.3, 0.5, 0.3],
+              y: [0, -20, 0]
+            }}
+            transition={{
+              pathLength: { duration: 3, ease: "easeInOut" },
+              opacity: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+              y: { duration: 10, repeat: Infinity, ease: "easeInOut" }
+            }}
+          />
+          
+          <motion.path
+            d="M0,400 Q300,300 600,400 T1200,400 T1800,400 T2400,400"
+            fill="none"
+            stroke="url(#aurora-gradient-2)"
+            strokeWidth="80"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: 1, 
+              opacity: [0.2, 0.4, 0.2],
+              y: [0, 15, 0]
+            }}
+            transition={{
+              pathLength: { duration: 4, ease: "easeInOut" },
+              opacity: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 },
+              y: { duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }
+            }}
+          />
+        </svg>
+
         <motion.div
-          className="absolute top-[20%] left-[15%] w-2 h-2 rounded-full bg-cyan-400"
+          className="absolute top-[25%] left-[10%] w-1.5 h-1.5 rounded-full bg-emerald-400"
           animate={{ 
             opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.2, 1]
-          }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-[40%] right-[20%] w-2 h-2 rounded-full bg-primary"
-          animate={{ 
-            opacity: [0.4, 0.9, 0.4],
             scale: [1, 1.3, 1]
           }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-[30%] left-[25%] w-1.5 h-1.5 rounded-full bg-teal-400"
+          className="absolute top-[45%] right-[15%] w-1.5 h-1.5 rounded-full bg-cyan-400"
           animate={{ 
-            opacity: [0.3, 0.7, 0.3],
+            opacity: [0.4, 0.9, 0.4],
             scale: [1, 1.4, 1]
           }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         />
         <motion.div
-          className="absolute top-[60%] right-[30%] w-1.5 h-1.5 rounded-full bg-cyan-500"
+          className="absolute bottom-[35%] left-[20%] w-1 h-1 rounded-full bg-violet-400"
           animate={{ 
-            opacity: [0.2, 0.6, 0.2],
+            opacity: [0.3, 0.7, 0.3],
             scale: [1, 1.5, 1]
           }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div
+          className="absolute top-[65%] right-[25%] w-1 h-1 rounded-full bg-teal-400"
+          animate={{ 
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.4, 1]
+          }}
+          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         />
       </div>
 
