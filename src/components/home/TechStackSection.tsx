@@ -47,9 +47,6 @@ const techCategories = {
 
 const allTechs = [...techCategories.frontend, ...techCategories.devops, ...techCategories.observability];
 
-const firstRow = allTechs.slice(0, Math.ceil(allTechs.length / 2));
-const secondRow = allTechs.slice(Math.ceil(allTechs.length / 2));
-
 function TechCard({ tech }: { tech: { name: string; icon: React.ElementType; color: string } }) {
   const Icon = tech.icon;
   
@@ -73,11 +70,11 @@ function TechCard({ tech }: { tech: { name: string; icon: React.ElementType; col
   );
 }
 
-function MarqueeRow({ techs, reverse = false }: { techs: typeof firstRow; reverse?: boolean }) {
+function MarqueeRow({ techs }: { techs: typeof allTechs }) {
   return (
     <div className="relative overflow-hidden">
       <div 
-        className={`flex gap-4 ${reverse ? 'animate-marquee-reverse' : 'animate-marquee'}`}
+        className="flex gap-4 animate-marquee"
         style={{ width: 'fit-content' }}
       >
         {[...techs, ...techs, ...techs].map((tech, index) => (
@@ -112,9 +109,8 @@ export function TechStackSection() {
         </motion.div>
       </div>
 
-      <div className="mt-12 space-y-4">
-        <MarqueeRow techs={firstRow} />
-        <MarqueeRow techs={secondRow} reverse />
+      <div className="container mx-auto px-6 mt-12">
+        <MarqueeRow techs={allTechs} />
       </div>
 
       <div className="container mx-auto px-6 mt-16">

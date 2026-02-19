@@ -10,55 +10,98 @@ const floatingBadges = [
 ];
 
 export function HeroSection() {
+  const gridDots = Array.from({ length: 100 }, (_, i) => i);
+
   return (
     <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-0 sm:pt-8 md:pt-0">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 mesh-gradient" />
-        <div className="absolute inset-0 noise-overlay" />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
+        <div className="absolute inset-0 bg-background" />
         
-        <motion.div
-          className="absolute top-1/4 left-[10%] w-3 h-3 rounded-full bg-primary"
-          animate={{ 
-            y: [0, -20, 0],
-            opacity: [0.5, 1, 0.5]
+        <div 
+          className="absolute inset-0 opacity-40"
+          style={{
+            backgroundImage: `
+              linear-gradient(hsl(var(--border)) 1px, transparent 1px),
+              linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
           }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute top-1/3 right-[15%] w-2 h-2 rounded-full bg-cyan-400"
-          animate={{ 
-            y: [0, -30, 0],
-            opacity: [0.3, 0.8, 0.3]
+
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 30%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, hsl(180 100% 50% / 0.08) 0%, transparent 50%)
+            `
           }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         />
+
+        <div className="absolute inset-0 overflow-hidden">
+          {gridDots.map((dot) => {
+            const row = Math.floor(dot / 10);
+            const col = dot % 10;
+            const left = (col / 9) * 90 + 5;
+            const top = (row / 9) * 90 + 5;
+            const delay = (row + col) * 0.1;
+            
+            return (
+              <motion.div
+                key={dot}
+                className="absolute w-1 h-1 rounded-full"
+                style={{
+                  left: `${left}%`,
+                  top: `${top}%`,
+                  background: `radial-gradient(circle, hsl(var(--primary) / 0.6) 0%, transparent 70%)`,
+                  boxShadow: `0 0 6px hsl(var(--primary) / 0.4)`
+                }}
+                animate={{
+                  opacity: [0.2, 0.8, 0.2],
+                  scale: [1, 1.5, 1]
+                }}
+                transition={{
+                  duration: 3,
+                  delay: delay % 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+            );
+          })}
+        </div>
+
         <motion.div
-          className="absolute bottom-1/3 left-[20%] w-2 h-2 rounded-full bg-teal-400"
+          className="absolute top-[20%] left-[15%] w-2 h-2 rounded-full bg-cyan-400"
           animate={{ 
-            y: [0, -15, 0],
-            opacity: [0.4, 1, 0.4]
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.2, 1]
           }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute top-1/2 right-[25%] w-4 h-4 rounded-full bg-primary/30"
+          className="absolute top-[40%] right-[20%] w-2 h-2 rounded-full bg-primary"
           animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.3, 0.6, 0.3]
+            opacity: [0.4, 0.9, 0.4],
+            scale: [1, 1.3, 1]
           }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        <motion.div
-          className="absolute -top-40 -right-40 w-80 h-80 border border-primary/10 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         />
         <motion.div
-          className="absolute -bottom-20 -left-20 w-60 h-60 border border-cyan-500/10 rounded-full"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[30%] left-[25%] w-1.5 h-1.5 rounded-full bg-teal-400"
+          animate={{ 
+            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.4, 1]
+          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute top-[60%] right-[30%] w-1.5 h-1.5 rounded-full bg-cyan-500"
+          animate={{ 
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.5, 1]
+          }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
         />
       </div>
 
@@ -100,12 +143,6 @@ export function HeroSection() {
               <span className="gradient-text text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold animate-gradient bg-[length:200%_200%]">
                 Aman Pandey
               </span>
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-cyan-400 to-teal-400 rounded-full"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
-              />
             </motion.div>
           </motion.div>
 
