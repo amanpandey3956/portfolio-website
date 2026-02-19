@@ -156,39 +156,6 @@ export function HeroSection() {
             }}
           />
         </svg>
-
-        <motion.div
-          className="absolute top-[25%] left-[10%] w-1.5 h-1.5 rounded-full bg-emerald-400"
-          animate={{ 
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.3, 1]
-          }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute top-[45%] right-[15%] w-1.5 h-1.5 rounded-full bg-cyan-400"
-          animate={{ 
-            opacity: [0.4, 0.9, 0.4],
-            scale: [1, 1.4, 1]
-          }}
-          transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.div
-          className="absolute bottom-[35%] left-[20%] w-1 h-1 rounded-full bg-violet-400"
-          animate={{ 
-            opacity: [0.3, 0.7, 0.3],
-            scale: [1, 1.5, 1]
-          }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        />
-        <motion.div
-          className="absolute top-[65%] right-[25%] w-1 h-1 rounded-full bg-teal-400"
-          animate={{ 
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.4, 1]
-          }}
-          transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-        />
       </div>
 
       <div className="container mx-auto px-6">
