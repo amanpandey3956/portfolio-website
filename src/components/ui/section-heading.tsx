@@ -17,13 +17,28 @@ export function SectionHeading({ title, subtitle, children, centered = true }: S
       transition={{ duration: 0.5 }}
       className={`mb-12 ${centered ? "text-center" : ""}`}
     >
-      <h2 className="text-3xl md:text-4xl font-bold mb-4">
-        <span className="gradient-text">{title}</span>
-      </h2>
+      <div className="relative inline-block">
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-primary/5 via-cyan-500/5 to-teal-500/5 rounded-lg blur-xl"
+        />
+        <h2 className="relative text-4xl md:text-5xl font-bold mb-4">
+          <span className="gradient-text">{title}</span>
+        </h2>
+      </div>
       {subtitle && (
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-muted-foreground max-w-2xl mx-auto text-lg leading-relaxed"
+        >
           {subtitle}
-        </p>
+        </motion.p>
       )}
       {children}
     </motion.div>
