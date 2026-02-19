@@ -13,7 +13,7 @@ export function HeroSection() {
   const gridDots = Array.from({ length: 100 }, (_, i) => i);
 
   return (
-    <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-0 sm:pt-8 md:pt-0">
+    <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-16 sm:pt-0 md:pt-0">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-background" />
         
@@ -178,15 +178,15 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-12"
           >
             <Button 
               asChild 
               size="lg" 
-              className="glow group relative overflow-hidden bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 border-0"
+              className="glow group relative overflow-hidden bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 border-0 w-full sm:w-auto"
             >
               <Link to="/projects">
-                <span className="relative z-10 flex items-center">
+                <span className="relative z-10 flex items-center justify-center">
                   View Projects
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </span>
@@ -196,12 +196,11 @@ export function HeroSection() {
               variant="outline" 
               size="lg" 
               asChild
-              className="border-border hover:bg-secondary hover:text-foreground text-foreground group"
+              className="border-border hover:bg-secondary hover:text-foreground text-foreground group w-full sm:w-auto"
             >
               <a href="/Aman-Pandey.pdf" download>
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                <span className="hidden sm:inline">Download Resume</span>
-                <span className="sm:hidden">Resume</span>                
+                <span>Download Resume</span>                
               </a>
             </Button>
           </motion.div>
@@ -210,7 +209,7 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-4"
+            className="flex flex-wrap justify-center gap-4 mb-8 sm:mb-0"
           >
             {floatingBadges.map((badge, index) => (
               <motion.div
