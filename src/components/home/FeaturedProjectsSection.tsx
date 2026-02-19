@@ -49,7 +49,7 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
       <div className="absolute inset-0 border-gradient rounded-3xl" />
       
       <div className="relative p-8 h-full flex flex-col">
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-6">
           <div className="flex items-center gap-3">
             <div className={`p-3 rounded-2xl bg-gradient-to-br ${project.gradient} border border-white/10`}>
               <div className={`w-8 h-8 rounded-lg bg-gradient-to-br from-${project.accentColor}-400 to-${project.accentColor}-600 flex items-center justify-center`}>
@@ -58,12 +58,12 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
                 </span>
               </div>
             </div>
-            <h3 className="text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
               {project.title}
             </h3>
           </div>
           
-          <div className="flex gap-2">
+          <div className="flex gap-2 self-end sm:self-auto">
             {project.github && (
               <motion.a
                 href={project.github}
