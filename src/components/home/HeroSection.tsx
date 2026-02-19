@@ -222,9 +222,9 @@ export function HeroSection() {
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
           >
             Frontend Developer | Exploring{" "}
-            <span className="text-primary font-medium">Kubernetes</span>,{" "}
-            <span className="text-cyan-400 font-medium">Observability</span> and{" "}
-            <span className="text-teal-400 font-medium">Cloud Native Technologies</span>
+            <span className="text-muted-foreground font-medium">Kubernetes</span>,{" "}
+            <span className="text-muted-foreground font-medium">Observability</span> and{" "}
+            <span className="text-muted-foreground font-medium">Cloud Native Technologies</span>
           </motion.p>
 
           <motion.div
