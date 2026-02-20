@@ -1,15 +1,15 @@
 ---
 title: "Master Redux Toolkit: From Basics to Building Simple React Todo App"
 slug: "redux-toolkit-guide"
-banner: "/projects/reduxjs.png"
+banner: "/projects/reduxjs.webp"
 author: "Aman Pandey"
-authorImage: "/projects/myimg.jpg"
+authorImage: "/projects/myimg.webp"
 date: "April 13, 2025"
 summary: "Redux Toolkit is the official, modern way to manage state in React apps. In this blog, you'll learn the core concepts of Redux Toolkit like slices, actions, and store setup in a simplified way. Then we’ll build a complete Todo app using Redux Toolkit step-by-step. Perfect for React devs looking to write cleaner, scalable code."
 tags: ["React", "Redux Toolkit", "State Management", "Frontend"]
 ---
 
-<img src="/projects/reduxjs.png" alt="Redux Toolkit" style="margin-bottom: 28px;" />
+<img src="/projects/reduxjs.webp" alt="Redux Toolkit" style="margin-bottom: 28px;" />
 
 If you’ve worked with React before, there’s a good chance you’ve heard of Redux. It’s a powerful tool for managing state in large applications but let’s be honest, the setup can feel like a lot. That’s where Redux Toolkit comes in. It’s the official, recommended way to write Redux logic, and it makes everything cleaner, faster, and much easier to work with.
 
@@ -25,7 +25,7 @@ The Redux team knew that developers had problems with the complexity of Redux. S
 
 ## Let's Understand Redux Flow with below Image
 
-<img src="/projects/reduxflow.png" alt="Redux flow" style="margin-bottom: 28px;" />
+<img src="/projects/reduxflow.webp" alt="Redux flow" style="margin-bottom: 28px;" />
 
 The image above shows how Redux works behind the scenes when you interact with a UI (like clicking a button).
 

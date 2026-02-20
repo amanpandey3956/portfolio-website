@@ -47,7 +47,7 @@ const BlogPost = () => {
         title={post.title}
         description={post.summary}
         keywords={post.tags.join(", ")}
-        image={post.banner || "/projects/myimg.jpg"}
+        image={post.banner || "/projects/myimg.webp"}
         url={`https://amanpandey-portfolio.vercel.app/blog/${post.slug}`}
         type="article"
         author={post.author}
@@ -95,12 +95,16 @@ const BlogPost = () => {
                 <div className="flex flex-wrap items-center gap-6 text-muted-foreground">
                   <div className="flex items-center gap-3">
                     {post.authorImage ? (
-                      <img
-                        src={post.authorImage}
-                        alt={post.author}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                    ) : (
+                       <img
+                         src={post.authorImage}
+                         alt={post.author}
+                         width={40}
+                         height={40}
+                         loading="lazy"
+                         decoding="async"
+                         className="w-10 h-10 rounded-full object-cover"
+                       />
+                     ) : (
                       <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
                         <User size={20} className="text-primary" />
                       </div>
@@ -222,12 +226,14 @@ const BlogPost = () => {
                       </blockquote>
                     ),
                     img: ({ src, alt }) => (
-                      <img
-                        src={src}
-                        alt={alt}
-                        className="rounded-lg my-6 w-full"
-                      />
-                    ),
+                       <img
+                         src={src}
+                         alt={alt}
+                         loading="lazy"
+                         decoding="async"
+                         className="rounded-lg my-6 w-full"
+                       />
+                     ),
                     strong: ({ children }) => (
                       <strong className="font-semibold text-foreground">
                         {children}

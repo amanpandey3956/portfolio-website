@@ -18,7 +18,7 @@ export const SEO = ({
   title = "Aman Pandey | Full Stack Engineer",
   description = "Software Engineer specializing in React, TypeScript, Kubernetes, and Cloud Native technologies. Building scalable web applications and sharing knowledge through technical blogs.",
   keywords = "Aman Pandey, Full Stack Developer, React Developer, TypeScript, Kubernetes, Docker, Cloud Native, Web Development, Frontend Developer, DevOps",
-  image = "/projects/myimg.jpg",
+  image = "/projects/myimg.webp",
   url = BASE_URL,
   type = "website",
   author = "Aman Pandey",
@@ -39,7 +39,7 @@ export const SEO = ({
         "@type": "Person",
         name: "Aman Pandey",
         url: BASE_URL,
-        image: `${BASE_URL}/projects/myimg.jpg`,
+        image: `${BASE_URL}/projects/myimg.webp`,
         jobTitle: "Full Stack Engineer",
         worksFor: {
           "@type": "Organization",

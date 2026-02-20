@@ -12,7 +12,7 @@ const featuredProjects = [
     gradient: "from-violet-500/20 via-purple-500/20 to-fuchsia-500/20",
     accentColor: "violet",
     size: "large",
-    image: "/projects/clika.png",
+    image: "/projects/clika.webp",
   },
   {
     title: "CloudRaft Service Desk",
@@ -100,6 +100,10 @@ function ProjectCard({ project, index }: { project: typeof featuredProjects[0]; 
             <img 
               src={project.image} 
               alt={project.title}
+              width={200}
+              height={128}
+              loading="lazy"
+              decoding="async"
               className="max-h-32 w-auto object-contain rounded-lg opacity-80 hover:opacity-100 transition-opacity"
             />
           </div>

@@ -32,8 +32,12 @@ export function Navbar() {
               className="sm:w-16 sm:h-16 w-12 h-12 rounded-full overflow-hidden border-2 border-border"
             >
               <img
-                src="/projects/myimg.jpg"
+                src="/projects/myimg.webp"
                 alt="Aman Pandey"
+                width={48}
+                height={48}
+                loading="eager"
+                decoding="async"
                 className="w-full h-full object-cover"
               />
             </motion.div>

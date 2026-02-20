@@ -1,15 +1,15 @@
 ---
 title: "Docker In Depth: The Complete Guide to Containerized Development"
 slug: "docker-in-depth"
-banner: "/projects/dockerbanner.png"
+banner: "/projects/dockerbanner.webp"
 author: "Aman Pandey"
-authorImage: "/projects/myimg.jpg" 
+authorImage: "/projects/myimg.webp" 
 date: "June 15, 2025"
 summary: "Docker has revolutionized the way we build, deploy, and scale applications. In this comprehensive blog, we’ll take a deep dive into Docker from understanding the fundamentals of containerization to mastering advanced concepts like Docker Compose, Docker Swarm, Volume and networking."
 tags: ["Docker", "Containers"]
 ---
 
-<img src="/projects/dockerbanner.png" alt="Redux Toolkit" style="margin-bottom: 28px;" />
+<img src="/projects/dockerbanner.webp" alt="Redux Toolkit" style="margin-bottom: 28px;" />
 
 Docker is a powerful platform designed to simplify the process of building, sharing, and running applications inside containers. A container is a lightweight, standalone environment that includes everything an application needs its code, libraries, and its all the dependencies so it runs reliably no matter where it's deployed.
 
@@ -134,7 +134,7 @@ In a programming languages example java, if u know about class and object then u
 
 ## Docker Vs Virtual Machine
 
-<img src="/projects/docker.png" alt="docker" style="margin-bottom: 28px;" />
+<img src="/projects/docker.webp" alt="docker" style="margin-bottom: 28px;" />
 
 The key difference between containers and virtual machines is that virtual machines virtualize an entire machine down to the hardware layers and containers only virtualize applicaation layer above the operating system level.
 
@@ -154,7 +154,7 @@ Docker Hub is a container registry built for developers and open-source contribu
 
 Let’s start by pulling the official Redis image from Docker Hub: Visit [Docker Hub](https://hub.docker.com/) official Website.
 
-<img src="/projects/redis.png" alt="docker" style="margin-bottom: 28px;" />
+<img src="/projects/redis.webp" alt="docker" style="margin-bottom: 28px;" />
 
 1] **Run Below Command to start pulling this public redis image from docker hub:**
 ```bash
