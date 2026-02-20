@@ -60,7 +60,7 @@ export function WelcomePopup() {
               <Button 
                 variant="outline" 
                 onClick={handleClose}
-                className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold border-2 hover:bg-secondary/80 transition-all duration-300 hover:scale-[1.02]"
+                className="h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold border-2 hover:bg-secondary/80 hover:text-foreground transition-all duration-300 hover:scale-[1.02]"
               >
                 Maybe Later
               </Button>
