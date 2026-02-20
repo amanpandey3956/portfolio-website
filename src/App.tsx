@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "next-themes";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { WelcomePopup } from "@/components/WelcomePopup";
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
@@ -24,6 +25,7 @@ const App = () => (
           <Sonner />
           <BrowserRouter>
             <ScrollToTop />
+            <WelcomePopup />
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/projects" element={<Projects />} />
