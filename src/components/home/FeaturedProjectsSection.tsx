@@ -7,7 +7,7 @@ import { SectionHeading } from "@/components/ui/section-heading";
 const featuredProjects = [
   {
     title: "Clika",
-    description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, OAuth authentication supporting Google and GitHub, and Redux state management for seamless team collaboration and real-time data synchronization.",
+    description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, Google OAuth authentication along with Password based authentication, and Redux state management for seamless team collaboration and real-time data synchronization.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "OAuth"],
     gradient: "from-violet-500/20 via-purple-500/20 to-fuchsia-500/20",
     accentColor: "violet",
