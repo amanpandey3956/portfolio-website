@@ -14,7 +14,6 @@ const projects = [
     tech: ["React.js", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "Google OAuth", "Authentication"],
     featured: true,
     gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
-    icon: "🚀",
   },
   {
     title: "CloudRaft Service Desk",
@@ -24,7 +23,6 @@ const projects = [
     github: "https://github.com/amanpandey3956/service-app-clone",
     featured: true,
     gradient: "from-cyan-500 via-teal-500 to-emerald-500",
-    icon: "🎫",
   },
   {
     title: "Task Manager App",
@@ -33,7 +31,6 @@ const projects = [
     github: "https://github.com/amanpandey3956/Full-stack-app",
     featured: true,
     gradient: "from-orange-500 via-amber-500 to-yellow-500",
-    icon: "📊",
   },
   {
     title: "3-Tier Application",
@@ -42,7 +39,6 @@ const projects = [
     github: "https://github.com/amanpandey3956/3-tier-app",
     featured: true,
     gradient: "from-rose-500 via-pink-500 to-red-500",
-    icon: "🔧",
   },
   {
     title: "Portfolio",
@@ -52,7 +48,6 @@ const projects = [
     github: "https://github.com/amanpandey3956/portfolio-website",
     featured: true,
     gradient: "from-emerald-500 via-green-500 to-teal-500",
-    icon: "💎",
   },
   {
     title: "TuneHouse",
@@ -62,7 +57,6 @@ const projects = [
     link: "https://tune-house.vercel.app/",
     featured: false,
     gradient: "from-indigo-500 via-blue-500 to-cyan-500",
-    icon: "🎵",
   },
   { 
     title: "Appwrite Blog",
@@ -72,7 +66,6 @@ const projects = [
     link: "https://appwrite-blog-vert.vercel.app/",
     featured: false,
     gradient: "from-sky-500 via-blue-500 to-indigo-500",
-    icon: "✍️",
   },
   {
     title: "Admin Sales Dashboard",
@@ -82,7 +75,6 @@ const projects = [
     link: "https://dashboard-one-beryl-65.vercel.app/",
     featured: false,
     gradient: "from-slate-500 via-gray-500 to-zinc-500",
-    icon: "📈",
   },
   {
     title: "Nike Landing Page",
@@ -92,7 +84,6 @@ const projects = [
     link: "https://nike-website-sage-eight.vercel.app/",
     featured: false,
     gradient: "from-red-500 via-orange-500 to-amber-500",
-    icon: "👟",
   } 
 ];
 
@@ -186,7 +177,7 @@ const Projects = () => {
                 placeholder="Search projects by name or description..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-10 h-14 text-lg bg-card/60 backdrop-blur-xl border-border/50 rounded-2xl focus:border-primary/50 focus:ring-primary/20 shadow-lg"
+                className="pl-12 pr-10 h-14 text-lg bg-card/60 backdrop-blur-xl border-border/50 rounded-2xl focus:border-primary focus:outline-none shadow-lg"
               />
               {searchQuery && (
                 <button
@@ -219,14 +210,12 @@ const Projects = () => {
               </button>
             ))}
             {selectedTechs.length > 0 && (
-              <Button
-                variant="ghost"
-                size="sm"
+              <button
                 onClick={clearFilters}
-                className="text-muted-foreground hover:text-foreground"
+                className="px-4 py-2 rounded-full text-sm font-medium bg-secondary/80 text-secondary-foreground hover:bg-destructive/10 hover:text-destructive border border-border/50 transition-all duration-200"
               >
                 Clear all
-              </Button>
+              </button>
             )}
           </motion.div>
 
@@ -270,20 +259,13 @@ const Projects = () => {
                     )}
 
                     <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
-                          <div className="w-full h-full rounded-[10px] bg-card flex items-center justify-center text-2xl">
-                            {project.icon}
-                          </div>
-                        </div>
-                        <div>
-                          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                            {project.title}
-                          </h3>
-                          {project.featured && (
-                            <span className="text-xs text-primary font-medium">Featured Project</span>
-                          )}
-                        </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                          {project.title}
+                        </h3>
+                        {project.featured && (
+                          <span className="text-xs text-primary font-medium">Featured Project</span>
+                        )}
                       </div>
                       
                       <div className="flex gap-1.5">
