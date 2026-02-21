@@ -43,7 +43,7 @@ const projects = [
   {
     title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
-    tech: ["React", "TypeScript", "Tailwind CSS", "shadcn-ui"],
+    tech: ["React.js", "TypeScript", "Tailwind CSS", "shadcn-ui"],
     link: "https://amanpandey-portfolio.vercel.app/",
     github: "https://github.com/amanpandey3956/portfolio-website",
     featured: true,
@@ -61,7 +61,7 @@ const projects = [
   { 
     title: "Appwrite Blog",
     description: "Developed a dynamic blogging platform using ReactJS, Appwrite, and Tailwind CSS. The site features user authentication, allowing users to create, edit, and delete their own blog posts, as well as upload images.",
-    tech: ["React", "Redux", "Appwrite", "Tailwind CSS"],
+    tech: ["React.js", "Redux", "Appwrite", "Tailwind CSS"],
     github: "https://github.com/amanpandey3956/Appwrite-Blog",
     link: "https://appwrite-blog-vert.vercel.app/",
     featured: false,
@@ -79,7 +79,7 @@ const projects = [
   {
     title: "Nike Landing Page",
     description: "Created an engaging Nike landing page using ReactJS and Tailwind CSS. The site features a visually appealing design that showcases products with responsive layouts and smooth animations. Leveraged Tailwind CSS for rapid styling, ensuring a seamless user experience across devices.",
-    tech: ["React", "JavaScript", "Tailwind CSS"],
+    tech: ["React.js", "JavaScript", "Tailwind CSS"],
     github: "https://github.com/amanpandey3956/Nike-Website",
     link: "https://nike-website-sage-eight.vercel.app/",
     featured: false,
@@ -87,7 +87,17 @@ const projects = [
   } 
 ];
 
-const allTechStacks = Array.from(new Set(projects.flatMap(p => p.tech))).sort();
+const prioritizedTechs = [
+  "React.js", "Next.js", "TypeScript", "Tailwind CSS", 
+  "OpenTelemetry", "Prometheus", "Rest APIs", "Thanos", "PostgreSQL", "Supabase", 
+  "Redux", "Dockerfile", "CI/CD", "Grafana"
+];
+
+const allTechStacks = Array.from(new Set(projects.flatMap(p => p.tech)));
+const sortedTechStacks = [
+  ...prioritizedTechs.filter(tech => allTechStacks.includes(tech)),
+  ...allTechStacks.filter(tech => !prioritizedTechs.includes(tech)).sort()
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -174,10 +184,10 @@ const Projects = () => {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Search projects by name or description..."
+                placeholder="Search..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-10 h-14 text-lg bg-card/60 backdrop-blur-xl border-border/50 rounded-2xl focus:border-primary focus:outline-none shadow-lg"
+                className="pl-12 pr-10 h-14 text-lg bg-card/60 backdrop-blur-xl border-border/50 rounded-2xl focus:border-primary focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-lg"
               />
               {searchQuery && (
                 <button
@@ -196,7 +206,7 @@ const Projects = () => {
             transition={{ delay: 0.3 }}
             className="mt-8 flex flex-wrap justify-center gap-2"
           >
-            {allTechStacks.slice(0, 12).map((tech) => (
+            {sortedTechStacks.map((tech) => (
               <button
                 key={tech}
                 onClick={() => toggleTech(tech)}
