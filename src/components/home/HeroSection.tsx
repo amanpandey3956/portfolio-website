@@ -253,7 +253,7 @@ export function HeroSection() {
             >
               <Link to="/resume">
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                <span>View Resume</span>                
+                <span>Download Resume</span>                
               </Link>
             </Button>
           </motion.div>

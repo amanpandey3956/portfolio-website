@@ -251,7 +251,7 @@ export function Navbar() {
                       <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-violet-400/20 via-transparent to-indigo-400/20" />
                       <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                       <FileText className="w-5 h-5 relative z-10" />
-                      <span className="relative z-10">View Resume</span>
+                      <span className="relative z-10">Download Resume</span>
                     </motion.span>
                   </Link>
                 </motion.div>
