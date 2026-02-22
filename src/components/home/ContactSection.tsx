@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, Mail, MapPin, Linkedin, Instagram, Github, Twitter, MessageSquare, ArrowUpRight } from "lucide-react";
+import { Send, Loader2, Mail, MapPin, Linkedin, Instagram, Github, Twitter, MessageSquare, ArrowUpRight, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,33 +21,38 @@ const purposeOptions = [
   { value: "general", label: "General Inquiry" },
 ];
 
-const contactInfo = [
-  { 
-    icon: Mail, 
-    label: "Email", 
-    value: "amanpnd01@gmail.com", 
-    href: "mailto:amanpnd01@gmail.com",
-  },
-  { 
-    icon: MapPin, 
-    label: "Location", 
-    value: "Maharashtra, India", 
-    href: null,
-  },
-];
+const email = "amanpnd01@gmail.com";
 
 const socialLinks = [
   { icon: Github, href: "https://github.com/amanpandey3956", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
   { icon: Instagram, href: "https://www.instagram.com/aman_pandey_39563/", label: "Instagram" },
   { icon: Twitter, href: "https://x.com/amanpandey39563", label: "Twitter" },
-  { icon: Mail, href: "mailto:amanpnd01@gmail.com", label: "Email" },
 ];
 
 export function ContactSection() {
   const [isLoading, setIsLoading] = useState(false);
   const [purpose, setPurpose] = useState("");
+  const [copied, setCopied] = useState(false);
   const { toast } = useToast();
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      toast({
+        title: "Email copied!",
+        description: email,
+      });
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      toast({
+        title: "Failed to copy",
+        description: "Please copy the email manually",
+        variant: "destructive",
+      });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -105,7 +110,7 @@ export function ContactSection() {
   const isRecruiter = purpose === "job-opportunity";
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 mesh-gradient-strong opacity-30" />
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
@@ -140,43 +145,60 @@ export function ContactSection() {
               </h3>
               
               <div className="space-y-4">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={info.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group"
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0 }}
+                  className="group"
+                >
+                  <button
+                    onClick={handleCopyEmail}
+                    className="hidden md:flex w-full items-center gap-4 p-3 rounded-xl hover:bg-primary/5 transition-colors"
                   >
-                    {info.href ? (
-                      <a
-                        href={info.href}
-                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-primary/5 transition-colors"
-                      >
-                        <div className="p-2 rounded-lg bg-primary/10">
-                          <info.icon size={18} className="text-primary" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-xs text-muted-foreground">{info.label}</div>
-                          <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                            {info.value}
-                          </div>
-                        </div>
-                        <ArrowUpRight size={16} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4 p-3 rounded-xl">
-                        <div className="p-2 rounded-lg bg-cyan-500/10">
-                          <info.icon size={18} className="text-cyan-500" />
-                        </div>
-                        <div>
-                          <div className="text-xs text-muted-foreground">{info.label}</div>
-                          <div className="text-sm font-medium text-foreground">{info.value}</div>
-                        </div>
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      {copied ? <Check size={18} className="text-green-500" /> : <Mail size={18} className="text-primary" />}
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="text-xs text-muted-foreground">Email</div>
+                      <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                        {copied ? "Copied!" : email}
                       </div>
-                    )}
-                  </motion.div>
-                ))}
+                    </div>
+                    <Copy size={16} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </button>
+                  <a
+                    href={`mailto:${email}`}
+                    className="md:hidden flex items-center gap-4 p-3 rounded-xl hover:bg-primary/5 transition-colors"
+                  >
+                    <div className="p-2 rounded-lg bg-primary/10">
+                      <Mail size={18} className="text-primary" />
+                    </div>
+                    <div className="flex-1">
+                      <div className="text-xs text-muted-foreground">Email</div>
+                      <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                        {email}
+                      </div>
+                    </div>
+                    <ArrowUpRight size={16} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </a>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 }}
+                  className="group"
+                >
+                  <div className="flex items-center gap-4 p-3 rounded-xl">
+                    <div className="p-2 rounded-lg bg-cyan-500/10">
+                      <MapPin size={18} className="text-cyan-500" />
+                    </div>
+                    <div>
+                      <div className="text-xs text-muted-foreground">Location</div>
+                      <div className="text-sm font-medium text-foreground">Maharashtra, India</div>
+                    </div>
+                  </div>
+                </motion.div>
               </div>
             </div>
 
@@ -202,6 +224,34 @@ export function ContactSection() {
                     <social.icon size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
                   </motion.a>
                 ))}
+                <motion.button
+                  onClick={handleCopyEmail}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ delay: socialLinks.length * 0.1 }}
+                  className="hidden md:flex p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
+                  title="Copy email"
+                >
+                  {copied ? (
+                    <Check size={20} className="text-green-500" />
+                  ) : (
+                    <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                  )}
+                </motion.button>
+                <motion.a
+                  href={`mailto:${email}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ delay: socialLinks.length * 0.1 }}
+                  className="md:hidden p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
+                  title="Email"
+                >
+                  <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                </motion.a>
               </div>
             </div>
 
