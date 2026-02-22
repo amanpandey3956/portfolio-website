@@ -216,27 +216,27 @@ const Experience = () => {
                   <div className="absolute inset-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.1)] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] rounded-2xl" />
                   
                   <div className="relative p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-foreground group-hover:text-cyan-400 transition-colors mb-1">
-                          {edu.title}
-                        </h3>
-                        <p className="text-primary font-medium mb-4">{edu.institution}</p>
-                        <div className="flex flex-wrap gap-3">
-                          <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary/50 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <Calendar size={14} className="text-cyan-400" />
-                            <span>{edu.period}</span>
-                          </div>
-                          <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary/50 backdrop-blur-sm px-3 py-1 rounded-full">
-                            <MapPin size={14} className="text-cyan-400" />
-                            <span>{edu.location}</span>
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-foreground group-hover:text-cyan-400 transition-colors mb-1">
+                            {edu.title}
+                          </h3>
+                          <p className="text-primary font-medium mb-4">{edu.institution}</p>
+                          <div className="flex flex-wrap gap-3">
+                            <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary/50 backdrop-blur-sm px-3 py-1 rounded-full">
+                              <Calendar size={14} className="text-cyan-400" />
+                              <span>{edu.period}</span>
+                            </div>
+                            <div className="flex items-center gap-1.5 text-sm text-muted-foreground bg-secondary/50 backdrop-blur-sm px-3 py-1 rounded-full">
+                              <MapPin size={14} className="text-cyan-400" />
+                              <span>{edu.location}</span>
+                            </div>
                           </div>
                         </div>
+                        <div className="md:flex-none flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-primary/10 backdrop-blur-sm text-cyan-400 font-semibold border border-cyan-400/20 self-start">
+                          <span>{edu.details}</span>
+                        </div>
                       </div>
-                      <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-primary/10 backdrop-blur-sm text-cyan-400 font-semibold border border-cyan-400/20">
-                        <span>{edu.details}</span>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </motion.div>

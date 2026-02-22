@@ -251,10 +251,10 @@ export function HeroSection() {
               asChild
               className="border-border hover:bg-secondary hover:text-foreground text-foreground group w-full sm:w-auto"
             >
-              <a href="/Aman-Pandey.pdf" download>
+              <Link to="/resume">
                 <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                <span>Download Resume</span>                
-              </a>
+                <span>View Resume</span>                
+              </Link>
             </Button>
           </motion.div>
 
