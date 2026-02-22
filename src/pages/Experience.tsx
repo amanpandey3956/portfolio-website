@@ -1,8 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, Calendar, MapPin, Building2 } from "lucide-react";
+import { Briefcase, GraduationCap, Calendar, MapPin, Building2, Mail, Linkedin, ArrowUpRight, Sparkles } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SEO } from "@/components/SEO";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const experiences = [
   {
@@ -72,6 +80,8 @@ const itemVariants = {
 };
 
 const Experience = () => {
+  const [isHireMeOpen, setIsHireMeOpen] = useState(false);
+
   return (
     <Layout>
       <SEO
@@ -102,6 +112,18 @@ const Experience = () => {
               <Briefcase className="text-primary" size={22} />
             </div>
             <h2 className="text-2xl font-semibold text-foreground">Work Experience</h2>
+            
+            <motion.button
+              onClick={() => setIsHireMeOpen(true)}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative group ml-auto inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-white overflow-hidden"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 transition-all duration-300 group-hover:from-violet-500 group-hover:via-purple-500 group-hover:to-indigo-500" />
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <Sparkles className="w-4 h-4 relative z-10" />
+              <span className="relative z-10">Hire Me</span>
+            </motion.button>
           </motion.div>
 
           <motion.div
@@ -237,6 +259,50 @@ const Experience = () => {
           </motion.div>
         </div>
       </section>
+
+      <Dialog open={isHireMeOpen} onOpenChange={setIsHireMeOpen}>
+        <DialogContent className="sm:max-w-md bg-card/95 backdrop-blur-xl border-border/50">
+          <DialogHeader>
+            <DialogTitle className="text-xl">Let's Work Together</DialogTitle>
+            <DialogDescription>
+              I'm open to new opportunities. Let's connect!
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-3 pt-4">
+            <a
+              href="mailto:amanpnd01@gmail.com"
+              onClick={() => setIsHireMeOpen(false)}
+              className="group flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary border border-border/50 hover:border-primary/30 transition-all duration-300"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-violet-500/20 to-purple-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Mail className="w-5 h-5 text-violet-500" />
+              </div>
+              <div className="flex-1">
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors">Email Me</p>
+                <p className="text-sm text-muted-foreground">amanpnd01@gmail.com</p>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            </a>
+            
+            <a
+              href="https://www.linkedin.com/in/amanpandey1213/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsHireMeOpen(false)}
+              className="group flex items-center gap-4 p-4 rounded-xl bg-secondary/50 hover:bg-secondary border border-border/50 hover:border-primary/30 transition-all duration-300"
+            >
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <Linkedin className="w-5 h-5 text-blue-500" />
+              </div>
+              <div className="flex-1">
+                <p className="font-medium text-foreground group-hover:text-primary transition-colors">LinkedIn</p>
+                <p className="text-sm text-muted-foreground">Connect professionally</p>
+              </div>
+              <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+            </a>
+          </div>
+        </DialogContent>
+      </Dialog>
     </Layout>
   );
 };
