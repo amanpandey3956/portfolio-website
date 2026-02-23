@@ -39,7 +39,7 @@ export function AnnouncementBar() {
                   <span className="text-yellow-200">Let's work together!</span>
                 </p>
                 
-                <HireMeButton variant="navbar-mobile" className="!py-1.5 !px-3 text-xs !bg-emerald-500 hover:!bg-emerald-400" />
+                <HireMeButton variant="navbar-mobile" className="!py-1.5 !px-3 text-xs !bg-emerald-500 hover:!bg-emerald-400 mr-6 sm:mr-0" />
                 
                 <button
                   onClick={handleDismiss}
