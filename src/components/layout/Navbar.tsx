@@ -45,9 +45,6 @@ export function Navbar() {
   return (
     <>
       <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
         className={`relative z-50 transition-all duration-300 ${
           scrolled 
             ? "bg-background/80 backdrop-blur-2xl border-b border-border/50 shadow-lg shadow-black/5" 

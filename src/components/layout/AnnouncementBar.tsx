@@ -15,10 +15,6 @@ export function AnnouncementBar() {
     <AnimatePresence>
       {isAnnouncementVisible && (
         <motion.div
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
           className="bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600"
         >
           <div className="relative overflow-hidden">
@@ -39,7 +35,7 @@ export function AnnouncementBar() {
                   <span className="text-yellow-200">Let's work together!</span>
                 </p>
                 
-                <HireMeButton variant="navbar-mobile" className="!py-1.5 !px-3 text-xs !bg-emerald-500 hover:!bg-emerald-400 mr-6 sm:mr-0" />
+                <HireMeButton variant="navbar-mobile" className="!py-1.5 !px-3 text-xs !bg-amber-400 hover:!bg-amber-300 !text-slate-900 mr-6 sm:mr-0" />
                 
                 <button
                   onClick={handleDismiss}

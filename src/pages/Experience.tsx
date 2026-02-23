@@ -97,7 +97,7 @@ const Experience = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-0 mb-10"
+            className="flex flex-col sm:flex-row sm:items-center gap-4 mb-10"
           >
             <div className="flex items-center gap-3">
               <div className="p-2.5 rounded-xl bg-primary/10 backdrop-blur-sm">
@@ -106,7 +106,7 @@ const Experience = () => {
               <h2 className="text-2xl font-semibold text-foreground">Work Experience</h2>
             </div>
             
-            <div className="sm:ml-auto">
+            <div className="self-start sm:self-auto">
               <HireMeButton />
             </div>
           </motion.div>
