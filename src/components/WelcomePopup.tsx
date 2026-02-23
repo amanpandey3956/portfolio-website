@@ -52,7 +52,7 @@ export function WelcomePopup() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 sm:mt-8 justify-center">
               <Button 
                 onClick={handleNavigateToBlog} 
-                className="gap-2 h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold bg-gradient-to-r from-primary via-teal-500 to-cyan-500 hover:from-primary/90 hover:via-teal-500/90 hover:to-cyan-500/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-0"
+                className="gap-2 h-11 sm:h-12 px-6 sm:px-8 text-sm sm:text-base font-semibold bg-gradient-to-r from-primary via-teal-500 to-cyan-500 hover:from-primary/90 hover:via-teal-500/90 hover:to-cyan-500/90 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
               >
                 <BookOpen className="h-4 w-4 sm:h-5 sm:w-5" />
                 Read My Blogs
