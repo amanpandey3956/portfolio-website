@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, FolderKanban, Briefcase, BookOpen, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ResumeModal } from "@/components/ui/ResumeModal";
 
 const navLinks = [
   { name: "Home", path: "/", icon: Home },
@@ -15,6 +16,7 @@ const navLinks = [
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -46,7 +48,7 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`relative z-50 transition-all duration-300 ${
           scrolled 
             ? "bg-background/80 backdrop-blur-2xl border-b border-border/50 shadow-lg shadow-black/5" 
             : "bg-transparent"
@@ -99,19 +101,18 @@ export function Navbar() {
 
             <div className="hidden md:flex items-center gap-3">
               <ThemeToggle />
-              <Link to="/resume">
-                <motion.span
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white overflow-hidden cursor-pointer"
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 transition-all duration-300 group-hover:from-violet-500 group-hover:via-purple-500 group-hover:to-indigo-500" />
-                  <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-violet-400/20 via-transparent to-indigo-400/20" />
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                  <FileText className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">Resume</span>
-                </motion.span>
-              </Link>
+              <motion.button
+                onClick={() => setIsResumeModalOpen(true)}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium text-white overflow-hidden cursor-pointer"
+              >
+                <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 transition-all duration-300 group-hover:from-violet-500 group-hover:via-purple-500 group-hover:to-indigo-500" />
+                <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-violet-400/20 via-transparent to-indigo-400/20" />
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <FileText className="w-4 h-4 relative z-10" />
+                <span className="relative z-10">Resume</span>
+              </motion.button>
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
@@ -159,7 +160,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-background/95 backdrop-blur-2xl z-40 md:hidden"
+              className="fixed inset-0 bg-background/95 backdrop-blur-2xl z-[100] md:hidden"
               onClick={() => setIsOpen(false)}
             />
             
@@ -175,7 +176,7 @@ export function Navbar() {
                   transition: { staggerChildren: 0.05, staggerDirection: -1 },
                 },
               }}
-              className="fixed inset-0 z-40 flex flex-col items-center justify-center md:hidden"
+              className="fixed inset-0 z-[100] flex flex-col items-center justify-center md:hidden"
             >
               <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary/5 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-primary/5 to-transparent" />
@@ -241,25 +242,29 @@ export function Navbar() {
                   }}
                   className="w-full pt-4"
                 >
-                  <Link to="/resume" onClick={() => setIsOpen(false)}>
-                    <motion.span
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="relative group flex items-center justify-center gap-2 w-full h-14 rounded-2xl text-base font-medium text-white overflow-hidden cursor-pointer"
-                    >
-                      <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 transition-all duration-300 group-hover:from-violet-500 group-hover:via-purple-500 group-hover:to-indigo-500" />
-                      <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-violet-400/20 via-transparent to-indigo-400/20" />
-                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                      <FileText className="w-5 h-5 relative z-10" />
-                      <span className="relative z-10">Download Resume</span>
-                    </motion.span>
-                  </Link>
+                  <motion.button
+                    onClick={() => {
+                      setIsOpen(false);
+                      setIsResumeModalOpen(true);
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="relative group flex items-center justify-center gap-2 w-full h-14 rounded-2xl text-base font-medium text-white overflow-hidden cursor-pointer"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-violet-600 via-purple-600 to-indigo-600 transition-all duration-300 group-hover:from-violet-500 group-hover:via-purple-500 group-hover:to-indigo-500" />
+                    <span className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-violet-400/20 via-transparent to-indigo-400/20" />
+                    <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                    <FileText className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Download Resume</span>
+                  </motion.button>
                 </motion.div>
               </nav>
             </motion.div>
           </>
         )}
       </AnimatePresence>
+      
+      <ResumeModal open={isResumeModalOpen} onOpenChange={setIsResumeModalOpen} />
     </>
   );
 }

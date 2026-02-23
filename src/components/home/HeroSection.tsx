@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Download, MapPin, Briefcase, Sparkles, Code2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { ResumeModal } from "@/components/ui/ResumeModal";
 
 const floatingBadges = [
   { icon: Code2, label: "Frontend", delay: 0 },
@@ -10,6 +12,8 @@ const floatingBadges = [
 ];
 
 export function HeroSection() {
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  
   return (
     <section className="min-h-[90vh] flex items-center relative overflow-hidden pt-16 sm:pt-0 md:pt-0">
       <div className="absolute inset-0 -z-10">
@@ -248,13 +252,11 @@ export function HeroSection() {
             <Button 
               variant="outline" 
               size="lg" 
-              asChild
+              onClick={() => setIsResumeModalOpen(true)}
               className="border-border hover:bg-secondary hover:text-foreground text-foreground group w-full sm:w-auto"
             >
-              <Link to="/resume">
-                <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
-                <span>Download Resume</span>                
-              </Link>
+              <Download className="mr-2 h-4 w-4 group-hover:animate-bounce" />
+              <span>Download Resume</span>                
             </Button>
           </motion.div>
 
@@ -302,6 +304,8 @@ export function HeroSection() {
           </div>
         </motion.div>
       </motion.div>
+      
+      <ResumeModal open={isResumeModalOpen} onOpenChange={setIsResumeModalOpen} />
     </section>
   );
 }
