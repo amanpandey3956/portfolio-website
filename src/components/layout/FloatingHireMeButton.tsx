@@ -21,8 +21,8 @@ export function FloatingHireMeButton() {
         className="relative"
       >
         <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-300 rounded-full blur opacity-60 group-hover:opacity-100 transition-opacity animate-pulse" />
-        <div className="relative flex items-center px-3 py-2 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-300 rounded-full shadow-lg">
-          <HireMeButton variant="navbar-mobile" className="!px-0 !py-0 !bg-transparent text-slate-900 text-sm font-medium" />
+        <div className="relative flex items-center bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-300 rounded-full shadow-lg">
+          <HireMeButton />
         </div>
       </motion.div>
       
