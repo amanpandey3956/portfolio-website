@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Mail, Linkedin, ArrowUpRight, Sparkles, Copy, Check, MessageSquare } from "lucide-react";
@@ -155,12 +155,12 @@ export function HireMeButton({ variant = "default", className = "" }: HireMeButt
           onClick={() => setIsOpen(true)}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className={`relative group inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-slate-900 overflow-hidden ${className}`}
+          className={`relative group inline-flex items-center justify-center sm:justify-start gap-1 sm:gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs font-medium text-slate-900 overflow-hidden ${className}`}
         >
           <span className="absolute inset-0 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-300 transition-all duration-300 group-hover:from-amber-300 group-hover:via-yellow-300 group-hover:to-amber-200" />
           <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          <Sparkles className="w-3 h-3 relative z-10" />
-          <span className="relative z-10">Hire Me</span>
+          <Sparkles className="w-3 h-3 relative z-10 hidden sm:inline-flex" />
+          <span className="relative z-10 whitespace-nowrap">Hire Me</span>
         </motion.button>
 
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
