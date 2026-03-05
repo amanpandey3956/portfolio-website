@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { ResumeModal } from "@/components/ui/ResumeModal";
 
 const floatingBadges = [
-  { icon: Code2, label: "Frontend", delay: 0 },
-  { icon: Rocket, label: "Cloud Native", delay: 0.5 },
   { icon: Sparkles, label: "Kubernetes", delay: 1 },
+  { icon: Rocket, label: "Cloud Native", delay: 0.5 },
+  { icon: Code2, label: "Frontend", delay: 0 },
 ];
 
 export function HeroSection() {
@@ -225,10 +225,9 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
           >
-            Frontend Developer | Exploring{" "}
-            <span className="text-muted-foreground font-medium">Kubernetes</span>,{" "}
-            <span className="text-muted-foreground font-medium">Observability</span> and{" "}
-            <span className="text-muted-foreground font-medium">Cloud Native Technologies</span>
+            DevOps Engineer | Ex-Frontend Developer | Exploring{" "}
+            Observability and{" "}
+            Cloud Native Technologies
           </motion.p>
 
           <motion.div
