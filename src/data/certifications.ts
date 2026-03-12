@@ -33,7 +33,7 @@ export const certifications: Certification[] = [
   {
     id: "aws-saa",
     title: "AWS Solutions Architect Associate",
-    issuer: "Amazon Web Services",
+    issuer: "Kodekloud",
     date: "February 18, 2026",
     credentialUrl: "https://learn.kodekloud.com/user/certificate/44f6cb8f-0663-44e2-b631-58fa0683c16c",
     icon: SiAmazonwebservices,
@@ -43,7 +43,7 @@ export const certifications: Certification[] = [
   {
     id: "rhcsa",
     title: "Red Hat Certified System Administrator (RHCSA)",
-    issuer: "Red Hat",
+    issuer: "Kodekloud",
     date: "December 28, 2025",
     credentialUrl: "https://learn.kodekloud.com/user/certificate/27dc3a6c-9626-473b-95dc-e81c27e42e48",
     icon: FaLinux,
