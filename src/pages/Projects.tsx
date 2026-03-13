@@ -9,20 +9,19 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
+    title: "Go DevOps Project",
+    description: "Built and deployed a Golang web application using containerization and cloud-native technologies. Implemented automated build and deployment workflows with GitHub Actions and GitOps-based delivery using Argo CD. Deployed the application to a Kubernetes cluster on Amazon EKS using Helm and exposed it via an NGINX Ingress Controller with custom domain routing.",
+    tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD", "GitHub Actions", "CI/CD", "NGINX Ingress"],
+    github: "https://github.com/amanpandey3956/go-devops-project",
+    featured: true,
+    gradient: "from-blue-500 via-cyan-500 to-teal-500",
+  },
+  {
     title: "Clika",
     description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, Google OAuth authentication along with Password based authentication, and Redux state management for seamless team collaboration and real-time data synchronization.",
     tech: ["React.js", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "Google OAuth", "Authentication"],
     featured: true,
     gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
-  },
-  {
-    title: "CloudRaft Service Desk",
-    description: "Full-stack service desk application with real-time ticket updates using Supabase realtime subscriptions, comprehensive ticket management, role-based access control, and an intuitive dashboard for support teams.",
-    tech: ["React.js", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    link: "https://oss-support.cloudraft.io/",
-    github: "https://github.com/amanpandey3956/service-app-clone",
-    featured: true,
-    gradient: "from-cyan-500 via-teal-500 to-emerald-500",
   },
   {
     title: "Task Manager App",
@@ -41,12 +40,21 @@ const projects = [
     gradient: "from-rose-500 via-pink-500 to-red-500",
   },
   {
+    title: "CloudRaft Service Desk",
+    description: "Full-stack service desk application with real-time ticket updates using Supabase realtime subscriptions, comprehensive ticket management, role-based access control, and an intuitive dashboard for support teams.",
+    tech: ["React.js", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    link: "https://oss-support.cloudraft.io/",
+    github: "https://github.com/amanpandey3956/service-app-clone",
+    featured: true,
+    gradient: "from-cyan-500 via-teal-500 to-emerald-500",
+  },
+  {
     title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
     tech: ["React.js", "TypeScript", "Tailwind CSS", "shadcn-ui"],
     link: "https://amanpandey-portfolio.vercel.app/",
     github: "https://github.com/amanpandey3956/portfolio-website",
-    featured: true,
+    featured: false,
     gradient: "from-emerald-500 via-green-500 to-teal-500",
   },
   {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, MapPin, Briefcase, Sparkles, Code2, Rocket } from "lucide-react";
+import { ArrowRight, Download, MapPin, Sparkles, Code2, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ResumeModal } from "@/components/ui/ResumeModal";
@@ -201,22 +201,6 @@ export function HeroSection() {
                 Aman Pandey
               </span>
             </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-6 text-lg text-muted-foreground mb-8"
-          >
-            <span className="flex items-center gap-2 px-4 py-2 rounded-full glass hover:border-primary/30 transition-colors">
-              <Briefcase size={18} className="text-primary" />
-              <span className="font-medium">Associate Full Stack Engineer</span>
-            </span>
-            <span className="flex items-center gap-2 px-4 py-2 rounded-full glass hover:border-primary/30 transition-colors">
-              <MapPin size={18} className="text-cyan-400" />
-              <span className="font-medium">CloudRaft</span>
-            </span>
           </motion.div>
 
           <motion.p

@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
 import { HireMeButton } from "@/components/ui/hire-me-button";
 
+const HIRE_ME_DISMISSED_KEY = "hire_me_button_dismissed";
+
 export function FloatingHireMeButton() {
   const [isDismissed, setIsDismissed] = useState(false);
+
+  useEffect(() => {
+    const dismissed = localStorage.getItem(HIRE_ME_DISMISSED_KEY);
+    if (dismissed === "true") {
+      setIsDismissed(true);
+    }
+  }, []);
+
+  const handleDismiss = () => {
+    setIsDismissed(true);
+    localStorage.setItem(HIRE_ME_DISMISSED_KEY, "true");
+  };
 
   if (isDismissed) return null;
 
@@ -27,7 +41,7 @@ export function FloatingHireMeButton() {
       </motion.div>
       
       <button
-        onClick={() => setIsDismissed(true)}
+        onClick={handleDismiss}
         className="absolute -top-2 -right-2 w-5 h-5 bg-background border border-border rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-secondary"
         aria-label="Dismiss"
       >

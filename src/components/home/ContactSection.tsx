@@ -266,7 +266,7 @@ export function ContactSection() {
                 <span className="text-sm font-medium text-foreground">Currently Available</span>
               </div>
               <p className="text-sm text-muted-foreground">
-                Open to exciting opportunities in frontend development and cloud-native technologies.
+                Open to exciting opportunities in DevOps, SRE, Cloud and frontend development.
               </p>
             </motion.div>
           </motion.div>
