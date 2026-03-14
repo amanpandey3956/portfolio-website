@@ -138,7 +138,7 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-2 flex flex-col justify-between gap-6"
           >
-            <div className="p-6 rounded-2xl border-gradient card-hover">
+            <div className="p-6 rounded-2xl bg-card border border-border">
               <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
                 <MessageSquare size={20} className="text-primary" />
                 Let's Connect
@@ -202,7 +202,7 @@ export function ContactSection() {
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl border-gradient card-hover">
+            <div className="p-6 rounded-2xl bg-card border border-border">
               <h3 className="text-lg font-semibold text-foreground mb-4">
                 Find me on
               </h3>
@@ -278,7 +278,7 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3 flex"
           >
-            <form onSubmit={handleSubmit} className="p-8 rounded-2xl border-gradient card-hover space-y-6 w-full flex flex-col justify-between">
+            <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-card border border-border space-y-6 w-full flex flex-col justify-between">
               <div className="space-y-2">
                 <label htmlFor="purpose" className="text-sm font-medium text-foreground">
                   Purpose of Contact
