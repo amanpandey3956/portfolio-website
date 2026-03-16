@@ -7,6 +7,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "next-themes";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { WelcomePopup } from "@/components/WelcomePopup";
+import { ThemeContextProvider } from "@/components/ThemeContext";
+import { useThemeManager } from "@/hooks/useThemeManager";
 import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
@@ -17,6 +19,11 @@ import Certifications from "./pages/Certifications";
 
 const queryClient = new QueryClient();
 
+function ThemeManager() {
+  useThemeManager();
+  return null;
+}
+
 const App = () => (
   <HelmetProvider>
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
@@ -25,17 +32,20 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <ScrollToTop />
-            <WelcomePopup />
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/certifications" element={<Certifications />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/blog" element={<Blog />} />
-              <Route path="/blog/:slug" element={<BlogPost />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            <ThemeContextProvider>
+              <ThemeManager />
+              <ScrollToTop />
+              <WelcomePopup />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/certifications" element={<Certifications />} />
+                <Route path="/projects" element={<Projects />} />
+                <Route path="/experience" element={<Experience />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:slug" element={<BlogPost />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ThemeContextProvider>
           </BrowserRouter>
         </TooltipProvider>
       </QueryClientProvider>

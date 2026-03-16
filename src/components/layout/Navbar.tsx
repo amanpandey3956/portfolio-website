@@ -97,7 +97,9 @@ export function Navbar() {
             </div>
 
             <div className="hidden md:flex items-center gap-3">
-              <ThemeToggle />
+              {location.pathname === "/blog" || location.pathname.startsWith("/blog/") ? (
+                <ThemeToggle />
+              ) : null}
               <motion.button
                 onClick={() => setIsResumeModalOpen(true)}
                 whileHover={{ scale: 1.02 }}
@@ -113,7 +115,9 @@ export function Navbar() {
             </div>
 
             <div className="flex items-center gap-2 md:hidden">
-              <ThemeToggle />
+              {location.pathname === "/blog" || location.pathname.startsWith("/blog/") ? (
+                <ThemeToggle />
+              ) : null}
               <Button
                 variant="ghost"
                 size="icon"
