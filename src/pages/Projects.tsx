@@ -9,20 +9,20 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
-    title: "DevSecOps Blog App",
-    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
-    tech: ["Docker", "Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "ArgoCD", "React", "Node.js", "PostgreSQL"],
-    github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
-    featured: true,
-    gradient: "from-blue-500 via-indigo-500 to-violet-500",
-  },
-  {
     title: "Go DevOps Project",
     description: "Built and deployed a Golang web application using containerization and cloud-native technologies. Implemented automated build and deployment workflows with GitHub Actions and GitOps-based delivery using Argo CD. Deployed the application to a Kubernetes cluster on Amazon EKS using Helm and exposed it via an NGINX Ingress Controller with custom domain routing.",
     tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD", "GitHub Actions", "CI/CD", "NGINX Ingress"],
     github: "https://github.com/amanpandey3956/go-devops-project",
     featured: true,
     gradient: "from-blue-500 via-cyan-500 to-teal-500",
+  },
+  {
+    title: "DevSecOps Blog App",
+    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
+    tech: ["Docker", "Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "ArgoCD", "React", "Node.js", "PostgreSQL"],
+    github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
+    featured: true,
+    gradient: "from-blue-500 via-indigo-500 to-violet-500",
   },
   {
     title: "Task Manager App",

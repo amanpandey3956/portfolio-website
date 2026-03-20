@@ -16,20 +16,20 @@ type FeaturedProject = {
 
 const featuredProjects: FeaturedProject[] = [
   {
-    title: "DevSecOps Blog App",
-    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
-    tech: ["Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "Argo CD", "React", "Node.js", "PostgreSQL"],
-    github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
-    gradient: "from-blue-500/20 via-indigo-500/20 to-violet-500/20",
-    accentColor: "indigo",
-  },
-  {
     title: "Go DevOps Project",
     description: "Built and deployed a Golang web application using containerization with Docker and Kubernetes on Amazon EKS. Automated build and deployment using GitHub Actions and GitOps delivery with Argo CD, managing releases via Helm and exposing the app through an NGINX Ingress Controller.",
     tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD", "GitHub Actions"],
     github: "https://github.com/amanpandey3956/go-devops-project",
     gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
     accentColor: "cyan",
+  },
+  {
+    title: "DevSecOps Blog App",
+    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
+    tech: ["Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "Argo CD", "React", "Node.js", "PostgreSQL"],
+    github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
+    gradient: "from-blue-500/20 via-indigo-500/20 to-violet-500/20",
+    accentColor: "indigo",
   },
   {
     title: "Task Manager App",
