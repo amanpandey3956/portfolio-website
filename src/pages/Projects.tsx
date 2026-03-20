@@ -17,7 +17,7 @@ const projects = [
     gradient: "from-blue-500 via-cyan-500 to-teal-500",
   },
   {
-    title: "DevSecOps Blog App",
+    title: "Blog App (DevSecOps)",
     description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
     tech: ["Docker", "Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "ArgoCD", "React", "Node.js", "PostgreSQL"],
     github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",

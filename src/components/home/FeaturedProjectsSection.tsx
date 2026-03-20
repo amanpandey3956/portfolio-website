@@ -24,7 +24,7 @@ const featuredProjects: FeaturedProject[] = [
     accentColor: "cyan",
   },
   {
-    title: "DevSecOps Blog App",
+    title: "Blog App (DevSecOps)",
     description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
     tech: ["Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "Argo CD", "React", "Node.js", "PostgreSQL"],
     github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
