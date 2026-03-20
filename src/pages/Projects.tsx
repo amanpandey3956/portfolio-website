@@ -9,19 +9,20 @@ import { Button } from "@/components/ui/button";
 
 const projects = [
   {
+    title: "DevSecOps Blog App",
+    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
+    tech: ["Docker", "Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "ArgoCD", "React", "Node.js", "PostgreSQL"],
+    github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
+    featured: true,
+    gradient: "from-blue-500 via-indigo-500 to-violet-500",
+  },
+  {
     title: "Go DevOps Project",
     description: "Built and deployed a Golang web application using containerization and cloud-native technologies. Implemented automated build and deployment workflows with GitHub Actions and GitOps-based delivery using Argo CD. Deployed the application to a Kubernetes cluster on Amazon EKS using Helm and exposed it via an NGINX Ingress Controller with custom domain routing.",
     tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD", "GitHub Actions", "CI/CD", "NGINX Ingress"],
     github: "https://github.com/amanpandey3956/go-devops-project",
     featured: true,
     gradient: "from-blue-500 via-cyan-500 to-teal-500",
-  },
-  {
-    title: "Clika",
-    description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, Google OAuth authentication along with Password based authentication, and Redux state management for seamless team collaboration and real-time data synchronization.",
-    tech: ["React.js", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "Google OAuth", "Authentication"],
-    featured: true,
-    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
   },
   {
     title: "Task Manager App",
@@ -40,22 +41,29 @@ const projects = [
     gradient: "from-rose-500 via-pink-500 to-red-500",
   },
   {
-    title: "CloudRaft Service Desk",
-    description: "Full-stack service desk application with real-time ticket updates using Supabase realtime subscriptions, comprehensive ticket management, role-based access control, and an intuitive dashboard for support teams.",
-    tech: ["React.js", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
-    link: "https://oss-support.cloudraft.io/",
-    github: "https://github.com/amanpandey3956/service-app-clone",
-    featured: true,
-    gradient: "from-cyan-500 via-teal-500 to-emerald-500",
-  },
-  {
     title: "Portfolio",
     description: "A modern, responsive portfolio website built with React, featuring smooth animations, dark theme with glassmorphism effects, and optimized performance.",
-    tech: ["React.js", "TypeScript", "Tailwind CSS", "shadcn-ui"],
+    tech: ["React", "TypeScript", "Tailwind CSS", "shadcn-ui"],
     link: "https://amanpandey-portfolio.vercel.app/",
     github: "https://github.com/amanpandey3956/portfolio-website",
-    featured: false,
+    featured: true,
     gradient: "from-emerald-500 via-green-500 to-teal-500",
+  },
+  {
+    title: "Clika",
+    description: "A cutting-edge MVP SaaS platform with Stripe integration for payments, Google OAuth authentication along with Password based authentication, and Redux state management for seamless team collaboration and real-time data synchronization.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Rest APIs", "Redux", "Stripe", "Google OAuth", "Authentication"],
+    featured: false,
+    gradient: "from-violet-500 via-purple-500 to-fuchsia-500",
+  },
+  {
+    title: "CloudRaft Service Desk",
+    description: "Full-stack service desk application with real-time ticket updates using Supabase realtime subscriptions, comprehensive ticket management, role-based access control, and an intuitive dashboard for support teams.",
+    tech: ["React", "Supabase", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    link: "https://oss-support.cloudraft.io/",
+    github: "https://github.com/amanpandey3956/service-app-clone",
+    featured: false,
+    gradient: "from-cyan-500 via-teal-500 to-emerald-500",
   },
   {
     title: "TuneHouse",
@@ -69,7 +77,7 @@ const projects = [
   { 
     title: "Appwrite Blog",
     description: "Developed a dynamic blogging platform using ReactJS, Appwrite, and Tailwind CSS. The site features user authentication, allowing users to create, edit, and delete their own blog posts, as well as upload images.",
-    tech: ["React.js", "Redux", "Appwrite", "Tailwind CSS"],
+    tech: ["React", "Redux", "Appwrite", "Tailwind CSS"],
     github: "https://github.com/amanpandey3956/Appwrite-Blog",
     link: "https://appwrite-blog-vert.vercel.app/",
     featured: false,
@@ -78,7 +86,7 @@ const projects = [
   {
     title: "Admin Sales Dashboard",
     description: "Developed a responsive sales dashboard using React.js, Material-UI, and Nivo Charts for dynamic data visualization. Integrated mock APIs from JSONPlaceholder for real-time transaction tracking and user activity insights",
-    tech: ["React.js", "Material-UI", "Axios", "Jsonplaceholder"],
+    tech: ["React", "Material-UI", "Axios", "Jsonplaceholder"],
     github: "https://github.com/amanpandey3956/React-Sales-Dashboard",
     link: "https://dashboard-one-beryl-65.vercel.app/",
     featured: false,
@@ -87,7 +95,7 @@ const projects = [
   {
     title: "Nike Landing Page",
     description: "Created an engaging Nike landing page using ReactJS and Tailwind CSS. The site features a visually appealing design that showcases products with responsive layouts and smooth animations. Leveraged Tailwind CSS for rapid styling, ensuring a seamless user experience across devices.",
-    tech: ["React.js", "JavaScript", "Tailwind CSS"],
+    tech: ["React", "JavaScript", "Tailwind CSS"],
     github: "https://github.com/amanpandey3956/Nike-Website",
     link: "https://nike-website-sage-eight.vercel.app/",
     featured: false,
@@ -96,9 +104,8 @@ const projects = [
 ];
 
 const prioritizedTechs = [
-  "React.js", "Next.js", "TypeScript", "Tailwind CSS", 
-  "OpenTelemetry", "Prometheus", "Rest APIs", "Thanos", "PostgreSQL", "Supabase", 
-  "Redux", "Dockerfile", "CI/CD", "Grafana"
+  "Docker", "Kubernetes", "AWS EKS", "Terraform", "React", "Next.js", "TypeScript", "Tailwind CSS", 
+  "OpenTelemetry", "Prometheus", "Rest APIs", "Thanos", "PostgreSQL", "Supabase", "Dockerfile", "CI/CD", "Grafana"
 ];
 
 const allTechStacks = Array.from(new Set(projects.flatMap(p => p.tech)));
@@ -316,7 +323,7 @@ const Projects = () => {
                       </div>
                     </div>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-5 line-clamp-3">
+                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-5">
                       {project.description}
                     </p>
 
