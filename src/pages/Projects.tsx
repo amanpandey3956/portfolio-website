@@ -166,7 +166,7 @@ const Projects = () => {
       <SEO 
         title="Projects"
         description="Explore my portfolio of projects including SaaS platforms, observability tools, and full-stack applications built with React, TypeScript, Docker, Kubernetes, Prometheus, Thanos, and Opentelemetry."
-        keywords="React and TypeScript Projects, SaaS, Observability, Full Stack Projects, Docker, Kubernetes, Portfolio"
+        keywords="DevOps Projects, React and TypeScript Projects, SaaS, Observability, Full Stack Projects, Docker, Kubernetes, Portfolio"
         url="https://amanpandey-portfolio.vercel.app/projects"
       />
       

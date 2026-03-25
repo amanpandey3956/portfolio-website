@@ -15,9 +15,9 @@ interface SEOProps {
 const BASE_URL = "https://amanpandey-portfolio.vercel.app/"; 
 
 export const SEO = ({
-  title = "Aman Pandey | Full Stack Engineer",
+  title = "Aman Pandey | DevOps Engineer,",
   description = "Software Engineer specializing in React, TypeScript, Kubernetes, and Cloud Native technologies. Building scalable web applications and sharing knowledge through technical blogs.",
-  keywords = "Aman Pandey, Full Stack Developer, React Developer, TypeScript, Kubernetes, Docker, Cloud Native, Web Development, Frontend Developer, DevOps",
+  keywords = "Aman Pandey, DevOps Engineer, Full Stack Developer, React Developer, TypeScript, Kubernetes, Docker, Cloud Native, Web Development, Frontend Developer, DevOps",
   image = "/projects/myimg.webp",
   url = BASE_URL,
   type = "website",
@@ -40,7 +40,7 @@ export const SEO = ({
         name: "Aman Pandey",
         url: BASE_URL,
         image: `${BASE_URL}/projects/myimg.webp`,
-        jobTitle: "Full Stack Engineer",
+        jobTitle: "DevOps Engineer,",
         worksFor: {
           "@type": "Organization",
           name: "CloudRaft",

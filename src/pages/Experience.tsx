@@ -78,7 +78,7 @@ const Experience = () => {
       <SEO
         title="Experience"
         description="Professional experience as a Full Stack Engineer at CloudRaft, working with React, TypeScript, and cloud technologies. View my work history and education."
-        keywords="Full Stack Engineer, CloudRaft, React Developer, TypeScript, Work Experience, Software Engineer, Frontend Developer"
+        keywords="DevOps Engineer, Full Stack Engineer, CloudRaft, React Developer, TypeScript, Work Experience, Software Engineer, Frontend Developer"
         url="https://amanpandey-portfolio.vercel.app/experience"
       />
       <section className="py-20 min-h-screen relative overflow-hidden">

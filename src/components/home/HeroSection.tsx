@@ -19,32 +19,25 @@ export function HeroSection() {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-background" />
         
-        {/* Grid Pattern Background */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808015_1px,transparent_1px),linear-gradient(to_bottom,#80808015_1px,transparent_1px)] bg-[size:56px_56px]" />
         
-        {/* Radial gradient for vignette effect */}
         <div className="absolute inset-0 bg-radial-gradient" />
 
-        {/* Beam Light Effects */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Central beam light */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px]">
             <div className="absolute inset-0 bg-gradient-to-b from-primary/20 via-primary/10 to-transparent blur-3xl" />
             <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/15 via-transparent to-transparent blur-2xl" />
           </div>
           
-          {/* Left beam */}
           <div className="absolute top-0 left-0 w-[600px] h-[800px]">
             <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-transparent blur-3xl" />
           </div>
           
-          {/* Right beam */}
           <div className="absolute top-0 right-0 w-[600px] h-[800px]">
             <div className="absolute inset-0 bg-gradient-to-l from-cyan-500/10 via-transparent to-transparent blur-3xl" />
           </div>
         </div>
 
-        {/* Subtle animated gradient orbs */}
         <motion.div
           className="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] rounded-full blur-[80px]"
           style={{
