@@ -242,6 +242,38 @@ const BlogPost = () => {
                     hr: () => (
                       <hr className="border-border my-8" />
                     ),
+                    table: ({ children }) => (
+                      <div className="w-full overflow-x-auto my-6">
+                        <table className="w-full min-w-[600px] border-collapse">
+                          {children}
+                        </table>
+                      </div>
+                    ),
+                    thead: ({ children }) => (
+                      <thead className="bg-muted/50 border-b border-border">
+                        {children}
+                      </thead>
+                    ),
+                    tbody: ({ children }) => (
+                      <tbody className="divide-y divide-border">
+                        {children}
+                      </tbody>
+                    ),
+                    tr: ({ children }) => (
+                      <tr className="hover:bg-muted/30 transition-colors">
+                        {children}
+                      </tr>
+                    ),
+                    th: ({ children }) => (
+                      <th className="px-4 py-3 text-left text-sm font-semibold text-foreground">
+                        {children}
+                      </th>
+                    ),
+                    td: ({ children }) => (
+                      <td className="px-4 py-3 text-sm text-muted-foreground">
+                        {children}
+                      </td>
+                    ),
                   }}
                 >
                   {post.content}

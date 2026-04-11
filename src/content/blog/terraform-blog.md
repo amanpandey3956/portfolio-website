@@ -296,3 +296,173 @@ This command downloads the required provider plugins and prepares your project.
 | Partner Providers   | Managed by third-party companies   | DigitalOcean   |
 | Community Providers | Created by individual contributors | Custom plugins |
 
+**Provider Source Address**
+
+A provider like `hashicorp/local` is called a source address, which Terraform uses to download it.
+
+It has two main parts:
+
+- Namespace → hashicorp (organization name)
+- Provider name → local
+
+You can also include a full path like: `registry.terraform.io/hashicorp/local` & If not specified, Terraform automatically uses the default registry.
+
+### Input Variables
+
+Input variables in Terraform help you make your code **flexible and reusable** instead of hardcoding values.
+
+Instead of writing fixed values in your configuration, you can use variables and change them easily whenever needed.
+
+**Traditional Hard-Coded Resources**
+
+```hcl
+resource "local_file" "colors" {
+  filename = "/root/colors.txt"
+  content  = "I love green color!"
+}
+```
+
+**Using Variables**
+
+Firstly create a configuration file named `variables.tf`. In this file, you define each variable using the variable keyword and can optionally assign a default value:
+
+```hcl
+variable "filename" {
+  default = "/root/colors.txt"
+}
+
+variable "content" {
+  default = "I love green color!"
+}
+```
+
+Once your variables are declared in the variables.tf file, update your main.tf file to reference these variables. You achieve this by prefixing the variable name just like the example below.
+
+```hcl
+# main.tf
+resource "local_file" "colors" {
+  filename = var.filename
+  content  = var.content
+}
+```
+
+**Updating Values**
+
+To make changes, you just update the variable values instead of modifying the main code. then just run `terraform plan` & `terraform apply`. Terraform will update the resource accordingly.
+
+### Variables in Terraform
+
+In Terraform, you can assign values to variables in different ways. If the same variable is defined in multiple places, Terraform follows a `priority order` to decide which value to use.
+
+For example, a variable can be set like this:
+
+**1] Environment Variable**
+```bash
+export TF_VAR_filename="/root/color1.txt"
+```
+
+**2] terraform.tfvars file**
+```bash
+filename = "/root/color2.txt"
+```
+
+**3] .auto.tfvars file**
+```bash
+filename = "/root/color3.txt"
+```
+
+**4] Command Line (Highest Priority)**
+```bash
+terraform apply -var "filename=/root/color4.txt"
+```
+
+Terraform will choose the value based on priority, where **command-line input** overrides all other options.
+
+### Output Variables
+
+Terraform output variables save the results from your configuration files for future reference, making resource management and integration with external tools much more efficient.
+
+Output variables are one of Terraform's most useful features — they let you store the results of expressions defined in your configuration and access them whenever needed. In earlier sections, we explored input variables and reference expressions; output variables build on those concepts by giving you a way to retrieve and display key information once your infrastructure is up and running.
+
+**Capturing Resource Attributes**
+
+Let's say you have a configuration that generates a random color name using Terraform's resource definitions. In this example, a resource called `random_string` generates a `color name`, and an output variable called color-name captures the generated id. This comes in handy when you need to pass data to other tools or quickly verify a resource after provisioning.
+
+Here's what that configuration looks like:
+
+```hcl
+resource "local_file" "color" {
+  filename = var.filename
+  content  = "My favorite color is ${random_string.my-color.id}"
+}
+
+resource "random_string" "my-color" {
+  prefix    = var.prefix
+  separator = var.separator
+  length    = var.length
+}
+
+output "color-name" {
+  value = random_string.my-color.id
+  description = ""
+}
+```
+
+The output block begins with the keyword `output`, followed by the variable name. Within the block, the `value` argument is mandatory and uses a reference expression `(random_string.my-color.id)`. The `description` argument is optional, but it's a good habit to include a short explanation of what the output represents.
+
+**Tip:** Always write meaningful descriptions for your output variables. It improves code readability and makes collaboration with your team much smoother.
+
+**Declaring the Supporting Variables**
+
+To make the above resources work correctly, you'll need the following variable declarations in your configuration:
+
+```hcl
+variable "filename" {
+  default = "/root/colors.txt"
+}
+
+variable "content" {
+  default = "I love colors!"
+}
+
+variable "prefix" {
+  default = "Mrs"
+}
+
+variable "separator" {
+  default = "."
+}
+
+variable "length" {
+  default = "1"
+}
+```
+
+These definitions provide the required default values and keep the configuration running without any issues during execution.
+
+**Viewing Outputs in Terraform**
+
+Once you run `terraform apply`, Terraform will automatically print the output variables on the screen after the resources are created. For example:
+
+```hcl
+$ terraform apply
+...
+Outputs:
+  color-name = Mrs.blue
+```
+
+You can also check the value of any output variable at any point using the `terraform output` command. Running it without arguments will list all available outputs:
+
+```hcl
+$ terraform output
+color-name = Mrs.blue
+```
+
+To view a specific output variable, just pass its name as an argument:
+```hcl
+$ terraform output color-name
+Mrs.blue
+```
+
+Output variables are extremely helpful for quickly reviewing details about your provisioned resources and for connecting Terraform with other infrastructure-as-code tools, standalone scripts, or configuration management platforms like Ansible. For more comprehensive information on Terraform output variables and other configuration concepts, please refer to [official documentation](https://developer.hashicorp.com/terraform/docs) of terraform.
+
