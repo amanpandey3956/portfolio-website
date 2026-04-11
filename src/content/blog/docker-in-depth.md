@@ -17,18 +17,6 @@ Containers can be started anywhere an [OCI container runtime](https://opencontai
 
 In this blog, we’ll guide you through everything from installing Docker to mastering its core concepts, supported by hands-on examples and practical use cases.
 
-### Table of Contents
-
-1. [Getting Started With Docker](#getting-started-with-docker)  
-2. [Basics of Docker with Demo](#basics-of-docker-with-demo)
-3. [Docker Vs Virtual Machine](#docker-vs-virtual-machine)  
-4. [Docker Commands with Example](#docker-commands-with-example)  
-5. [Docker Network Concept and Demo](#docker-network-concept-and-demo)  
-6. [Dockerfile – Building Our Own Docker Image](#dockerfile---building-our-own-docker-image)  
-7. [Private Docker Repository – Pushing Our Built Docker Image into a Private Registry on AWS](#private-docker-repository---pushing-our-built-docker-image-into-a-private-registry-on-aws)  
-8. [Docker Compose – Running Multiple Services](#docker-compose---running-multiple-services)  
-9. [Docker Volumes – Persist Data in Docker](#docker-volumes---persist-data-in-docker)
-
 ## Getting Started With Docker
 
 Docker is available in two main variants: **Docker Engine** and **Docker Desktop**. The Docker Engine is primarily used on Linux systems and includes the core daemon (dockerd) and the Docker CLI for interacting with it. Docker Desktop, on the other hand, provides a complete Docker environment for Windows, macOS, and even Linux by leveraging virtualization. It offers a graphical dashboard for managing containers alongside the standard Docker CLI.
