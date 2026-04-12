@@ -982,4 +982,340 @@ Plan: 0 to add, 0 to change, 1 to destroy.
 ```
 This is the key advantage of `for_each` over count. Use `count` for simple, identical resources. Use `for_each` when each resource is unique and you want safer updates and deletions.
 
+## Terraform with AWS (Hands-on)
+
+### AWS IAM using Terraform
+
+In this section, we'll walk through how to provision AWS IAM resources using Terraform. Instead of using the AWS Management Console or CLI manually, we'll let Terraform handle it by making the process faster, repeatable, and easier to manage.
+
+#### Creating an IAM User Resource
+
+Terraform follows a naming convention where the resource type is prefixed with the provider name. Below we define an IAM user resource block named `"dev-user"`. The only mandatory argument is `name` — the actual IAM username. You can also attach optional arguments like `tags`.
+
+```hcl
+resource "aws_iam_user" "dev-user" {
+  name = "Sarah"
+  tags = {
+    Description = "Senior Cloud Engineer"
+  }
+}
+```
+**Initializing and Planning**
+
+Before applying anything, run `terraform init` to pull down the AWS provider plugin:
+```bash
+terraform init
+```
+Then run `terraform plan` to preview the changes. At this point you might run into two common issues:
+
+- Terraform asks for an **AWS region** — even for IAM (which is global), because most AWS resources are region-specific.
+- Terraform can't find valid **AWS credentials** to connect to your account.
+
+Both issues are fixed by adding a provider block.
+
+#### Configuring the AWS Provider
+
+Add a provider block to your configuration specifying the region and credentials:
+```hcl
+provider "aws" {
+  region     = "us-east-1"
+  access_key = "AKIAI44QH8DHBEXAMPLE"
+  secret_key = "je7MtGbClwBF/2tk/h3yCo8n..."
+}
+
+resource "aws_iam_user" "dev-user" {
+  name = "Sarah"
+  tags = {
+    Description = "Senior Cloud Engineer"
+  }
+}
+```
+With the region set to `us-east-1` and credentials provided, Terraform can now authenticate and interact with your AWS account.
+
+**Running Plan and Apply**
+
+With the provider configured, run `terraform plan` again, Once you've reviewed the plan and everything looks correct, apply it:
+```bash
+terraform apply
+```
+Terraform will go ahead and create the IAM user as defined in your configuration.
+
+#### Best Practices: Never Hardcode Credentials
+
+Hardcoding your AWS credentials directly in Terraform files is a bad practice — especially if those files end up in a version control system like GitHub. Anyone with access to the repo can see your keys.
+
+Instead, use one of these two safer approaches:
+
+**Option 1 — AWS CLI Configuration**
+
+Run the following command to store credentials locally on your machine:
+```bash
+aws configure
+```
+This saves your credentials in `~/.aws/credentials`:
+```bash
+[default]
+aws_access_key_id = YOUR_ACCESS_KEY_ID
+aws_secret_access_key = YOUR_SECRET_ACCESS_KEY
+```
+Terraform automatically picks these up — no need to mention them in your config files at all.
+
+**Option 2 — Environment Variables**
+
+You can also export your credentials as environment variables in your terminal session:
+```bash
+export AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY_ID
+export AWS_SECRET_ACCESS_KEY=YOUR_SECRET_ACCESS_KEY
+export AWS_DEFAULT_REGION=us-east-1
+```
+
+Both approaches keep sensitive information out of your Terraform files, making your setup significantly more secure.
+
+By following these steps, you can provision and manage AWS IAM resources through Terraform in a clean, secure, and maintainable way. For more details, refer to the [Terraform AWS Provider Documentation](https://registry.terraform.io/providers/hashicorp/aws/latest/docs).
+
+### Creating IAM Policies
+
+In this section, we'll walk through how to create an IAM policy using Terraform and attach it to an AWS user. We'll use the example of a user named **Sarah**, who starts with zero permissions. Following the **principle of least privilege**, we'll grant only the permissions she actually needs.
+
+AWS defines permissions using **JSON-formatted policy documents**. Here's an example of an administrator access policy:
+```bash
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+```
+
+**Step 1: Define the IAM User and Policy in Terraform**
+
+We use the `aws_iam_policy` resource to create the policy. The only required argument is the policy document in JSON format. Here's the initial setup:
+```hcl
+resource "aws_iam_user" "dev-user" {
+  name = "sarah"
+  tags = {
+    Description = "Senior Cloud Engineer"
+  }
+}
+
+resource "aws_iam_policy" "devUserPolicy" {
+  name   = "DevUserAccess"
+  policy = ?
+}
+```
+**Step 2: Embed the Policy Using Heredoc Syntax**
+
+Instead of referencing an external file, you can embed the JSON policy document directly in your Terraform config using **heredoc syntax** (`<<EOF`). This keeps everything in one place:
+```hcl
+resource "aws_iam_user" "dev-user" {
+  name = "sarah"
+  tags = {
+    Description = "Senior Cloud Engineer"
+  }
+}
+
+resource "aws_iam_policy" "devUserPolicy" {
+  name   = "DevUserAccess"
+  policy = <<EOF
+{
+  "Version": "2026-04-10",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+```
+**Step 3: Attach the Policy to the User**
+
+Simply defining a policy doesn't grant it to anyone. You need to explicitly attach it using the `aws_iam_user_policy_attachment` resource, which takes the **username** and the **policy ARN** as inputs:
+```hcl
+resource "aws_iam_user_policy_attachment" "sarah-dev-access" {
+  user       = aws_iam_user.dev-user.name
+  policy_arn = aws_iam_policy.devUserPolicy.arn
+}
+```
+**Complete Configuration**
+
+Putting it all together:
+```hcl
+resource "aws_iam_user" "dev-user" {
+  name = "sarah"
+  tags = {
+    Description = "Senior Cloud Engineer"
+  }
+}
+
+resource "aws_iam_policy" "devUserPolicy" {
+  name   = "DevUserAccess"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_user_policy_attachment" "sarah-dev-access" {
+  user       = aws_iam_user.dev-user.name
+  policy_arn = aws_iam_policy.devUserPolicy.arn
+}
+```
+**Alternative: Use an External JSON File**
+
+If you prefer keeping your policy document separate from your Terraform code — which can improve readability — store it in an external file instead.
+
+1. Create a file called `dev-policy.json` in the same directory as `main.tf`
+2. Move the JSON policy content into that file
+3. Update the resource to read from it using the `file()` function:
+```hcl
+resource "aws_iam_policy" "devUserPolicy" {
+  name   = "DevUserAccess"
+  policy = file("dev-policy.json")
+}
+```
+Everything else in the configuration stays the same. This approach is especially useful when your policy documents are large or shared across multiple configurations.
+
+### Working with S3 Buckets
+
+In this section, we'll go through how to create and manage an S3 bucket using Terraform. Specifically, we'll cover three things:
+
+- Creating an S3 bucket
+- Uploading a file to that bucket
+- Attaching a bucket policy to grant access to an IAM entity
+
+#### Creating an S3 Bucket
+
+We use the `aws_s3_bucket` resource to set up a bucket. Each bucket name must be globally unique across AWS. Here's an example:
+```hcl
+resource "aws_s3_bucket" "hr_data" {
+  bucket = "hr-data-14102023"
+  tags = {
+    Description = "HR Records and Payroll Data"
+  }
+}
+```
+
+#### Uploading a File to the Bucket
+
+Once the bucket is ready, we can upload a file using the `aws_s3_bucket_object` resource. The three key arguments needed are the **bucket reference**, the **key** (filename in the bucket), and the **content**.
+```hcl
+resource "aws_s3_bucket_object" "hr-report-2023" {
+  content = "/root/hr/hr-report-2023.doc"
+  key     = "hr-report-2023.doc"
+  bucket  = aws_s3_bucket.hr_data.id
+}
+```
+**Tip:** If you want to upload the actual contents of a file rather than just its path as a string, use the `file()` function:
+```bash
+content = file("/root/hr/hr-report-2023.doc")
+```
+#### Attaching a Bucket Policy
+
+To grant access to members of an IAM group called `"hr-team"`, we need to attach a bucket policy. However, there's an important limitation to be aware of:
+
+**Note:** IAM groups cannot be used directly as principals in S3 bucket policies. You must reference individual IAM users or roles instead.
+
+To work around this, we first fetch the IAM group details using a data source:
+```hcl
+data "aws_iam_group" "hr-group-data" {
+  group_name = "hr-team"
+}
+```
+Then we attach a bucket policy that dynamically references both the bucket and the IAM group user’s using Terraform interpolation:
+```hcl
+resource "aws_s3_bucket_policy" "hr-bucket-policy" {
+  bucket = aws_s3_bucket.hr_data.id
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "*",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::${aws_s3_bucket.hr_data.id}/*",
+      "Principal": {
+        "AWS": ${jsonencode(data.aws_iam_group.hr-group-data.users[*].arn)}
+      }
+    }
+  ]
+}
+EOF
+}
+```
+Once you run `terraform apply`, the policy is attached and the specified IAM entity gets full access to the bucket.
+
+### DynamoDB with Terraform
+
+In this section, we'll walk through how to create a DynamoDB table using Terraform and insert data into it. We'll use the example of a table that stores information about electronic devices.
+
+#### Creating the DynamoDB Table
+
+We use the `aws_dynamodb_table` resource to set up a DynamoDB table. In this example, we create a table called `"devices"` that holds data about electronics. Every DynamoDB table needs a **name**, a **hash key** (primary key), and an **attribute block** describing that key.
+
+Here we're using the device's serial number (`SerialNo`) as the primary key, with billing set to on-demand (`PAY_PER_REQUEST`):
+```hcl
+resource "aws_dynamodb_table" "devices" {
+  name         = "devices"
+  hash_key     = "SerialNo"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "SerialNo"
+    type = "S"
+  }
+}
+```
+**Note:** On-demand billing (`PAY_PER_REQUEST`) is ideal for workloads with unpredictable traffic, you only pay for what you use. If you switch to provisioned capacity (the default mode), you'd also need to declare read and write capacity units.
+
+Run `terraform apply` to create the table.
+
+#### Inserting Items into the Table
+
+Once the table is ready, we can add data to it using the `aws_dynamodb_table_item` resource. This resource needs the **table name**, the **hash key**, and the **item data** in JSON format.
+
+We use heredoc syntax (`<<EOF`) to define the item. Note that each attribute value must include its type — `"S"` for string and `"N"` for number:
+```hcl
+resource "aws_dynamodb_table" "devices" {
+  name         = "devices"
+  hash_key     = "SerialNo"
+  billing_mode = "PAY_PER_REQUEST"
+  attribute {
+    name = "SerialNo"
+    type = "S"
+  }
+}
+
+resource "aws_dynamodb_table_item" "device-items" {
+  table_name = aws_dynamodb_table.devices.name
+  hash_key   = aws_dynamodb_table.devices.hash_key
+  item       = <<EOF
+{
+  "Manufacturer": {"S": "Samsung"},
+  "Model":        {"S": "Galaxy Tab S8"},
+  "Year":         {"N": "2022"},
+  "SerialNo":     {"S": "SN-8X92KLM3047"}
+}
+EOF
+}
+```
+Run `terraform apply` to insert the item.
+
+**Remember:** This approach works well for managing a small number of items. For bulk data insertion or large-scale operations, consider using dedicated data migration tools or strategies instead of Terraform resources.
+
+
+
 
