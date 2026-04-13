@@ -2,21 +2,19 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import { useThemeManager } from "@/hooks/useThemeManager";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { mounted: themeMounted, isBlogRoute } = useThemeManager();
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <Button variant="ghost" size="icon" className="w-9 h-9">
-        <Sun className="h-4 w-4" />
-      </Button>
-    );
+  if (!mounted || !themeMounted || !isBlogRoute) {
+    return null;
   }
 
   return (
