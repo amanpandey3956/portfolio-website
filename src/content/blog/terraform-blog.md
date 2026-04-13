@@ -1731,5 +1731,7 @@ By packaging the infrastructure into a module, we wrote the configuration once a
 
 ## Conclusion
 
-Terraform is one of the most powerful tools in a DevOps engineer's toolkit, and getting comfortable with it early can make a huge difference in how you manage infrastructure. In this blog, we covered everything from the basics of HCL and state management to real-world AWS deployments and reusable modules. Whether you're just starting out or looking to solidify your understanding, the concepts covered here give you a strong foundation to build on. Now it's time to get your hands dirty — spin up a project, write some configurations, and let Terraform do the heavy lifting!
+Terraform is one of the most powerful tools in a DevOps engineer's toolkit, and getting comfortable with it early can make a huge difference in how you manage infrastructure. In this blog, we covered everything from the basics of HCL and state management to real-world AWS deployments and reusable modules. 
+
+Whether you're just starting out or looking to solidify your understanding, the concepts covered here give you a strong foundation to build on. Now it's time to get your hands dirty — spin up a project, write some configurations, and let Terraform do the heavy lifting!
 
