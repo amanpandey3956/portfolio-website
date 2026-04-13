@@ -184,74 +184,125 @@ const Blog = () => {
             >
               <AnimatePresence mode="popLayout">
                 {filteredPosts.map((post) => (
-                  <motion.article
-                    key={post.slug}
-                    variants={itemVariants}
-                    layout
-                    exit="exit"
-                    whileHover={{ y: -5 }}
-                    className="group glass rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
-                  >
-                    {post.banner && (
-                      <div className="aspect-video overflow-hidden">
-                        <img
-                          src={post.banner}
-                          alt={post.title}
-                          loading="lazy"
-                          decoding="async"
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
-                    
-                    <div className="p-6 flex flex-col flex-1">
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {post.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            onClick={() => toggleTag(tag)}
-                            className={`px-2 py-1 text-xs rounded-md font-medium cursor-pointer transition-all duration-200 ${
-                              selectedTags.includes(tag)
-                                ? "bg-primary/20 text-primary border border-primary/30"
-                                : "bg-primary/10 text-primary hover:bg-primary/20"
-                            }`}
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-
-                      <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
-                        {post.title}
-                      </h2>
-
-                      <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4 line-clamp-3">
-                        {post.summary}
-                      </p>
-
-                      <div className="flex items-center justify-between text-sm text-muted-foreground mt-auto pt-4 border-t border-border">
-                        <div className="flex items-center gap-2">
-                          <Calendar size={14} />
-                          <span>{post.date}</span>
-                        </div>
-                        {post.externalUrl ? (
-                          <a
-                            href={post.externalUrl}
-                            className="flex items-center gap-1 text-primary hover:underline"
-                          >
-                            Read <ArrowRight size={14} />
-                          </a>
-                        ) : (
-                          <Link
-                            to={`/blog/${post.slug}`}
-                            className="flex items-center gap-1 text-primary hover:underline"
-                          >
-                            Read <ArrowRight size={14} />
-                          </Link>
+                  post.externalUrl ? (
+                    <motion.article
+                      key={post.slug}
+                      variants={itemVariants}
+                      layout
+                      exit="exit"
+                      whileHover={{ y: -5 }}
+                      className="group glass rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
+                    >
+                      <a href={post.externalUrl} className="contents">
+                        {post.banner && (
+                          <div className="aspect-video overflow-hidden">
+                            <img
+                              src={post.banner}
+                              alt={post.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
                         )}
-                      </div>
-                    </div>
-                  </motion.article>
+                        
+                        <div className="p-6 flex flex-col flex-1">
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {post.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  toggleTag(tag);
+                                }}
+                                className={`px-2 py-1 text-xs rounded-md font-medium cursor-pointer transition-all duration-200 ${
+                                  selectedTags.includes(tag)
+                                    ? "bg-primary/20 text-primary border border-primary/30"
+                                    : "bg-primary/10 text-primary hover:bg-primary/20"
+                                }`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
+                            {post.title}
+                          </h2>
+
+                          <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4 line-clamp-3">
+                            {post.summary}
+                          </p>
+
+                          <div className="flex items-center justify-between text-sm text-muted-foreground mt-auto pt-4 border-t border-border">
+                            <div className="flex items-center gap-2">
+                              <Calendar size={14} />
+                              <span>{post.date}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </motion.article>
+                  ) : (
+                    <motion.article
+                      key={post.slug}
+                      variants={itemVariants}
+                      layout
+                      exit="exit"
+                      whileHover={{ y: -5 }}
+                      className="group glass rounded-xl overflow-hidden hover:border-primary/50 transition-all duration-300 flex flex-col"
+                    >
+                      <Link to={`/blog/${post.slug}`} className="contents">
+                        {post.banner && (
+                          <div className="aspect-video overflow-hidden">
+                            <img
+                              src={post.banner}
+                              alt={post.title}
+                              loading="lazy"
+                              decoding="async"
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </div>
+                        )}
+                        
+                        <div className="p-6 flex flex-col flex-1">
+                          <div className="flex flex-wrap gap-2 mb-4">
+                            {post.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  toggleTag(tag);
+                                }}
+                                className={`px-2 py-1 text-xs rounded-md font-medium cursor-pointer transition-all duration-200 ${
+                                  selectedTags.includes(tag)
+                                    ? "bg-primary/20 text-primary border border-primary/30"
+                                    : "bg-primary/10 text-primary hover:bg-primary/20"
+                                }`}
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          <h2 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors mb-3">
+                            {post.title}
+                          </h2>
+
+                          <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-4 line-clamp-3">
+                            {post.summary}
+                          </p>
+
+                          <div className="flex items-center justify-between text-sm text-muted-foreground mt-auto pt-4 border-t border-border">
+                            <div className="flex items-center gap-2">
+                              <Calendar size={14} />
+                              <span>{post.date}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    </motion.article>
+                  )
                 ))}
               </AnimatePresence>
             </motion.div>
