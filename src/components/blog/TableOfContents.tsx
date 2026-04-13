@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { List } from "lucide-react";
 
@@ -15,6 +15,8 @@ interface TableOfContentsProps {
 export const TableOfContents = ({ content }: TableOfContentsProps) => {
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
+  const tocListRef = useRef<HTMLUListElement>(null);
+  const itemRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   useEffect(() => {
     const headingRegex = /^(#{2,4})\s+(.+)$/gm;
@@ -55,6 +57,15 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
     return () => observer.disconnect();
   }, [tocItems]);
 
+  useEffect(() => {
+    if (activeId && itemRefs.current[activeId] && tocListRef.current) {
+      itemRefs.current[activeId].scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+    }
+  }, [activeId]);
+
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -82,13 +93,14 @@ export const TableOfContents = ({ content }: TableOfContentsProps) => {
           <List size={18} />
           <span>Table of Contents</span>
         </div>
-        <ul className="space-y-2 text-sm max-h-[70vh] overflow-y-auto">
+        <ul ref={tocListRef} className="space-y-2 text-sm max-h-[70vh] overflow-y-auto">
           {tocItems.map((item) => (
             <li
               key={item.id}
               style={{ paddingLeft: `${(item.level - 2) * 12}px` }}
             >
               <button
+                ref={(el) => { itemRefs.current[item.id] = el; }}
                 onClick={() => scrollToHeading(item.id)}
                 className={`text-left w-full py-1.5 transition-all duration-200 hover:text-primary ${
                   activeId === item.id
