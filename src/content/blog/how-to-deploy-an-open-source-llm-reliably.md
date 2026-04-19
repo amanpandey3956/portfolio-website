@@ -82,6 +82,20 @@ curl -fsSL https://ollama.com/install.sh | sh
 The installer sets up Ollama as a systemd service and automatically detects your GPU. In our case it detected the AMD GPU and enabled ROCm support:
 
 ```bash
+amanpandey@aman-fedora:~$ curl -fsSL https://ollama.com/install.sh | sh
+>>> Cleaning up old version at /usr/local/lib/ollama
+[sudo] password for amanpandey: 
+>>> Installing ollama to /usr/local
+>>> Downloading ollama-linux-amd64.tar.zst
+######################################################################## 100.0%
+>>> Adding ollama user to render group...
+[sudo] password for amanpandey: 
+>>> Adding ollama user to video group...
+>>> Adding current user to ollama group...
+>>> Creating ollama systemd service...
+>>> Enabling and starting ollama service...
+>>> Downloading ollama-linux-amd64-rocm.tar.zst
+######################################################################## 100.0%
 >>> The Ollama API is now available at 127.0.0.1:11434.
 >>> Install complete. Run "ollama" from the command line.
 >>> AMD GPU ready.
@@ -91,51 +105,64 @@ Verify the installation:
 
 ```bash
 ollama --version
-# ollama version is 0.21.0
+```
+Output:
+```bash
+amanpandey@aman-fedora:~$ ollama --version
+ollama version is 0.21.0
 ```
 
-Now pull the Mistral 7B model. This downloads approximately 4.1GB:
+Now pull the Mistral 7B model. This downloads approximately 4.1GB, So it'll take a few minutes depending on your internet.
 
 ```bash
 ollama pull mistral
 ```
 
 ```bash
-pulling manifest
-pulling f5074b1221da: 100%  4.4 GB
-pulling 43070e2d4e53: 100%   11 KB
-pulling 1ff5b64b61b9: 100%   799 B
-pulling ed11eda7790d: 100%    30 B
-pulling 1064e17101bd: 100%   487 B
-verifying sha256 digest
-writing manifest
+amanpandey@aman-fedora:~$ ollama pull mistral
+pulling manifest 
+pulling f5074b1221da: 100%  4.4 GB                         
+pulling 43070e2d4e53: 100%   11 KB                         
+pulling 1ff5b64b61b9: 100%   799 B                         
+pulling ed11eda7790d: 100%    30 B                         
+pulling 1064e17101bd: 100%   487 B                         
+verifying sha256 digest 
+writing manifest 
 success
 ```
-
 Once the download is complete, test the model directly from the command line:
 
 ```bash
 ollama run mistral "Which model are you?"
 ```
+Then test the second question:
 
 ```bash
-I am a model of the GPT series developed by Mistral AI. While I share some 
-similarities with other models, I was trained on a different dataset and have 
-unique characteristics.
+ollama run mistral "What is terraform module?"
 ```
-
+Below is the output of both the questions:
 ```bash
-ollama run mistral "What is the latest information you have?"
+amanpandey@aman-fedora:~$ ollama run mistral "Which model are you?"
+ I am a model of the GPT series developed by Mistral AI. While I share some similarities with models like megaModel, I was trained on a 
+different dataset and have unique characteristics.
+
+amanpandey@aman-fedora:~$ ollama run mistral "What is terraform module?"
+ A Terraform module is a collection of Terraform configuration files that can be reused and shared across multiple projects. Modules allow 
+you to encapsulate, manage, and version specific pieces of your infrastructure as code.
+
+A module defines the resources and settings needed for a particular component of an infrastructure stack, such as a virtual network, a 
+database, or a set of security rules. By creating reusable modules, you can avoid duplicating code, reduce errors, and improve consistency 
+across multiple deployments.
+
+Using modules in Terraform also makes it easier to collaborate with other developers by promoting the concept of infrastructure as code 
+(IaC). Teams can create, share, and maintain standardized components, allowing them to focus on building new functionality rather than 
+repeating common configurations.
+
+To use a module in your Terraform configuration, you add its source (either from a public registry like Terraform Registry or a private 
+repository) and reference it within your main Terraform file using the `module` block.
 ```
 
-```bash
-As of my last update, I don't have real-time capabilities. However, I can share 
-that as of March 2021, advancements in technology continue to shape various 
-industries, with AI and machine learning being among the most significant...
-```
-
-Finally, verify that the REST API is working. This is the same endpoint your chatbot UI will call later:
-
+Finally verify the API is working (this is what your chatbot UI will use later):
 ```bash
 curl http://localhost:11434/api/generate \
   -d '{
@@ -145,13 +172,23 @@ curl http://localhost:11434/api/generate \
   }'
 ```
 
-If you get a JSON response with a `"response"` field containing text, Ollama is working correctly. We are ready to move to Kubernetes.
+**output:**
 
----
+```bash
+amanpandey@aman-fedora:~$ curl http://localhost:11434/api/generate \
+  -d '{
+    "model": "mistral",
+    "prompt": "Which model are you?",
+    "stream": false
+  }'
+{"model":"mistral","created_at":"2026-04-18T14:06:35.305572486Z","response":" I am a text-based AI model designed to provide responses based on the input provided by the user. I don't have the ability to self-awareness or personality like human beings do.","done":true,"done_reason":"stop","context":[3,29473,10363,2997,1228,1136,29572,4,29473,1083,1605,1032,3013,29501,6295,16875,2997,6450,1066,3852,15683,3586,1124,1040,3555,4625,1254,1040,2956,29491,1083,1717,29510,29475,1274,1040,6305,1066,1776,29501,16718,2235,1210,14123,1505,3698,17673,1279,29491],"total_duration":6920653420,"load_duration":49170254,"prompt_eval_count":9,"prompt_eval_duration":488103819,"eval_count":41,"eval_duration":6355037322}
+```
+
+If you get a JSON response with a `"response"` field containing text, Ollama is working correctly. We are ready to move to Kubernetes.
 
 ## Starting the Minikube Cluster
 
-Now we need a Kubernetes cluster to deploy Ollama into. We will use **Minikube**, which spins up a single-node Kubernetes cluster inside a Docker container on your local machine. It is perfect for local development and demos.
+Now we need a Kubernetes cluster to deploy Ollama into. We will use `Minikube`, which spins up a single-node Kubernetes cluster inside a Docker container on your local machine. 
 
 We start Minikube with 8GB of memory and 6 CPU cores allocated — enough to run Ollama and the monitoring stack simultaneously:
 
@@ -162,19 +199,30 @@ minikube start --memory=8192 --cpus=6 --driver=docker
 Minikube will pull the required images and configure kubectl to point to the new cluster:
 
 ```bash
+amanpandey@aman-fedora:~$ minikube start --memory=8192 --cpus=6 --driver=docker
 😄  minikube v1.36.0 on Fedora 42
 ✨  Using the docker driver based on user configuration
+📌  Using Docker driver with root privileges
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.47 ...
+🎉  minikube 1.38.1 is available! Download it: https://github.com/kubernetes/minikube/releases/tag/v1.38.1
+💡  To disable this notice, run: 'minikube config set WantUpdateNotification false'
+
 🔥  Creating docker container (CPUs=6, Memory=8192MB) ...
+❗  Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+💡  To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
 🐳  Preparing Kubernetes v1.33.1 on Docker 28.1.1 ...
     ▪ Generating certificates and keys ...
     ▪ Booting up control plane ...
     ▪ Configuring RBAC rules ...
 🔗  Configuring bridge CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
 🌟  Enabled addons: storage-provisioner, default-storageclass
-🏄  Done! kubectl is now configured to use "minikube" cluster
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
 ```
 
-Verify the cluster is running:
+Verify the cluster is running using below commands:
 
 ```bash
 minikube status
@@ -193,7 +241,7 @@ NAME       STATUS   ROLES           AGE     VERSION
 minikube   Ready    control-plane   5m47s   v1.33.1
 ```
 
-The node is `Ready`. Here is the full architecture we are building:
+The node is ready. Here is the full architecture we are building:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -215,8 +263,6 @@ The node is `Ready`. Here is the full architecture we are building:
 │ (chatbot)       │
 └─────────────────┘
 ```
-
----
 
 ## Deploying Ollama on Kubernetes
 
@@ -301,35 +347,46 @@ spec:
 EOF
 ```
 
-Apply the manifest to the cluster:
+Apply it:
 
 ```bash
 kubectl apply -f ollama-deployment.yaml
 ```
-
+Output:
 ```bash
+amanpandey@aman-fedora:~/Downloads/llm-assignment$ kubectl apply -f ollama-deployment.yaml
 namespace/llm created
 persistentvolumeclaim/ollama-pvc created
 deployment.apps/ollama created
 service/ollama-service created
 ```
 
-Watch the pod come up. Kubernetes will pull the `ollama/ollama` Docker image and start the container:
+Now watch the pod come up where kubernetes will pull the `ollama/ollama:latest` docker image and start the container:
 
 ```bash
-kubectl get pods -n llm -w
+kubectl get pods -n llm 
 ```
-
+you can cross check whether it is pulling correctly or not using below command:
+```bash
+amanpandey@aman-fedora:~/Downloads/llm-assignment$ minikube ssh "docker pull ollama/ollama:latest"
+latest: Pulling from ollama/ollama
+b40150c1c271: Already exists 
+2d0e9b7d523c: Already exists 
+c3172a042993: Already exists 
+040ccae19707: Pull complete 
+Digest: sha256:d3d553bdfbcc7f55dd5ddf42c4cbe3a927aa9bb1802710d35e94656ca5aea02b
+Status: Image is up to date for ollama/ollama:latest
+docker.io/ollama/ollama:latest
+``` 
 Wait until the `STATUS` column shows `Running`:
 
 ```bash
+amanpandey@aman-fedora:~/Downloads/llm-assignment$ kubectl get pods -n llm
 NAME                      READY   STATUS    RESTARTS   AGE
-ollama-7f4b577b8b-sfhjg   1/1     Running   0          19m
+ollama-7f4b577b8b-sfhjg   1/1     Running   0          20m
 ```
 
 The Ollama server is now running inside your Kubernetes cluster. However, it does not have any model loaded yet — the pod is just the runtime. We need to pull Mistral into it next.
-
----
 
 ## Pulling Mistral Inside the K8s Pod
 
@@ -338,41 +395,32 @@ Just like you would `docker exec` into a running container to run commands, Kube
 ```bash
 kubectl exec -it -n llm ollama-7f4b577b8b-sfhjg -- ollama pull mistral
 ```
-
-**Note:** If you don't know your pod name, use this dynamic version which automatically finds the correct pod using a label selector:
-
+This will download Mistral inside the pod and below is output. 
 ```bash
-kubectl exec -it -n llm \
-  $(kubectl get pod -n llm -l app=ollama -o jsonpath='{.items[0].metadata.name}') \
-  -- ollama pull mistral
-```
-
-The download output will look exactly the same as before:
-
-```bash
-pulling manifest
-pulling f5074b1221da: 100%  4.4 GB
-pulling 43070e2d4e53: 100%   11 KB
-...
-success
+amanpandey@aman-fedora:~/Downloads/llm-assignment$ kubectl exec -it -n llm ollama-7f4b577b8b-sfhjg -- ollama pull mistral
+pulling manifest 
+pulling f5074b1221da: 100%  4.4 GB                         
+pulling 43070e2d4e53: 100%   11 KB                         
+pulling 1ff5b64b61b9: 100%   799 B                         
+pulling ed11eda7790d: 100%    30 B                         
+pulling 1064e17101bd: 100%   487 B                         
+verifying sha256 digest 
+writing manifest 
+success 
 ```
 
 Once done, verify the model works inside the pod:
 
 ```bash
-kubectl exec -it -n llm ollama-7f4b577b8b-sfhjg -- ollama run mistral "Which model are you?"
-```
-
-```bash
-I am a model of the conversation AI developed by Mistral AI. We don't have 
-specific names but I was trained on a variety of internet text to help answer 
-questions, generate creative content, and converse with people in an engaging manner.
+amanpandey@aman-fedora:~/Downloads/llm-assignment$ kubectl exec -it -n llm  ollama-7f4b577b8b-sfhjg -- ollama run mistral "Which model are you?"
+ I am a model of the conversation AI developed by Mistral AI. We don't have specific names but I was trained on a variety of internet text to 
+help answer questions, generate creative content, and converse with people in an engaging manner. How can I assist you today?
 ```
 
 Now set up port forwarding so your local machine can reach the Ollama API running inside the cluster:
 
 ```bash
-kubectl port-forward -n llm svc/ollama-service 11435:11434 &
+kubectl port-forward -n llm svc/ollama-service 11435:11434 
 ```
 
 This maps port `11435` on your local machine to port `11434` inside the cluster. We use `11435` (instead of `11434`) to avoid a conflict with the local Ollama service we installed earlier.
@@ -390,13 +438,11 @@ curl http://localhost:11435/api/generate \
 
 If you get a valid JSON response, Mistral is running inside Kubernetes and is accessible from the outside. The LLM deployment is complete.
 
----
-
 ## Setting Up Prometheus and Grafana
 
-Deploying a model is only half the story. In a production environment, you also need to **monitor** what is happening inside your cluster — CPU usage, memory pressure, pod restarts, and overall node health. This is where Prometheus and Grafana come in.
+Deploying a model is only half the story. In a production environment, you also need to monitor what is happening inside your cluster — CPU usage, memory pressure, pod restarts, and overall node health. This is where Prometheus and Grafana come in.
 
-**Prometheus** is a monitoring system that scrapes metrics from Kubernetes components every few seconds and stores them in a time-series database. **Grafana** is a visualization tool that connects to Prometheus and turns those raw metrics into beautiful, interactive dashboards.
+`Prometheus` is a monitoring system that scrapes metrics from Kubernetes components every few seconds and stores them in a time-series database. `Grafana` is a visualization tool that connects to Prometheus and turns those raw metrics into beautiful, interactive dashboards.
 
 Instead of installing these manually, we use the `kube-prometheus-stack` Helm chart, which bundles both tools together along with pre-configured alert rules and dashboards for Kubernetes.
 
@@ -417,7 +463,6 @@ helm install monitoring prometheus-community/kube-prometheus-stack \
   --set grafana.adminPassword=admin123 \
   --set prometheus.prometheusSpec.retention=24h
 ```
-
 This single command deploys Prometheus, Grafana, AlertManager, and a set of node exporters that collect host-level metrics. Wait 2–3 minutes and then check that all pods are running:
 
 ```bash
@@ -425,6 +470,7 @@ kubectl get pods -n monitoring
 ```
 
 ```bash
+amanpandey@aman-fedora:~$ kubectl get pods -n monitoring 
 NAME                                                     READY   STATUS    RESTARTS   AGE
 alertmanager-monitoring-kube-prometheus-alertmanager-0   2/2     Running   0          26m
 monitoring-grafana-6b54f65456-c2lhs                      3/3     Running   0          32m
@@ -443,23 +489,21 @@ All six components are running. Here is what each one does:
 - **prometheus-node-exporter** — collects host-level metrics like CPU, RAM, and disk
 - **prometheus** — the core metrics database
 
----
-
 ## Accessing the Grafana Dashboard
 
 Now let's open Grafana in the browser. We use port forwarding again to expose the Grafana service locally. Open a new terminal and run:
 
 ```bash
-kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80 &
+kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80 
 ```
 
-Also forward Prometheus so you can explore raw metrics if needed:
+Then port-forward for Prometheus:
 
 ```bash
-kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 9090:9090 &
+kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 9090:9090
 ```
 
-Open your browser and go to `http://localhost:3000`. Log in with:
+Open your browser and go to http://localhost:3000. Log in with:
 
 - **Username:** `admin`
 - **Password:** `admin123`
@@ -468,14 +512,14 @@ Open your browser and go to `http://localhost:3000`. Log in with:
 
 Grafana supports importing community-built dashboards using a numeric ID. These pre-built dashboards give you instant visibility into your cluster without writing a single query.
 
-**Dashboard 1 — Kubernetes Cluster Overview:**
+`Dashboard 1 — Kubernetes Cluster Overview:`
 
 1. Click the **"+"** icon in the left sidebar and select **"Import"**
 2. Enter dashboard ID `15661` and click **"Load"**
 3. Select **"Prometheus"** as the data source
 4. Click **"Import"**
 
-**Dashboard 2 — Kubernetes Pod and Node Metrics:**
+`Dashboard 2 — Kubernetes Pod and Node Metrics:`
 
 1. Click **"+"** → **"Import"**
 2. Enter ID `6417` and click **"Load"**
@@ -483,11 +527,9 @@ Grafana supports importing community-built dashboards using a numeric ID. These 
 
 Once imported, you will see live graphs showing CPU usage, memory consumption, pod counts, and network traffic across your Minikube node. As you interact with the chatbot in the next step, you will see the CPU and memory graphs spike in real time — a clear visual confirmation that the LLM inside the cluster is actually doing work.
 
----
-
 ## Building the Streamlit Chatbot UI
 
-The final piece is a chatbot interface that sends user messages to Mistral running inside the cluster and displays the responses. We build this using **Streamlit**, a Python library that lets you create web UIs with just a few lines of code.
+The final piece is a chatbot interface that sends user messages to Mistral running inside the cluster and displays the responses. We build this using `Streamlit`, a Python library that lets you create web UIs with just a few lines of code.
 
 Install Streamlit:
 
@@ -498,7 +540,7 @@ pip install streamlit requests --break-system-packages
 Create the chatbot file:
 
 ```bash
-cat > ~/llm-assignment/chatbot.py << 'EOF'
+cat > chatbot.py << 'EOF'
 import streamlit as st
 import requests
 import time
@@ -550,10 +592,12 @@ for msg in st.session_state.messages:
 
 # Chat input
 if prompt := st.chat_input("Ask Mistral anything..."):
+    # Show user message
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
+    # Get response from Ollama
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
             start = time.time()
@@ -591,41 +635,14 @@ streamlit run chatbot.py
 
 Streamlit will open the UI automatically at `http://localhost:8501`. You can now type questions directly in the chat input. Try the same questions we used during testing:
 
-- **"Which model are you?"** — Mistral will identify itself
-- **"What's the latest information you have?"** — it will explain its knowledge cutoff date
-- **"Explain Kubernetes in simple terms"** — a good test of its general knowledge quality
+- **Which model are you?** — Mistral will identify itself
+- **Explain Kubernetes in simple terms** — a good test of its general knowledge quality
 
 Each response will show a response time counter, so you can see exactly how fast the model is running on your hardware.
 
----
-
-## Restarting Everything the Next Day
-
-If you stop your machine and come back later, here is the exact sequence of commands to bring everything back up:
-
-```bash
-# 1. Start the Kubernetes cluster
-minikube start
-
-# 2. Start the Ollama background service
-sudo systemctl start ollama
-
-# 3. Restore all port forwards
-kubectl port-forward -n llm svc/ollama-service 11435:11434 &
-kubectl port-forward -n monitoring svc/monitoring-grafana 3000:80 &
-kubectl port-forward -n monitoring svc/monitoring-kube-prometheus-prometheus 9090:9090 &
-
-# 4. Start the chatbot UI
-cd ~/llm-assignment && streamlit run chatbot.py
-```
-
-Because we used a PersistentVolumeClaim for the Ollama pod, the Mistral model is already stored on disk — Kubernetes will not need to download it again.
-
----
-
 ## Conclusion
 
-In this guide, we covered a complete end-to-end deployment of an open source LLM on Kubernetes. We started by using **llmfit** to make a hardware-aware model selection decision — an important step that most tutorials skip entirely. We then deployed `Mistral 7B` via Ollama into a Kubernetes cluster, set up real-time monitoring with **Grafana and Prometheus**, and built a working `chatbot UI` to interact with the model.
+In this guide, we covered a complete end-to-end deployment of an open source LLM on Kubernetes. We started by using `llmfit` to make a hardware-aware model selection decision — an important step that most tutorials skip entirely. We then deployed Mistral 7B via Ollama into a Kubernetes cluster, set up real-time monitoring with Grafana and Prometheus, and built a working chatbot UI to interact with the model.
 
 The key takeaway is that running LLMs reliably is not just about getting the model to respond — it is about treating it like any other production workload: with proper resource management, persistent storage, health monitoring, and a clean API interface.
 
