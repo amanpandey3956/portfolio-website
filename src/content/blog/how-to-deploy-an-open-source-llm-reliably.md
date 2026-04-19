@@ -9,7 +9,7 @@ summary: "A complete hands-on guide to deploying open source llm on a Kubernetes
 tags: ["Kubernetes", "LLM"]
 ---
 
-<img src="/projects/llm-banner.webp" alt="Terraform Banner" style="margin-bottom: 28px;" />
+<img src="/projects/llm-banner.webp" alt="llm Banner" style="margin-bottom: 28px;" />
 
 ## Introduction
 
@@ -24,8 +24,6 @@ By the end of this guide you will have:
 - A working chatbot UI that you can demo and record
 
 **Why does running LLMs reliably matter?** When you deploy a model in production, you need to think beyond just "does it work on my machine." You need resource management, persistent storage, health monitoring, and a clean way to serve the model. Kubernetes gives you all of that, even for a local setup.
-
----
 
 ### Prerequisites
 
@@ -68,6 +66,8 @@ llmfit
 # Or get JSON output with top recommendations
 llmfit recommend --json --limit 5
 ```
+
+<img src="/projects/llmfit.webp" alt="llmfit" style="margin-bottom: 28px;" />
 
 ## Installing Ollama and Pulling Mistral 7B
 
@@ -227,41 +227,6 @@ Verify the cluster is running using below commands:
 ```bash
 minikube status
 kubectl get nodes
-```
-
-```bash
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-
-NAME       STATUS   ROLES           AGE     VERSION
-minikube   Ready    control-plane   5m47s   v1.33.1
-```
-
-The node is ready. Here is the full architecture we are building:
-
-```
-┌─────────────────────────────────────────┐
-│           Minikube Cluster              │
-│                                         │
-│  ┌─────────────┐   ┌─────────────────┐  │
-│  │Ollama Pod   │   │ Prometheus Pod  │  │
-│  │(mistral 7B) │   │ (metrics)       │  │
-│  └─────────────┘   └─────────────────┘  │
-│         │                  │            │
-│  ┌─────────────┐   ┌─────────────────┐  │
-│  │Ollama Svc   │   │  Grafana Pod    │  │
-│  │(port 11434) │   │  (dashboards)   │  │
-│  └─────────────┘   └─────────────────┘  │
-└─────────────────────────────────────────┘
-         │
-┌─────────────────┐
-│ Streamlit UI    │  ← runs on your local machine
-│ (chatbot)       │
-└─────────────────┘
 ```
 
 ## Deploying Ollama on Kubernetes
@@ -479,6 +444,9 @@ monitoring-kube-state-metrics-7d69554b96-8d7dc           1/1     Running   0    
 monitoring-prometheus-node-exporter-mfzhh                1/1     Running   0          32m
 prometheus-monitoring-kube-prometheus-prometheus-0       2/2     Running   0          26m
 ```
+you can also use tools like `k9s` for productivity instead of manually checking through kubectl commands.
+
+<img src="/projects/k9s.webp" alt="k9s" style="margin-bottom: 28px;" />
 
 All six components are running. Here is what each one does:
 
@@ -524,6 +492,8 @@ Grafana supports importing community-built dashboards using a numeric ID. These 
 1. Click **"+"** → **"Import"**
 2. Enter ID `6417` and click **"Load"**
 3. Select **"Prometheus"** → **"Import"**
+
+<img src="/projects/grafana.webp" alt="grafana dashboard" style="margin-bottom: 28px;" />
 
 Once imported, you will see live graphs showing CPU usage, memory consumption, pod counts, and network traffic across your Minikube node. As you interact with the chatbot in the next step, you will see the CPU and memory graphs spike in real time — a clear visual confirmation that the LLM inside the cluster is actually doing work.
 
@@ -637,6 +607,8 @@ Streamlit will open the UI automatically at `http://localhost:8501`. You can now
 
 - **Which model are you?** — Mistral will identify itself
 - **Explain Kubernetes in simple terms** — a good test of its general knowledge quality
+
+<img src="/projects/chatbot.webp" alt="chatbot ui" style="margin-bottom: 28px;" />
 
 Each response will show a response time counter, so you can see exactly how fast the model is running on your hardware.
 
