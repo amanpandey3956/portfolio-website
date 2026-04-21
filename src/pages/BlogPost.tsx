@@ -9,6 +9,7 @@ import { Layout } from "@/components/layout/Layout";
 import { getPostBySlug } from "@/lib/blog";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { CodeBlock } from "@/components/blog/CodeBlock";
+import { ImageLightbox } from "@/components/blog/ImageLightbox";
 import { SEO } from "@/components/SEO";
 
 const BlogPost = () => {
@@ -226,13 +227,7 @@ const BlogPost = () => {
                       </blockquote>
                     ),
                     img: ({ src, alt }) => (
-                       <img
-                         src={src}
-                         alt={alt}
-                         loading="lazy"
-                         decoding="async"
-                         className="rounded-lg my-6 w-full"
-                       />
+                       <ImageLightbox src={src} alt={alt} />
                      ),
                     strong: ({ children }) => (
                       <strong className="font-semibold text-foreground">
