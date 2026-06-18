@@ -3,7 +3,7 @@ import {
   SiKubernetes, 
   SiTerraform, 
   SiJavascript, 
-  SiHtml5, 
+  SiPrometheus, 
   SiPostman
 } from "react-icons/si";
 import { FaLinux, FaJava } from "react-icons/fa";
@@ -21,13 +21,13 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
-    id: "terraform-basics",
-    title: "Terraform Basics Training Course",
+    id: "pca-course",
+    title: "Prometheus Certified Associate",
     issuer: "Kodekloud",
-    date: "March 02, 2026",
-    credentialUrl: "https://learn.kodekloud.com/user/certificate/d6712700-85e7-4fbd-9cf3-518769f10279",
-    icon: SiTerraform,
-    color: "#7B42BC",
+    date: "June 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/5e048982-a664-4915-ab38-ae17dd081bd8",
+    icon: SiPrometheus,
+    color: "#E34F26",
     category: "devops",
   },
   {
@@ -51,6 +51,16 @@ export const certifications: Certification[] = [
     category: "devops",
   },
   {
+    id: "terraform-basics",
+    title: "Terraform Basics Training Course",
+    issuer: "Kodekloud",
+    date: "March 02, 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/d6712700-85e7-4fbd-9cf3-518769f10279",
+    icon: SiTerraform,
+    color: "#7B42BC",
+    category: "devops",
+  },
+  {
     id: "cloud-fundamentals",
     title: "Cloud Computing Fundamentals",
     issuer: "Kodekloud",
@@ -59,16 +69,6 @@ export const certifications: Certification[] = [
     icon: SiAmazonwebservices,
     color: "#FF9900",
     category: "cloud",
-  },
-  {
-    id: "postman-essentials",
-    title: "Postman Essentials",
-    issuer: "Kodekloud",
-    date: "February 2026",
-    credentialUrl: "https://learn.kodekloud.com/user/certificate/1d1dcc58-23ce-4740-8aa9-ff3d143113df",
-    icon: SiPostman,
-    color: "#FF6C37",
-    category: "development",
   },
   {
     id: "k8s-autoscaling",
@@ -81,6 +81,16 @@ export const certifications: Certification[] = [
     category: "devops",
   },
   {
+    id: "postman-essentials",
+    title: "Postman Essentials",
+    issuer: "Kodekloud",
+    date: "February 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/1d1dcc58-23ce-4740-8aa9-ff3d143113df",
+    icon: SiPostman,
+    color: "#FF6C37",
+    category: "development",
+  },
+  {
     id: "javascript-complete",
     title: "The Complete JavaScript Course",
     issuer: "Udemy",
@@ -88,16 +98,6 @@ export const certifications: Certification[] = [
     credentialUrl: "https://www.udemy.com/certificate/UC-2fad1c8d-bb95-42ba-a1b7-f0ddd732cd48/",
     icon: SiJavascript,
     color: "#F7DF1E",
-    category: "development",
-  },
-  {
-    id: "html-css",
-    title: "HTML & CSS Course",
-    issuer: "Udemy",
-    date: "July 2022",
-    credentialUrl: "https://www.udemy.com/certificate/UC-c0b9d292-15f1-46c8-871c-e6b3bc076542/",
-    icon: SiHtml5,
-    color: "#E34F26",
     category: "development",
   },
   {
