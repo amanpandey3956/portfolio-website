@@ -121,8 +121,8 @@ export function HeroSection() {
             transition={{ delay: 0.5, duration: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
           >
-            DevOps Engineer | Ex-Frontend Developer | Exploring{" "}
-            Observability and{" "}
+            DevOps Engineer | Kubernetes | Golang | Observability | Exploring{" "}
+            Opentelemetry and{" "}
             Cloud Native Technologies
           </motion.p>
 
