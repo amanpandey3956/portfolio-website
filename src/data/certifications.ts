@@ -3,6 +3,7 @@ import {
   SiKubernetes, 
   SiTerraform, 
   SiJavascript, 
+  SiGo,
   SiPrometheus, 
   SiPostman
 } from "react-icons/si";
@@ -24,7 +25,7 @@ export const certifications: Certification[] = [
     id: "pca-course",
     title: "Prometheus Certified Associate",
     issuer: "Kodekloud",
-    date: "June 2026",
+    date: "June 17, 2026",
     credentialUrl: "https://learn.kodekloud.com/user/certificate/5e048982-a664-4915-ab38-ae17dd081bd8",
     icon: SiPrometheus,
     color: "#E34F26",
@@ -61,14 +62,14 @@ export const certifications: Certification[] = [
     category: "devops",
   },
   {
-    id: "cloud-fundamentals",
-    title: "Cloud Computing Fundamentals",
+    id: "go-certification",
+    title: "Golang",
     issuer: "Kodekloud",
-    date: "December 04, 2025",
-    credentialUrl: "https://learn.kodekloud.com/user/certificate/99767f6f-c50b-4037-ad40-365c854972fe",
-    icon: SiAmazonwebservices,
+    date: "June 27, 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/0bb44ccb-0792-4587-8387-5141285e320e",
+    icon: SiGo,
     color: "#FF9900",
-    category: "cloud",
+    category: "devops",
   },
   {
     id: "k8s-autoscaling",

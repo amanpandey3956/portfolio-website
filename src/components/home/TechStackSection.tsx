@@ -6,6 +6,7 @@ import {
   SiNextdotjs, 
   SiTailwindcss, 
   SiKubernetes, 
+  SiGo,  
   SiPrometheus, 
   SiGrafana, 
   SiGithubactions, 
@@ -30,6 +31,7 @@ const techCategories = {
   ],
   devops: [
     { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
+    { name: "Go", icon: SiGo, color: "#00ADD8" },
     { name: "Docker", icon: SiDocker, color: "#2496ED" },
     { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900" },
     { name: "Terraform", icon: SiTerraform, color: "#7B42BC" },
