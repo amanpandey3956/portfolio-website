@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, MapPin, Sparkles, Code2, Rocket } from "lucide-react";
+import { ArrowRight, Download, Sparkles, Code, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ResumeModal } from "@/components/ui/ResumeModal";
@@ -8,7 +8,7 @@ import { ResumeModal } from "@/components/ui/ResumeModal";
 const floatingBadges = [
   { icon: Sparkles, label: "Kubernetes", delay: 1 },
   { icon: Rocket, label: "Cloud Native", delay: 0.5 },
-  { icon: Code2, label: "Frontend", delay: 0 },
+  { icon: Code, label: "Golang", delay: 0 },
 ];
 
 export function HeroSection() {

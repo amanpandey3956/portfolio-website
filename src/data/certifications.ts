@@ -5,7 +5,6 @@ import {
   SiJavascript, 
   SiGo,
   SiPrometheus, 
-  SiPostman
 } from "react-icons/si";
 import { FaLinux, FaJava } from "react-icons/fa";
 
@@ -62,14 +61,14 @@ export const certifications: Certification[] = [
     category: "devops",
   },
   {
-    id: "go-certification",
-    title: "Golang",
+    id: "advanced-golang",
+    title: "Advanced Golang",
     issuer: "Kodekloud",
-    date: "June 27, 2026",
-    credentialUrl: "https://learn.kodekloud.com/user/certificate/0bb44ccb-0792-4587-8387-5141285e320e",
+    date: "July 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/05e24105-82a8-4f65-848d-75ea8b6f9077",
     icon: SiGo,
     color: "#FF9900",
-    category: "devops",
+    category: "development",
   },
   {
     id: "k8s-autoscaling",
@@ -82,14 +81,14 @@ export const certifications: Certification[] = [
     category: "devops",
   },
   {
-    id: "postman-essentials",
-    title: "Postman Essentials",
+    id: "go-certification",
+    title: "Golang",
     issuer: "Kodekloud",
-    date: "February 2026",
-    credentialUrl: "https://learn.kodekloud.com/user/certificate/1d1dcc58-23ce-4740-8aa9-ff3d143113df",
-    icon: SiPostman,
-    color: "#FF6C37",
-    category: "development",
+    date: "June 27, 2026",
+    credentialUrl: "https://learn.kodekloud.com/user/certificate/0bb44ccb-0792-4587-8387-5141285e320e",
+    icon: SiGo,
+    color: "#FF9900",
+    category: "devops",
   },
   {
     id: "javascript-complete",
