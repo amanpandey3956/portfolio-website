@@ -34,7 +34,3 @@ If you'd like to fork this repository and customize it for your own portfolio, f
 ## Customization
 
 Feel free to customize the content by replacing my information with your own in the appropriate sections. Update the data files or specific page content as needed to make this portfolio uniquely yours!
-
-## Connect with Me
-
-- My [Links for Socials](https://linktr.ee/Aman.Pandey).

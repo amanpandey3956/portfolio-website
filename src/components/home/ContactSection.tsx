@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, Mail, MapPin, Linkedin, Instagram, Github, Twitter, MessageSquare, ArrowUpRight, Copy, Check } from "lucide-react";
+import { Send, Loader2, Mail, MapPin, Linkedin, Github, MessageSquare, ArrowUpRight, Copy, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -26,8 +26,6 @@ const email = "amanpnd01@gmail.com";
 const socialLinks = [
   { icon: Github, href: "https://github.com/amanpandey3956", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/aman_pandey_39563/", label: "Instagram" },
-  { icon: Twitter, href: "https://x.com/amanpandey39563", label: "Twitter" },
 ];
 
 export function ContactSection() {
@@ -206,7 +204,7 @@ export function ContactSection() {
               <h3 className="text-lg font-semibold text-foreground mb-4">
                 Find me on
               </h3>
-              <div className="flex gap-3">
+              <div className="flex gap-3 flex-wrap">
                 {socialLinks.map((social, index) => (
                   <motion.a
                     key={social.label}
@@ -218,10 +216,13 @@ export function ContactSection() {
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ delay: index * 0.1 }}
-                    className="p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
+                    className="flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
                     title={social.label}
                   >
                     <social.icon size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                      {social.label}
+                    </span>
                   </motion.a>
                 ))}
                 <motion.button
@@ -231,7 +232,7 @@ export function ContactSection() {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ delay: socialLinks.length * 0.1 }}
-                  className="hidden md:flex p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
+                  className="hidden md:flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
                   title="Copy email"
                 >
                   {copied ? (
@@ -239,6 +240,9 @@ export function ContactSection() {
                   ) : (
                     <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
                   )}
+                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    {copied ? "Copied!" : "Email"}
+                  </span>
                 </motion.button>
                 <motion.a
                   href={`mailto:${email}`}
@@ -247,10 +251,13 @@ export function ContactSection() {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ delay: socialLinks.length * 0.1 }}
-                  className="md:hidden p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
+                  className="md:hidden flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
                   title="Email"
                 >
                   <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+                    Email
+                  </span>
                 </motion.a>
               </div>
             </div>

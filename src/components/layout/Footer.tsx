@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Instagram, Twitter, Mail, ArrowUp, Copy, Check } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUp, Copy, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
@@ -8,8 +8,6 @@ import { useToast } from "@/hooks/use-toast";
 const socialLinks = [
   { icon: Github, href: "https://github.com/amanpandey3956", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
-  { icon: Instagram, href: "https://www.instagram.com/aman_pandey_39563/", label: "Instagram" },
-  { icon: Twitter, href: "https://x.com/amanpandey39563", label: "Twitter" },
 ];
 
 const email = "amanpnd01@gmail.com";
