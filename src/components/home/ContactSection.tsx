@@ -131,7 +131,7 @@ export function ContactSection() {
           transition={{ duration: 0.6 }}
           className="mt-12 grid lg:grid-cols-2 max-w-6xl mx-auto rounded-3xl overflow-hidden border border-zinc-200 shadow-2xl shadow-zinc-900/10"
         >
-          <div className="bg-[#0A1F17] p-8 sm:p-12 text-white flex flex-col">
+          <div className="bg-[#0A1F17] p-8 sm:p-12 text-white flex flex-col min-w-0">
             <div className="flex-1">
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-emerald-400">
                 Let's Talk
@@ -157,25 +157,25 @@ export function ContactSection() {
               <div className="mt-8 space-y-4">
                 <button
                   onClick={handleCopyEmail}
-                  className="group flex w-full items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4 hover:bg-white/10 transition-colors"
+                  className="group flex w-full min-w-0 items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4 hover:bg-white/10 transition-colors"
                 >
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-400">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-400">
                     {copied ? <Check size={19} /> : <Mail size={19} />}
                   </span>
-                  <span className="flex-1 text-left">
+                  <span className="flex-1 min-w-0 text-left">
                     <span className="block text-xs font-medium text-white/50">Email</span>
-                    <span className="block text-sm font-bold">{copied ? "Copied!" : email}</span>
+                    <span className="block text-sm font-bold break-all">{copied ? "Copied!" : email}</span>
                   </span>
-                  <Copy size={16} className="text-white/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <Copy size={16} className="shrink-0 text-white/40 opacity-0 group-hover:opacity-100 transition-opacity hidden sm:block" />
                 </button>
 
-                <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-400/15 text-teal-400">
+                <div className="flex min-w-0 items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-400/15 text-teal-400">
                     <MapPin size={19} />
                   </span>
-                  <span>
+                  <span className="min-w-0">
                     <span className="block text-xs font-medium text-white/50">Location</span>
-                    <span className="block text-sm font-bold">Maharashtra, India</span>
+                    <span className="block text-sm font-bold break-words">Maharashtra, India</span>
                   </span>
                 </div>
               </div>
@@ -200,8 +200,8 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="bg-white p-8 sm:p-12">
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="bg-white p-8 sm:p-12 min-w-0">
+            <form onSubmit={handleSubmit} className="space-y-6 min-w-0">
               <div className="space-y-2">
                 <label htmlFor="purpose" className="text-sm font-bold text-foreground">
                   Purpose of Contact
