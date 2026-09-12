@@ -13,10 +13,10 @@ import {
   SiLinux,
   SiRedux,
   SiDocker,
-  SiNodedotjs,
   SiAmazonwebservices,
   SiTerraform,
   SiOpentelemetry,
+  SiPostgresql,
 } from "react-icons/si";
 import { FiHexagon } from "react-icons/fi";
 
@@ -29,6 +29,7 @@ const techCategories = {
     { name: "Terraform", icon: SiTerraform, color: "#7B42BC" },
     { name: "GitHub Actions", icon: SiGithubactions, color: "#2088FF" },
     { name: "Linux", icon: SiLinux, color: "#FCC624" },
+    { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
   ],
   observability: [
     { name: "Prometheus", icon: SiPrometheus, color: "#E6522C" },
@@ -43,14 +44,13 @@ const techCategories = {
     { name: "Next.js", icon: SiNextdotjs, color: "#111111" },
     { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
     { name: "Redux", icon: SiRedux, color: "#764ABC" },
-    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
   ],
 };
 
 type Tech = { name: string; icon: React.ElementType; color: string };
 
 const categoryMeta: Record<string, { label: string; dot: string }> = {
-  frontend: { label: "Frontend", dot: "bg-sky-500" },
+  frontend: { label: "Development", dot: "bg-sky-500" },
   devops: { label: "DevOps & Cloud", dot: "bg-emerald-500" },
   observability: { label: "Observability", dot: "bg-orange-500" },
 };
