@@ -1,34 +1,26 @@
 import { motion } from "framer-motion";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { 
-  SiReact, 
-  SiTypescript, 
-  SiNextdotjs, 
-  SiTailwindcss, 
-  SiKubernetes, 
-  SiGo,  
-  SiPrometheus, 
-  SiGrafana, 
-  SiGithubactions, 
-  SiLinux, 
+import {
+  SiReact,
+  SiTypescript,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiKubernetes,
+  SiGo,
+  SiPrometheus,
+  SiGrafana,
+  SiGithubactions,
+  SiLinux,
   SiRedux,
   SiDocker,
   SiNodedotjs,
   SiAmazonwebservices,
   SiTerraform,
-  SiOpentelemetry
+  SiOpentelemetry,
 } from "react-icons/si";
 import { FiHexagon } from "react-icons/fi";
 
 const techCategories = {
-  frontend: [
-    { name: "React", icon: SiReact, color: "#61DAFB" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
-    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
-    { name: "Redux", icon: SiRedux, color: "#764ABC" },
-    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
-  ],
   devops: [
     { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
     { name: "Go", icon: SiGo, color: "#00ADD8" },
@@ -45,120 +37,72 @@ const techCategories = {
     { name: "Thanos", icon: FiHexagon, color: "#7A56D1" },
     { name: "OpenTelemetry", icon: SiOpentelemetry, color: "#000000" },
   ],
+  frontend: [
+    { name: "React", icon: SiReact, color: "#61DAFB" },
+    { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
+    { name: "Next.js", icon: SiNextdotjs, color: "#111111" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "#06B6D4" },
+    { name: "Redux", icon: SiRedux, color: "#764ABC" },
+    { name: "Node.js", icon: SiNodedotjs, color: "#339933" },
+  ],
 };
 
-const allTechs = [...techCategories.frontend, ...techCategories.devops, ...techCategories.observability];
+type Tech = { name: string; icon: React.ElementType; color: string };
 
-function TechCard({ tech }: { tech: { name: string; icon: React.ElementType; color: string } }) {
-  const Icon = tech.icon;
-  
-  return (
-    <motion.div
-      whileHover={{ scale: 1.08, y: -5 }}
-      className="group flex items-center gap-3 px-6 py-4 rounded-2xl glass hover:border-primary/40 transition-all duration-300 cursor-pointer min-w-[160px]"
-    >
-      <div 
-        className="p-2 rounded-xl transition-transform duration-300 group-hover:scale-110"
-        style={{ backgroundColor: `${tech.color}15` }}
-      >
-        <Icon 
-          size={24} 
-          style={{ color: tech.color }}
-          className="transition-all duration-300 group-hover:drop-shadow-[0_0_8px_currentColor]"
-        />
-      </div>
-      <span className="font-medium text-foreground text-sm whitespace-nowrap">{tech.name}</span>
-    </motion.div>
-  );
-}
-
-function MarqueeRow({ techs }: { techs: typeof allTechs }) {
-  return (
-    <div className="relative overflow-hidden">
-      <div 
-        className="flex gap-4 animate-marquee"
-        style={{ width: 'fit-content' }}
-      >
-        {[...techs, ...techs, ...techs].map((tech, index) => (
-          <TechCard key={`${tech.name}-${index}`} tech={tech} />
-        ))}
-      </div>
-      <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background to-transparent pointer-events-none z-10" />
-      <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background to-transparent pointer-events-none z-10" />
-    </div>
-  );
-}
+const categoryMeta: Record<string, { label: string; dot: string }> = {
+  frontend: { label: "Frontend", dot: "bg-sky-500" },
+  devops: { label: "DevOps & Cloud", dot: "bg-emerald-500" },
+  observability: { label: "Observability", dot: "bg-orange-500" },
+};
 
 export function TechStackSection() {
   return (
-    <section className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-cyan-500/5 rounded-full blur-[100px]" />
+    <section id="tech-stack" className="py-20 md:py-24 relative overflow-hidden bg-muted">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-200/50 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-sky-200/50 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionHeading
-            title="Tech Stack"
-            subtitle="Technologies I use to bring ideas to life"
-          />
-        </motion.div>
-      </div>
+        <SectionHeading
+          eyebrow="Toolbox"
+          title="Tech Stack"
+          subtitle="The technologies I use to bring ideas to life — from cloud infrastructure to frontend experiences"
+        />
 
-      <div className="container mx-auto px-6 mt-12">
-        <MarqueeRow techs={allTechs} />
-      </div>
-
-      <div className="container mx-auto px-6 mt-16">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {Object.entries(techCategories).map(([category, techs], categoryIndex) => (
             <motion.div
               key={category}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: categoryIndex * 0.1 }}
-              className="p-6 rounded-2xl border-gradient card-hover"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: categoryIndex * 0.1, duration: 0.5 }}
+              className="rounded-2xl border border-border bg-card p-7 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
-              <h3 className="text-lg font-semibold text-foreground mb-4 capitalize flex items-center gap-2">
-                <span className={`w-2 h-2 rounded-full ${
-                  category === 'frontend' ? 'bg-primary' : 
-                  category === 'devops' ? 'bg-cyan-400' : 'bg-teal-400'
-                }`} />
-                {category === 'devops' ? 'DevOps & Cloud' : category}
-              </h3>
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2.5">
+                  <span className={`h-2.5 w-2.5 rounded-full ${categoryMeta[category].dot}`} />
+                  <h3 className="font-display text-lg font-bold text-foreground">
+                    {categoryMeta[category].label}
+                  </h3>
+                </div>
+                <span className="text-xs font-semibold text-foreground/60">{techs.length}</span>
+              </div>
               <div className="flex flex-wrap gap-2">
-                {techs.map((tech) => {
-                  const Icon = tech.icon;
-                  return (
-                    <motion.div
-                      key={tech.name}
-                      whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200"
-                    >
-                      <Icon size={14} style={{ color: tech.color }} />
-                      <span className="text-xs font-medium text-muted-foreground hover:text-foreground transition-colors">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  );
-                })}
+                {techs.map((tech) => (
+                  <span
+                    key={tech.name}
+                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border bg-muted/50 text-sm font-semibold text-foreground/80 hover:border-emerald-400 hover:text-emerald-700 transition-colors"
+                  >
+                    <tech.icon size={14} style={{ color: tech.color }} />
+                    {tech.name}
+                  </span>
+                ))}
               </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

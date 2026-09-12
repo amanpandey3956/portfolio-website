@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, Loader2, Mail, MapPin, Linkedin, Github, MessageSquare, ArrowUpRight, Copy, Check } from "lucide-react";
+import { Loader2, Mail, MapPin, Linkedin, Github, Copy, Check, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -23,10 +23,13 @@ const purposeOptions = [
 
 const email = "amanpnd01@gmail.com";
 
-const socialLinks = [
+const socials = [
   { icon: Github, href: "https://github.com/amanpandey3956", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/amanpandey1213/", label: "LinkedIn" },
 ];
+
+const inputClass =
+  "h-12 bg-white border-zinc-300 text-foreground placeholder:text-foreground/40 focus:border-emerald-500 focus-visible:border-emerald-500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0";
 
 export function ContactSection() {
   const [isLoading, setIsLoading] = useState(false);
@@ -108,193 +111,106 @@ export function ContactSection() {
   const isRecruiter = purpose === "job-opportunity";
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 mesh-gradient-strong opacity-30" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px]" />
-        <div className="absolute inset-0 grid-pattern opacity-20" />
+    <section id="contact" className="py-20 md:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0f172a04_1px,transparent_1px),linear-gradient(to_bottom,#0f172a04_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-emerald-100/50 rounded-full blur-[120px]" />
       </div>
 
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <SectionHeading
-            title="Get In Touch"
-            subtitle="Whether you're a recruiter, collaborator, or have a project in mind — let's connect"
-          />
-        </motion.div>
+        <SectionHeading
+          eyebrow="Contact"
+          title="Get In Touch"
+          subtitle="Whether you're a recruiter, collaborator, or have a project in mind — let's connect"
+        />
 
-        <div className="mt-12 grid lg:grid-cols-5 gap-8 max-w-6xl mx-auto items-stretch">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-2 flex flex-col justify-between gap-6"
-          >
-            <div className="p-6 rounded-2xl bg-card border border-border">
-              <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
-                <MessageSquare size={20} className="text-primary" />
-                Let's Connect
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 grid lg:grid-cols-2 max-w-6xl mx-auto rounded-3xl overflow-hidden border border-zinc-200 shadow-2xl shadow-zinc-900/10"
+        >
+          <div className="bg-[#0A1F17] p-8 sm:p-12 text-white flex flex-col">
+            <div className="flex-1">
+              <span className="text-xs font-bold uppercase tracking-[0.25em] text-emerald-400">
+                Let's Talk
+              </span>
+              <h3 className="font-display mt-4 text-3xl sm:text-4xl font-bold leading-tight">
+                Have an idea?
+                <br />
+                Let's build it together.
               </h3>
-              
-              <div className="space-y-4">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0 }}
-                  className="group"
+              <p className="mt-4 text-white/70 leading-relaxed">
+                I'm currently open to new opportunities, freelance projects, and
+                collaborations in the DevOps, SRE, and cloud-native space.
+              </p>
+
+              <div className="mt-8 flex items-center gap-2.5">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
+                </span>
+                <span className="text-sm font-bold text-emerald-400">Currently Available</span>
+              </div>
+
+              <div className="mt-8 space-y-4">
+                <button
+                  onClick={handleCopyEmail}
+                  className="group flex w-full items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4 hover:bg-white/10 transition-colors"
                 >
-                  <button
-                    onClick={handleCopyEmail}
-                    className="hidden md:flex w-full items-center gap-4 p-3 rounded-xl hover:bg-primary/5 transition-colors"
-                  >
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      {copied ? <Check size={18} className="text-green-500" /> : <Mail size={18} className="text-primary" />}
-                    </div>
-                    <div className="flex-1 text-left">
-                      <div className="text-xs text-muted-foreground">Email</div>
-                      <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                        {copied ? "Copied!" : email}
-                      </div>
-                    </div>
-                    <Copy size={16} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </button>
-                  <a
-                    href={`mailto:${email}`}
-                    className="md:hidden flex items-center gap-4 p-3 rounded-xl hover:bg-primary/5 transition-colors"
-                  >
-                    <div className="p-2 rounded-lg bg-primary/10">
-                      <Mail size={18} className="text-primary" />
-                    </div>
-                    <div className="flex-1">
-                      <div className="text-xs text-muted-foreground">Email</div>
-                      <div className="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
-                        {email}
-                      </div>
-                    </div>
-                    <ArrowUpRight size={16} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </motion.div>
-                
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="group"
-                >
-                  <div className="flex items-center gap-4 p-3 rounded-xl">
-                    <div className="p-2 rounded-lg bg-cyan-500/10">
-                      <MapPin size={18} className="text-cyan-500" />
-                    </div>
-                    <div>
-                      <div className="text-xs text-muted-foreground">Location</div>
-                      <div className="text-sm font-medium text-foreground">Maharashtra, India</div>
-                    </div>
-                  </div>
-                </motion.div>
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-400">
+                    {copied ? <Check size={19} /> : <Mail size={19} />}
+                  </span>
+                  <span className="flex-1 text-left">
+                    <span className="block text-xs font-medium text-white/50">Email</span>
+                    <span className="block text-sm font-bold">{copied ? "Copied!" : email}</span>
+                  </span>
+                  <Copy size={16} className="text-white/40 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+
+                <div className="flex items-center gap-4 rounded-2xl bg-white/5 border border-white/15 p-4">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-400/15 text-teal-400">
+                    <MapPin size={19} />
+                  </span>
+                  <span>
+                    <span className="block text-xs font-medium text-white/50">Location</span>
+                    <span className="block text-sm font-bold">Maharashtra, India</span>
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="p-6 rounded-2xl bg-card border border-border">
-              <h3 className="text-lg font-semibold text-foreground mb-4">
-                Find me on
-              </h3>
-              <div className="flex gap-3 flex-wrap">
-                {socialLinks.map((social, index) => (
-                  <motion.a
+            <div className="mt-10 pt-8 border-t border-white/10">
+              <p className="text-xs font-medium text-white/50 mb-4">Find me on</p>
+              <div className="flex gap-3">
+                {socials.map((social) => (
+                  <a
                     key={social.label}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
-                    title={social.label}
+                    aria-label={social.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-white/80 hover:bg-emerald-400 hover:text-[#0A1F17] hover:border-emerald-400 transition-colors"
                   >
-                    <social.icon size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                      {social.label}
-                    </span>
-                  </motion.a>
+                    <social.icon size={17} />
+                  </a>
                 ))}
-                <motion.button
-                  onClick={handleCopyEmail}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ delay: socialLinks.length * 0.1 }}
-                  className="hidden md:flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
-                  title="Copy email"
-                >
-                  {copied ? (
-                    <Check size={20} className="text-green-500" />
-                  ) : (
-                    <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                  )}
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                    {copied ? "Copied!" : "Email"}
-                  </span>
-                </motion.button>
-                <motion.a
-                  href={`mailto:${email}`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ delay: socialLinks.length * 0.1 }}
-                  className="md:hidden flex items-center gap-2 p-3 rounded-xl bg-card/50 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200 group"
-                  title="Email"
-                >
-                  <Mail size={20} className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                  <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
-                    Email
-                  </span>
-                </motion.a>
               </div>
             </div>
+          </div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-cyan-500/10 to-teal-500/10 border border-primary/20"
-            >
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-3 h-3 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-sm font-medium text-foreground">Currently Available</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Open to exciting opportunities in DevOps, SRE, Cloud and frontend development.
-              </p>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="lg:col-span-3 flex"
-          >
-            <form onSubmit={handleSubmit} className="p-8 rounded-2xl bg-card border border-border space-y-6 w-full flex flex-col justify-between">
+          <div className="bg-white p-8 sm:p-12">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <label htmlFor="purpose" className="text-sm font-medium text-foreground">
+                <label htmlFor="purpose" className="text-sm font-bold text-foreground">
                   Purpose of Contact
                 </label>
                 <Select value={purpose} onValueChange={setPurpose} required>
-                  <SelectTrigger className="bg-card/50 border-border/50 focus:ring-0 focus:ring-offset-0 focus:border-primary h-12">
+                  <SelectTrigger className={inputClass}>
                     <SelectValue placeholder="Select a purpose" />
                   </SelectTrigger>
-                  <SelectContent className="bg-card border-border">
+                  <SelectContent className="bg-white border-zinc-200">
                     {purposeOptions.map((opt) => (
                       <SelectItem key={opt.value} value={opt.value}>
                         {opt.label}
@@ -304,21 +220,15 @@ export function ContactSection() {
                 </Select>
               </div>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-foreground">
+                  <label htmlFor="name" className="text-sm font-bold text-foreground">
                     Name
                   </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                    className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary h-12"
-                  />
+                  <Input id="name" name="name" placeholder="Your name" required className={inputClass} />
                 </div>
                 <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  <label htmlFor="email" className="text-sm font-bold text-foreground">
                     Email
                   </label>
                   <Input
@@ -327,58 +237,42 @@ export function ContactSection() {
                     type="email"
                     placeholder="your@email.com"
                     required
-                    className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary h-12"
+                    className={inputClass}
                   />
                 </div>
               </div>
 
               {isRecruiter && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="grid sm:grid-cols-2 gap-4"
-                >
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label htmlFor="company" className="text-sm font-medium text-foreground">
+                    <label htmlFor="company" className="text-sm font-bold text-foreground">
                       Company
                     </label>
-                    <Input
-                      id="company"
-                      name="company"
-                      placeholder="Company name"
-                      className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary h-12"
-                    />
+                    <Input id="company" name="company" placeholder="Company name" className={inputClass} />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="role" className="text-sm font-medium text-foreground">
+                    <label htmlFor="role" className="text-sm font-bold text-foreground">
                       Role / Position
                     </label>
                     <Input
                       id="role"
                       name="role"
                       placeholder="e.g. Frontend Engineer"
-                      className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary h-12"
+                      className={inputClass}
                     />
                   </div>
-                </motion.div>
+                </div>
               )}
 
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium text-foreground">
+                <label htmlFor="subject" className="text-sm font-bold text-foreground">
                   Subject
                 </label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  placeholder="What's this about?"
-                  required
-                  className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary h-12"
-                />
+                <Input id="subject" name="subject" placeholder="What's this about?" required className={inputClass} />
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-foreground">
+                <label htmlFor="message" className="text-sm font-bold text-foreground">
                   Message
                 </label>
                 <Textarea
@@ -389,16 +283,16 @@ export function ContactSection() {
                       ? "Tell me about the role, team, and what you're looking for..."
                       : "Tell me about your project..."
                   }
-                  rows={5}
+                  rows={4}
                   required
-                  className="bg-card/50 border-border/50 focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary resize-none"
+                  className="bg-white border-zinc-300 text-foreground placeholder:text-foreground/40 focus:border-emerald-500 focus-visible:border-emerald-500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 resize-none"
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                size="lg" 
-                className="w-full glow group relative overflow-hidden bg-gradient-to-r from-primary to-cyan-500 hover:from-primary/90 hover:to-cyan-500/90 border-0 h-12" 
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full bg-foreground text-background hover:bg-emerald-700 hover:text-white text-base rounded-xl h-12 shadow-lg shadow-zinc-900/10 group"
                 disabled={isLoading}
               >
                 {isLoading ? (
@@ -408,14 +302,14 @@ export function ContactSection() {
                   </>
                 ) : (
                   <>
-                    <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     Send Message
+                    <ArrowUpRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                   </>
                 )}
               </Button>
             </form>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

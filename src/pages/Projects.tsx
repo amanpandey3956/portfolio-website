@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github, Search, X, Sparkles, Layers, Code2 } from "lucide-react";
+import { ExternalLink, Github, Search, X, Sparkles, Layers, Code2, FolderGit2 } from "lucide-react";
 import { Layout } from "@/components/layout/Layout";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { SEO } from "@/components/SEO";
@@ -83,24 +83,6 @@ const projects = [
     featured: false,
     gradient: "from-sky-500 via-blue-500 to-indigo-500",
   },
-  {
-    title: "Admin Sales Dashboard",
-    description: "Developed a responsive sales dashboard using React.js, Material-UI, and Nivo Charts for dynamic data visualization. Integrated mock APIs from JSONPlaceholder for real-time transaction tracking and user activity insights",
-    tech: ["React", "Material-UI", "Axios", "Jsonplaceholder"],
-    github: "https://github.com/amanpandey3956/React-Sales-Dashboard",
-    link: "https://dashboard-one-beryl-65.vercel.app/",
-    featured: false,
-    gradient: "from-slate-500 via-gray-500 to-zinc-500",
-  },
-  {
-    title: "Nike Landing Page",
-    description: "Created an engaging Nike landing page using ReactJS and Tailwind CSS. The site features a visually appealing design that showcases products with responsive layouts and smooth animations. Leveraged Tailwind CSS for rapid styling, ensuring a seamless user experience across devices.",
-    tech: ["React", "JavaScript", "Tailwind CSS"],
-    github: "https://github.com/amanpandey3956/Nike-Website",
-    link: "https://nike-website-sage-eight.vercel.app/",
-    featured: false,
-    gradient: "from-red-500 via-orange-500 to-amber-500",
-  } 
 ];
 
 const prioritizedTechs = [
@@ -170,11 +152,10 @@ const Projects = () => {
         url="https://amanpandey-portfolio.vercel.app/projects"
       />
       
-      <section className="py-16 min-h-screen relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
-          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px]" />
-          <div className="absolute inset-0 dot-pattern opacity-30" />
+      <section className="py-16 min-h-screen relative overflow-hidden bg-white">
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-100/50 rounded-full blur-[130px]" />
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-sky-100/50 rounded-full blur-[110px]" />
         </div>
 
         <div className="container mx-auto px-6">
@@ -196,18 +177,18 @@ const Projects = () => {
             className="mt-12 max-w-2xl mx-auto"
           >
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40 h-5 w-5" />
               <Input
                 type="text"
-                placeholder="Search..."
+                placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 pr-10 h-14 text-lg bg-card/60 backdrop-blur-xl border-border/50 rounded-2xl focus:border-primary focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 shadow-lg"
+                className="pl-12 pr-10 h-14 text-base font-medium text-foreground placeholder:text-foreground/40 bg-white border-2 border-zinc-200 rounded-2xl focus:border-emerald-500 focus:ring-0 focus:ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0 shadow-sm"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-foreground/50 hover:text-foreground transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -225,10 +206,10 @@ const Projects = () => {
               <button
                 key={tech}
                 onClick={() => toggleTech(tech)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl text-sm font-bold transition-all duration-200 border ${
                   selectedTechs.includes(tech)
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "bg-secondary/80 text-secondary-foreground hover:bg-secondary border border-border/50"
+                    ? "bg-foreground text-background border-foreground shadow-md shadow-zinc-900/15"
+                    : "bg-white text-foreground/70 hover:text-foreground border-zinc-200 hover:border-emerald-400"
                 }`}
               >
                 {tech}
@@ -237,7 +218,7 @@ const Projects = () => {
             {selectedTechs.length > 0 && (
               <button
                 onClick={clearFilters}
-                className="px-4 py-2 rounded-full text-sm font-medium bg-secondary/80 text-secondary-foreground hover:bg-destructive/10 hover:text-destructive border border-border/50 transition-all duration-200"
+                className="px-4 py-2 rounded-xl text-sm font-bold bg-zinc-100 text-foreground/70 hover:bg-red-50 hover:text-red-600 border border-zinc-200 transition-all duration-200"
               >
                 Clear all
               </button>
@@ -248,14 +229,14 @@ const Projects = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-8 flex justify-center gap-6 text-sm text-muted-foreground"
+            className="mt-8 flex justify-center gap-6 text-sm font-semibold text-foreground/70"
           >
             <div className="flex items-center gap-2">
-              <Sparkles className="h-4 w-4 text-primary" />
+              <Sparkles className="h-4 w-4 text-emerald-600" />
               <span>{featuredCount} Featured</span>
             </div>
             <div className="flex items-center gap-2">
-              <Layers className="h-4 w-4 text-cyan-500" />
+              <Layers className="h-4 w-4 text-sky-600" />
               <span>{totalCount} Total</span>
             </div>
           </motion.div>
@@ -274,77 +255,78 @@ const Projects = () => {
                   layout
                   exit="exit"
                   whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                  className="group relative"
+                  className="group relative flex flex-col rounded-2xl border-2 border-zinc-200 bg-white shadow-sm hover:shadow-xl hover:shadow-zinc-900/10 hover:border-zinc-300 transition-all duration-300 overflow-hidden"
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-                  
-                  <div className="relative h-full p-6 rounded-2xl glass-strong border border-border/50 hover:border-primary/30 transition-all duration-300 flex flex-col">
-                    {project.featured && (
-                      <div className="absolute -top-px left-6 right-6 h-1 bg-gradient-to-r from-primary via-accent to-primary rounded-b-full" />
-                    )}
+                  {project.featured && (
+                    <div className={`h-1.5 w-full bg-gradient-to-r ${project.gradient}`} />
+                  )}
 
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                          {project.title}
-                        </h3>
-                        {project.featured && (
-                          <span className="text-xs text-primary font-medium">Featured Project</span>
-                        )}
-                      </div>
-                      
-                      <div className="flex gap-1.5">
-                        {project.github && (
-                          <motion.a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="p-2.5 rounded-xl bg-secondary/80 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200"
-                            aria-label={`${project.title} GitHub repository`}
-                          >
-                            <Github size={16} className="text-muted-foreground hover:text-foreground" />
-                          </motion.a>
-                        )}
-                        {project.link && (
-                          <motion.a
-                            href={project.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="p-2.5 rounded-xl bg-secondary/80 hover:bg-primary/10 border border-border/50 hover:border-primary/30 transition-all duration-200"
-                            aria-label={`${project.title} live demo`}
-                          >
-                            <ExternalLink size={16} className="text-muted-foreground hover:text-foreground" />
-                          </motion.a>
-                        )}
-                      </div>
+                  <div className="relative p-6 sm:p-7 flex flex-col flex-1">
+                    <div className="flex items-center justify-between mb-5 relative">
+                      <span className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${project.gradient} text-white shadow-sm`}>
+                        <FolderGit2 size={22} />
+                      </span>
+                      {project.featured ? (
+                        <span className="inline-flex px-2.5 py-1 rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-700 text-[11px] font-bold uppercase tracking-wider">
+                          Featured
+                        </span>
+                      ) : (
+                        <span className="inline-flex px-2.5 py-1 rounded-lg border border-zinc-200 bg-zinc-50 text-foreground/60 text-[11px] font-bold uppercase tracking-wider">
+                          Project
+                        </span>
+                      )}
                     </div>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed flex-1 mb-5">
+                    <h3 className="font-display text-lg font-bold text-foreground leading-snug mb-2.5">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-sm font-medium text-foreground/70 leading-relaxed flex-1 mb-6">
                       {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-1.5 mt-auto">
+                    <div className="flex flex-wrap gap-1.5 mb-6">
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
                           onClick={() => toggleTech(tech)}
-                          className={`px-2.5 py-1 text-xs rounded-lg font-medium cursor-pointer transition-all duration-200 ${
+                          className={`px-2.5 py-1 text-xs font-bold rounded-lg cursor-pointer transition-all duration-200 border ${
                             selectedTechs.includes(tech)
-                              ? "bg-primary/20 text-primary border border-primary/30"
-                              : "bg-secondary/60 text-secondary-foreground hover:bg-secondary border border-transparent"
+                              ? "bg-foreground text-background border-foreground"
+                              : "bg-zinc-50 text-foreground/70 hover:border-emerald-400 border-zinc-200"
                           }`}
                         >
                           {tech}
                         </span>
                       ))}
                     </div>
-                  </div>
 
-                  <div className={`absolute -inset-px rounded-2xl bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10`} />
+                    <div className="flex items-center justify-between border-t border-zinc-100 pt-4">
+                      {project.github ? (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground hover:text-emerald-700 transition-colors"
+                        >
+                          <Github size={15} />
+                          GitHub
+                        </a>
+                      ) : (
+                        <span className="text-sm font-semibold text-foreground/50">Private Repo</span>
+                      )}
+                      {project.link && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 text-foreground hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-colors"
+                        >
+                          <ExternalLink size={15} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
@@ -356,33 +338,17 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               className="mt-16 text-center"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-secondary/80 mb-4">
-                <Code2 className="h-8 w-8 text-muted-foreground" />
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-100 mb-4">
+                <Code2 className="h-8 w-8 text-foreground/50" />
               </div>
-              <h3 className="text-xl font-semibold mb-2">No projects found</h3>
-              <p className="text-muted-foreground mb-4">Try adjusting your search or filters</p>
-              <Button variant="outline" onClick={clearFilters}>
+              <h3 className="font-display text-xl font-bold mb-2">No projects found</h3>
+              <p className="text-foreground/60 font-medium mb-4">Try adjusting your search or filters</p>
+              <Button variant="outline" onClick={clearFilters} className="border-2 border-zinc-300 font-bold hover:bg-foreground hover:text-background">
                 Clear all filters
               </Button>
             </motion.div>
           )}
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-20 text-center"
-          >
-            <div className="glass rounded-2xl p-8 max-w-2xl mx-auto relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-              <div className="relative">
-                <h3 className="text-xl font-semibold mb-3 gradient-text">More Projects Coming Soon</h3>
-                <p className="text-muted-foreground">
-                  I'm always working on new projects. Check back soon or connect with me on GitHub to see my latest work!
-                </p>
-              </div>
-            </div>
-          </motion.div>
         </div>
       </section>
     </Layout>

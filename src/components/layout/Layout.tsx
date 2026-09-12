@@ -3,7 +3,7 @@ import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
 import { AnnouncementBar } from "./AnnouncementBar";
 import { FloatingHireMeButton } from "./FloatingHireMeButton";
-import { AnnouncementProvider, useAnnouncement } from "./AnnouncementContext";
+import { useAnnouncement } from "./AnnouncementContext";
 
 interface LayoutProps {
   children: ReactNode;
@@ -28,9 +28,5 @@ function LayoutContent({ children }: LayoutProps) {
 }
 
 export function Layout({ children }: LayoutProps) {
-  return (
-    <AnnouncementProvider>
-      <LayoutContent>{children}</LayoutContent>
-    </AnnouncementProvider>
-  );
+  return <LayoutContent>{children}</LayoutContent>;
 }

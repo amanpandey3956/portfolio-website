@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    --background: 160 20% 96%;
-    --foreground: 160 10% 10%;
-    --card: 160 15% 99%;
-    --card-foreground: 160 10% 10%;
-    --popover: 160 15% 99%;
-    --popover-foreground: 160 10% 10%;
-    --primary: 160 84% 28%;
+    --background: 0 0% 100%;
+    --foreground: 160 40% 5%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 40% 5%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 160 40% 5%;
+    --primary: 160 84% 26%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 160 15% 90%;
-    --secondary-foreground: 160 10% 10%;
-    --muted: 160 10% 92%;
-    --muted-foreground: 160 5% 35%;
-    --accent: 160 84% 25%;
+    --secondary: 160 30% 96%;
+    --secondary-foreground: 160 40% 8%;
+    --muted: 160 20% 95%;
+    --muted-foreground: 160 12% 30%;
+    --accent: 160 84% 30%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 55%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 98%;
-    --border: 160 15% 80%;
-    --input: 160 15% 80%;
-    --ring: 160 84% 28%;
+    --border: 160 14% 82%;
+    --input: 160 15% 88%;
+    --ring: 160 84% 26%;
     --radius: 0.75rem;
-    --sidebar-background: 160 15% 94%;
-    --sidebar-foreground: 160 10% 10%;
-    --sidebar-primary: 160 84% 28%;
+    --sidebar-background: 160 20% 97%;
+    --sidebar-foreground: 160 40% 5%;
+    --sidebar-primary: 160 84% 26%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 160 15% 90%;
-    --sidebar-accent-foreground: 160 10% 10%;
-    --sidebar-border: 160 15% 80%;
-    --sidebar-ring: 160 84% 28%;
+    --sidebar-accent: 160 30% 94%;
+    --sidebar-accent-foreground: 160 40% 10%;
+    --sidebar-border: 160 15% 88%;
+    --sidebar-ring: 160 84% 26%;
   }
 
   .dark {
@@ -95,7 +95,7 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary via-teal-400 to-cyan-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-emerald-500 to-teal-500 bg-clip-text text-transparent;
   }
 
   .gradient-border {

@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, ArrowUp, Copy, Check } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowUp, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 
 const socialLinks = [
@@ -17,6 +15,7 @@ const navLinks = [
   { name: "Projects", path: "/projects" },
   { name: "Experience", path: "/experience" },
   { name: "Blog", path: "/blog" },
+  { name: "Certifications", path: "/certifications" },
 ];
 
 export function Footer() {
@@ -46,26 +45,57 @@ export function Footer() {
   };
 
   return (
-    <footer className="border-t border-border bg-card/30">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-4">
-            <Link to="/" className="inline-block">
-              <span className="text-2xl font-bold gradient-text">Aman Pandey</span>
+    <footer className="border-t border-border bg-muted">
+      <div className="container mx-auto px-6 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+          <div className="md:col-span-5 space-y-5">
+            <Link to="/" className="flex items-center gap-3">
+              <span className="h-12 w-12 rounded-full overflow-hidden ring-2 ring-emerald-500/40 ring-offset-2 ring-offset-muted">
+                <img
+                  src="/projects/myimg.webp"
+                  alt="Aman Pandey"
+                  width={48}
+                  height={48}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover"
+                />
+              </span>
+              <span className="font-display text-xl font-bold text-foreground">Aman Pandey</span>
             </Link>
-            <p className="text-muted-foreground text-sm max-w-xs">
-              Associate Full Stack Engineer @CloudRaft
-            </p>
+            <div className="flex gap-2.5">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-colors shadow-sm"
+                >
+                  <social.icon size={17} />
+                </a>
+              ))}
+              <a
+                href={`mailto:${email}`}
+                aria-label="Email"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-colors shadow-sm"
+              >
+                <Mail size={17} />
+              </a>
+            </div>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Quick Links</h3>
-            <nav className="flex flex-col gap-2">
+          <div className="md:col-span-3">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-foreground mb-5">
+              Quick Links
+            </h3>
+            <nav className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                  className="text-sm font-medium text-foreground/85 hover:text-emerald-700 transition-colors w-fit"
                 >
                   {link.name}
                 </Link>
@@ -73,58 +103,40 @@ export function Footer() {
             </nav>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-sm font-semibold text-foreground">Connect</h3>
-            <div className="flex gap-3">
-              {socialLinks.map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={social.label}
-                >
-                  <social.icon size={20} />
-                </motion.a>
-              ))}
-              <motion.button
+          <div className="md:col-span-4">
+            <h3 className="font-display text-sm font-bold uppercase tracking-wider text-foreground mb-5">
+              Get In Touch
+            </h3>
+            <div className="space-y-3.5">
+              <button
                 onClick={handleCopyEmail}
-                className="hidden md:flex p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Copy email"
+                className="flex items-center gap-3 text-sm font-medium text-foreground hover:text-emerald-700 transition-colors"
               >
-                {copied ? <Check size={20} /> : <Mail size={20} />}
-              </motion.button>
-              <motion.a
-                href={`mailto:${email}`}
-                className="md:hidden p-2 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Email"
-              >
-                <Mail size={20} />
-              </motion.a>
+                <Mail size={16} className="text-primary" />
+                {copied ? "Copied to clipboard!" : email}
+              </button>
+              <div className="flex items-center gap-3 text-sm font-medium text-foreground">
+                <MapPin size={16} className="text-primary" />
+                Maharashtra, India
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Aman Pandey. Built with ❤️ using React & Tailwind CSS
+        <div className="mt-12 pt-7 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm font-medium text-foreground/75">
+            © {new Date().getFullYear()} Aman Pandey. Built with React & Tailwind CSS.
           </p>
-          <Button
-            variant="ghost"
-            size="icon"
+          <button
             onClick={scrollToTop}
-            className="hover:bg-primary/20 hover:text-primary"
             aria-label="Back to top"
+            className="flex items-center gap-2 text-sm font-semibold text-foreground hover:text-primary transition-colors"
           >
-            <ArrowUp size={20} />
-          </Button>
+            Back to top
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-card hover:bg-foreground hover:text-background hover:border-foreground transition-colors shadow-sm">
+              <ArrowUp size={15} />
+            </span>
+          </button>
         </div>
       </div>
     </footer>

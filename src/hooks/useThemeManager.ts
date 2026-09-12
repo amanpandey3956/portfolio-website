@@ -17,7 +17,7 @@ export function useThemeManager() {
     if (!mounted) return;
     
     if (!isBlogRoute) {
-      setTheme("dark");
+      setTheme("light");
     }
   }, [location.pathname, setTheme, mounted, isBlogRoute]);
 

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, ExternalLink, Github, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink, Github, FolderGit2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/section-heading";
@@ -10,165 +10,149 @@ type FeaturedProject = {
   tech: string[];
   github?: string;
   link?: string;
-  gradient: string;
-  accentColor: string;
+  tag: string;
+  accentBar: string;
+  tagBg: string;
 };
 
 const featuredProjects: FeaturedProject[] = [
   {
     title: "Go DevOps Project",
-    description: "Built and deployed a Golang web application using containerization with Docker and Kubernetes on Amazon EKS. Automated build and deployment using GitHub Actions and GitOps delivery with Argo CD, managing releases via Helm and exposing the app through an NGINX Ingress Controller.",
-    tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD", "GitHub Actions"],
+    description:
+      "Containerized Golang web application with Docker & Kubernetes on Amazon EKS, automated via GitHub Actions, GitOps delivery with Argo CD, Helm-managed releases, and NGINX Ingress Controller.",
+    tech: ["Go", "Docker", "Kubernetes", "AWS EKS", "Helm", "ArgoCD"],
     github: "https://github.com/amanpandey3956/go-devops-project",
-    gradient: "from-blue-500/20 via-cyan-500/20 to-teal-500/20",
-    accentColor: "cyan",
+    tag: "Cloud Native",
+    accentBar: "from-sky-500 to-cyan-400",
+    tagBg: "bg-sky-50 text-sky-700 border-sky-200",
   },
   {
     title: "Blog App (DevSecOps)",
-    description: "Built a cloud-native 3-tier blog platform using React, Node.js, and PostgreSQL with containerized deployment on Kubernetes running on Amazon EKS. Automated infrastructure provisioning with Terraform and CI workflows using GitHub Actions, with GitOps-based delivery via Argo CD and integrated DevSecOps practices like vulnerability and IaC scanning.",
-    tech: ["Kubernetes", "AWS EKS", "Terraform", "GitHub Actions", "Argo CD", "React", "Node.js", "PostgreSQL"],
+    description:
+      "Cloud-native 3-tier blog platform built with React, Node.js, and PostgreSQL on Kubernetes (EKS), provisioned with Terraform, secured with DevSecOps scanning, and deployed via Argo CD.",
+    tech: ["Kubernetes", "Terraform", "GitHub Actions", "Argo CD", "React", "PostgreSQL"],
     github: "https://github.com/amanpandey3956/DevSecOps-Blog-App",
-    gradient: "from-blue-500/20 via-indigo-500/20 to-violet-500/20",
-    accentColor: "indigo",
+    tag: "DevSecOps",
+    accentBar: "from-violet-500 to-indigo-400",
+    tagBg: "bg-violet-50 text-violet-700 border-violet-200",
   },
   {
     title: "Task Manager App",
-    description: "3-tier full-stack task management app with complete observability stack using Prometheus, Thanos, and OpenTelemetry. Automated Docker image build and push workflows using GitHub Actions.",
-    tech: ["Docker", "Prometheus", "Thanos", "OpenTelemetry", "CI/CD", "Observability"],
+    description:
+      "3-tier full-stack task manager with a complete observability stack — Prometheus, Thanos, and OpenTelemetry — plus automated Docker image builds and push workflows via GitHub Actions.",
+    tech: ["Docker", "Prometheus", "Thanos", "OpenTelemetry", "CI/CD"],
     github: "https://github.com/amanpandey3956/Full-stack-app",
-    gradient: "from-orange-500/20 via-amber-500/20 to-yellow-500/20",
-    accentColor: "amber",
+    tag: "Observability",
+    accentBar: "from-amber-500 to-orange-400",
+    tagBg: "bg-amber-50 text-amber-700 border-amber-200",
   },
 ];
 
 function ProjectCard({ project, index }: { project: FeaturedProject; index: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
+    <motion.article
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-      whileHover={{ y: -12, transition: { duration: 0.3 } }}
-      className="group relative"
+      transition={{ duration: 0.5, delay: index * 0.12 }}
+      whileHover={{ y: -8 }}
+      className="group relative flex flex-col rounded-2xl border-2 border-zinc-200 bg-white shadow-sm hover:shadow-xl hover:border-zinc-300 hover:shadow-zinc-900/10 transition-all duration-300 overflow-hidden"
     >
-      <div className={`absolute -inset-0.5 bg-gradient-to-br ${project.gradient} rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
-      
-      <div className="relative h-full rounded-3xl overflow-hidden glass-strong border border-border/60 bg-card/40 backdrop-blur-xl">
-        <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradient.replace('/20', '')} opacity-80`} />
-        
-        <div className="p-8 h-full flex flex-col">
-          <div className="flex items-start justify-between mb-6">
-            <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-primary">Featured Project</span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 leading-tight">
-                {project.title}
-              </h3>
-            </div>
-            
-            <div className="flex gap-2">
-              {project.github && (
-                <motion.a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-xl bg-secondary/60 hover:bg-primary/20 border border-border/60 hover:border-primary/40 transition-all duration-200 backdrop-blur-sm"
-                >
-                  <Github size={18} className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                </motion.a>
-              )}
-              {project.link && (
-                <motion.a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="p-3 rounded-xl bg-secondary/60 hover:bg-primary/20 border border-border/60 hover:border-primary/40 transition-all duration-200 backdrop-blur-sm"
-                >
-                  <ExternalLink size={18} className="text-muted-foreground group-hover:text-foreground transition-colors" />
-                </motion.a>
-              )}
-            </div>
-          </div>
+      <div className={`h-1.5 w-full bg-gradient-to-r ${project.accentBar}`} />
 
-          <p className="text-muted-foreground leading-relaxed mb-6 text-sm flex-1">
-            {project.description}
-          </p>
-
-          <div className="space-y-4">
-            <div className="flex flex-wrap gap-2">
-              {project.tech.slice(0, 5).map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary/70 text-secondary-foreground border border-border/50 backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-              {project.tech.length > 5 && (
-                <span className="px-3 py-1.5 rounded-lg text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-                  +{project.tech.length - 5} more
-                </span>
-              )}
-            </div>
-          </div>
+      <div className="relative p-7 sm:p-8 flex flex-col flex-1">
+        <div className="flex items-center justify-between mb-6 relative">
+          <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-900 text-white">
+            <FolderGit2 size={22} />
+          </span>
+          <span className={`inline-flex px-2.5 py-1 rounded-lg border text-[11px] font-bold uppercase tracking-wider ${project.tagBg}`}>
+            {project.tag}
+          </span>
         </div>
 
-        <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent ${project.gradient.replace('/20', '')} to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+        <h3 className="font-display text-xl font-bold text-foreground leading-snug mb-3">
+          {project.title}
+        </h3>
+
+        <p className="text-sm font-medium text-foreground/70 leading-relaxed flex-1 mb-6">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 mb-7">
+          {project.tech.slice(0, 5).map((tech) => (
+            <span
+              key={tech}
+              className="px-2.5 py-1 rounded-md bg-zinc-50 border border-zinc-200 text-xs font-bold text-foreground/70"
+            >
+              {tech}
+            </span>
+          ))}
+          {project.tech.length > 5 && (
+            <span className="px-2.5 py-1 rounded-md bg-zinc-100 border border-zinc-200 text-xs font-bold text-foreground/70">
+              +{project.tech.length - 5} more
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between border-t border-zinc-100 pt-5">
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-foreground hover:text-emerald-700 transition-colors"
+          >
+            <Github size={16} />
+            View Repository
+          </a>
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Live demo"
+              className="flex h-9 w-9 items-center justify-center rounded-lg border border-zinc-200 text-foreground hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-colors"
+            >
+              <ExternalLink size={16} />
+            </a>
+          )}
+        </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
 
 export function FeaturedProjectsSection() {
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-violet-500/5 rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-[100px]" />
-        <div className="absolute inset-0 dot-pattern opacity-20" />
+    <section id="projects" className="py-20 md:py-24 relative overflow-hidden bg-white">
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-1/3 -left-40 w-96 h-96 bg-emerald-100/60 rounded-full blur-[130px]" />
+        <div className="absolute bottom-0 -right-40 w-96 h-96 bg-sky-100/60 rounded-full blur-[130px]" />
       </div>
 
       <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <SectionHeading
-            title="Featured Projects"
-            subtitle="Some of my recent work"
-          />
-        </motion.div>
+        <SectionHeading
+          eyebrow="Work"
+          title="Featured Projects"
+          subtitle="A snapshot of recent work — cloud-native platforms, GitOps delivery, and observability"
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {featuredProjects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <Button 
-            asChild 
-            variant="outline" 
-            className="group border-border hover:bg-secondary hover:text-foreground text-foreground px-8"
+        <div className="text-center mt-14">
+          <Button
+            asChild
+            className="group bg-foreground text-background hover:bg-primary hover:text-white text-base rounded-xl px-9 py-6 shadow-lg shadow-zinc-900/10 hover:shadow-emerald-500/25"
           >
             <Link to="/projects">
               View All Projects
               <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
