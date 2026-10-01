@@ -10,7 +10,7 @@ const experiences = [
     title: "Associate Full Stack Engineer",
     company: "CloudRaft",
     location: "Remote",
-    period: "April 2025 - Present",
+    period: "April 2025 - Oct 2025",
     description: [
       "Led frontend development for a client SaaS MVP platform, converted Figma designs into responsive UI using React.js, TypeScript, Tailwind CSS.",
       "Integrated all major backend APIs including authentication (email/password, Google OAuth), Stripe APIs to manage user subscriptions, plan tiers, payment methods, and automatic billing workflows, logs/metrics APIs for getting live status of running and existing jobs.",
@@ -19,7 +19,7 @@ const experiences = [
       "Resolved major JavaScript errors on the website, added new landing pages, and enhanced mobile responsiveness for better user experience.",
     ],
     type: "work",
-    current: true,
+    current: false,
   },
   {
     title: "ReactJS Developer Intern",
