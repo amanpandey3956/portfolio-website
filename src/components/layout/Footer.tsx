@@ -12,10 +12,8 @@ const email = "amanpnd01@gmail.com";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Projects", path: "/projects" },
   { name: "Experience", path: "/experience" },
   { name: "Blog", path: "/blog" },
-  { name: "Certifications", path: "/certifications" },
 ];
 
 export function Footer() {

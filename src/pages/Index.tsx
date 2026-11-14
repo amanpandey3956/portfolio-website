@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { Layout } from "@/components/layout/Layout";
 import { HeroSection } from "@/components/home/HeroSection";
+import { LatestBlogSection } from "@/components/home/LatestBlogSection";
 import { TechStackSection } from "@/components/home/TechStackSection";
-import { FeaturedProjectsSection } from "@/components/home/FeaturedProjectsSection";
 import { ContactSection } from "@/components/home/ContactSection";
-import { CertificationsSection } from "@/components/home/CertificationsSection";
 import { SEO } from "@/components/SEO";
 
 const Index = () => {
@@ -28,9 +27,8 @@ const Index = () => {
         url="https://amanpandey-portfolio.vercel.app/"
       />
       <HeroSection />
+      <LatestBlogSection />
       <TechStackSection />
-      <FeaturedProjectsSection />
-      <CertificationsSection />
       <ContactSection />
     </Layout>
   );

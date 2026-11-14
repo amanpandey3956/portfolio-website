@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, FolderKanban, Briefcase, BookOpen, FileText } from "lucide-react";
+import { Menu, X, Home, Briefcase, BookOpen, FileText } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ResumeModal } from "@/components/ui/ResumeModal";
 
 const navLinks = [
   { name: "Home", path: "/", icon: Home },
-  { name: "Projects", path: "/projects", icon: FolderKanban },
   { name: "Experience", path: "/experience", icon: Briefcase },
   { name: "Blog", path: "/blog", icon: BookOpen },
 ];

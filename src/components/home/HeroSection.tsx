@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { BookOpen, Download, Github, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ResumeModal } from "@/components/ui/ResumeModal";
@@ -81,9 +81,9 @@ export function HeroSection() {
               size="lg"
               className="group bg-foreground text-background hover:bg-primary hover:text-primary-foreground text-base rounded-xl px-9 py-6 shadow-lg shadow-zinc-900/10 hover:shadow-emerald-500/25"
             >
-              <Link to="/projects">
-                View Projects
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              <Link to="/blog">
+                Read My Blog
+                <BookOpen className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
             </Button>
             <Button

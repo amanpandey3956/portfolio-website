@@ -11,12 +11,10 @@ import { ThemeContextProvider } from "@/components/ThemeContext";
 import { AnnouncementProvider } from "@/components/layout/AnnouncementContext";
 import { useThemeManager } from "@/hooks/useThemeManager";
 import Index from "./pages/Index";
-import Projects from "./pages/Projects";
 import Experience from "./pages/Experience";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import NotFound from "./pages/NotFound";
-import Certifications from "./pages/Certifications";
 
 const queryClient = new QueryClient();
 
@@ -40,8 +38,6 @@ const App = () => (
                 <WelcomePopup />
                 <Routes>
                   <Route path="/" element={<Index />} />
-                  <Route path="/certifications" element={<Certifications />} />
-                  <Route path="/projects" element={<Projects />} />
                   <Route path="/experience" element={<Experience />} />
                   <Route path="/blog" element={<Blog />} />
                   <Route path="/blog/:slug" element={<BlogPost />} />
